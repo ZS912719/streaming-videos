@@ -69,17 +69,28 @@ public final class GreedySolver {
      */
     private static SparseCandidateIndex buildSparseIndex(ProblemInstance problem) {
         List<DemandView> demands = enumerateDemands(problem);
-        Map<Long, CandidateBuilder> builders = new HashMap<>();
+        long pairCountLong = (long) problem.cacheCount() * problem.videoCount();
+        if (pairCountLong > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("Too many cache-video pairs: " + pairCountLong);
+        }
+        int pairCount = (int) pairCountLong;
+        long[] gainByPair = new long[pairCount];
+        int[] contributionCountByPair = new int[pairCount];
+        int[] encounterOrder = new int[pairCount];
+        int candidateCount = 0;
         long contributionTotal = 0L;
 
         for (DemandView demand : demands) {
             for (CacheConnection connection : demand.endpoint().connections()) {
-                long key = pack(connection.cacheId(), demand.request().videoId());
-                CandidateBuilder builder = builders.computeIfAbsent(key,
-                        ignored -> new CandidateBuilder(connection.cacheId(), demand.request().videoId()));
-                builder.initialGain += demand.request().requestCount()
-                        * (long) (demand.endpoint().dataCenterLatency() - connection.latency());
-                builder.contributionCount++;
+                int pairId = pairId(connection.cacheId(), demand.request().videoId(),
+                        problem.videoCount());
+                if (contributionCountByPair[pairId] == 0) {
+                    encounterOrder[candidateCount++] = pairId;
+                }
+                int savedLatency = Math.max(0,
+                        demand.endpoint().dataCenterLatency() - connection.latency());
+                gainByPair[pairId] += demand.request().requestCount() * (long) savedLatency;
+                contributionCountByPair[pairId]++;
                 contributionTotal++;
             }
         }
@@ -88,18 +99,23 @@ public final class GreedySolver {
                     "Sparse candidate index is too large: " + contributionTotal + " contributions");
         }
 
-        int candidateCount = builders.size();
+        int[] orderedPairs = legacyCandidateOrder(
+                encounterOrder, candidateCount, problem.videoCount());
         int[] cacheIds = new int[candidateCount];
         int[] videoIds = new int[candidateCount];
         long[] initialGains = new long[candidateCount];
         int[] offsets = new int[candidateCount + 1];
+        int[] candidateIdByPair = new int[pairCount];
+        java.util.Arrays.fill(candidateIdByPair, -1);
         int candidateId = 0;
-        for (CandidateBuilder builder : builders.values()) {
-            builder.candidateId = candidateId;
-            cacheIds[candidateId] = builder.cacheId;
-            videoIds[candidateId] = builder.videoId;
-            initialGains[candidateId] = builder.initialGain;
-            offsets[candidateId + 1] = offsets[candidateId] + builder.contributionCount;
+        for (int current = 0; current < candidateCount; current++) {
+            int pairId = orderedPairs[current];
+            int contributionCount = contributionCountByPair[pairId];
+            candidateIdByPair[pairId] = candidateId;
+            cacheIds[candidateId] = pairId / problem.videoCount();
+            videoIds[candidateId] = pairId % problem.videoCount();
+            initialGains[candidateId] = gainByPair[pairId];
+            offsets[candidateId + 1] = offsets[candidateId] + contributionCount;
             candidateId++;
         }
 
@@ -108,9 +124,10 @@ public final class GreedySolver {
         int[] writePositions = offsets.clone();
         for (DemandView demand : demands) {
             for (CacheConnection connection : demand.endpoint().connections()) {
-                CandidateBuilder builder = builders.get(
-                        pack(connection.cacheId(), demand.request().videoId()));
-                int position = writePositions[builder.candidateId]++;
+                int pairId = pairId(connection.cacheId(), demand.request().videoId(),
+                        problem.videoCount());
+                int currentCandidateId = candidateIdByPair[pairId];
+                int position = writePositions[currentCandidateId]++;
                 demandIds[position] = demand.demandId();
                 cacheLatencies[position] = (short) connection.latency();
             }
@@ -164,21 +181,36 @@ public final class GreedySolver {
         }
     }
 
-    private static long pack(int high, int low) {
-        return ((long) high << 32) | (low & 0xffffffffL);
+    private static int pairId(int cacheId, int videoId, int videoCount) {
+        return cacheId * videoCount + videoId;
     }
 
-    private static final class CandidateBuilder {
-        private final int cacheId;
-        private final int videoId;
-        private long initialGain;
-        private int contributionCount;
-        private int candidateId;
-
-        private CandidateBuilder(int cacheId, int videoId) {
-            this.cacheId = cacheId;
-            this.videoId = videoId;
+    /**
+     * Preserves the previous solver's implicit candidate order for equal-priority queue entries.
+     * The map sees each candidate once; contribution aggregation and lookup remain direct-indexed.
+     */
+    private static int[] legacyCandidateOrder(
+            int[] encounterOrder, int candidateCount, int videoCount) {
+        Map<Long, Boolean> legacyOrder = new HashMap<>();
+        for (int i = 0; i < candidateCount; i++) {
+            int pairId = encounterOrder[i];
+            int cacheId = pairId / videoCount;
+            int videoId = pairId % videoCount;
+            legacyOrder.computeIfAbsent(pack(cacheId, videoId), ignored -> Boolean.TRUE);
         }
+
+        int[] orderedPairs = new int[candidateCount];
+        int position = 0;
+        for (long key : legacyOrder.keySet()) {
+            int cacheId = (int) (key >>> 32);
+            int videoId = (int) key;
+            orderedPairs[position++] = pairId(cacheId, videoId, videoCount);
+        }
+        return orderedPairs;
+    }
+
+    private static long pack(int high, int low) {
+        return ((long) high << 32) | (low & 0xffffffffL);
     }
 
     private record DemandView(int demandId, Endpoint endpoint, RequestDemand request) { }
