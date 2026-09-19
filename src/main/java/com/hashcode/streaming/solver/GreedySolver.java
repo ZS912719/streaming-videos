@@ -5,6 +5,7 @@ import com.hashcode.streaming.model.Endpoint;
 import com.hashcode.streaming.model.ProblemInstance;
 import com.hashcode.streaming.model.RequestDemand;
 import com.hashcode.streaming.solution.Solution;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,124 +13,193 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-/** Dynamic marginal-gain-per-megabyte greedy solver. */
+/** Dynamic marginal-gain-per-megabyte greedy solver with a compact sparse index. */
 public final class GreedySolver {
     public Solution solve(ProblemInstance problem) {
-        List<List<EndpointLink>> endpointsByCache = reverseConnections(problem);
-        Map<Long, Long> initialGains = calculateInitialGains(problem);
-        PriorityQueue<Candidate> queue = new PriorityQueue<>(
-                Comparator.comparingDouble(Candidate::density).reversed()
-                        .thenComparing(Comparator.comparingLong(Candidate::gain).reversed()));
+        SparseCandidateIndex index = buildSparseIndex(problem);
+        PriorityQueue<QueueEntry> queue = new PriorityQueue<>(
+                Comparator.comparingDouble(QueueEntry::density).reversed()
+                        .thenComparing(Comparator.comparingLong(QueueEntry::gain).reversed()));
 
-        for (Map.Entry<Long, Long> entry : initialGains.entrySet()) {
-            int cacheId = unpackHigh(entry.getKey());
-            int videoId = unpackLow(entry.getKey());
-            if (problem.videoSizes()[videoId] <= problem.cacheCapacity() && entry.getValue() > 0) {
-                queue.add(Candidate.of(cacheId, videoId, entry.getValue(), problem.videoSizes()[videoId]));
+        for (int candidateId = 0; candidateId < index.candidateCount(); candidateId++) {
+            int videoId = index.videoIds()[candidateId];
+            int size = problem.videoSizes()[videoId];
+            long gain = index.initialGains()[candidateId];
+            if (size <= problem.cacheCapacity() && gain > 0) {
+                queue.add(QueueEntry.of(candidateId, gain, size));
             }
         }
 
         Solution solution = new Solution(problem.cacheCount());
         int[] remainingCapacity = new int[problem.cacheCount()];
         java.util.Arrays.fill(remainingCapacity, problem.cacheCapacity());
-        Map<Long, Integer> bestLatencies = initializeBestLatencies(problem);
 
         while (!queue.isEmpty()) {
-            Candidate candidate = queue.poll();
-            int size = problem.videoSizes()[candidate.videoId()];
-            if (size > remainingCapacity[candidate.cacheId()]
-                    || solution.contains(candidate.cacheId(), candidate.videoId())) continue;
+            QueueEntry entry = queue.poll();
+            int candidateId = entry.candidateId();
+            int cacheId = index.cacheIds()[candidateId];
+            int videoId = index.videoIds()[candidateId];
+            int size = problem.videoSizes()[videoId];
+            if (size > remainingCapacity[cacheId] || solution.contains(cacheId, videoId)) {
+                continue;
+            }
 
-            long currentGain = marginalGain(candidate.cacheId(), candidate.videoId(),
-                    endpointsByCache, bestLatencies);
-            if (currentGain <= 0) continue;
-            Candidate refreshed = Candidate.of(candidate.cacheId(), candidate.videoId(), currentGain, size);
+            long currentGain = marginalGain(candidateId, index);
+            if (currentGain <= 0) {
+                continue;
+            }
+            QueueEntry refreshed = QueueEntry.of(candidateId, currentGain, size);
 
-            // Queue values are upper bounds: placements only decrease future marginal gains.
+            // Stored values are upper bounds because placements only reduce marginal gains.
             if (!queue.isEmpty() && refreshed.density() + 1e-12 < queue.peek().density()) {
                 queue.add(refreshed);
                 continue;
             }
 
-            solution.addVideo(refreshed.cacheId(), refreshed.videoId());
-            remainingCapacity[refreshed.cacheId()] -= size;
-            applyPlacement(refreshed.cacheId(), refreshed.videoId(), endpointsByCache, bestLatencies);
+            solution.addVideo(cacheId, videoId);
+            remainingCapacity[cacheId] -= size;
+            applyPlacement(candidateId, index);
         }
         return solution;
     }
 
-    private static List<List<EndpointLink>> reverseConnections(ProblemInstance problem) {
-        List<List<EndpointLink>> result = new ArrayList<>(problem.cacheCount());
-        for (int i = 0; i < problem.cacheCount(); i++) result.add(new ArrayList<>());
-        for (int endpointId = 0; endpointId < problem.endpointCount(); endpointId++) {
-            Endpoint endpoint = problem.endpoints().get(endpointId);
-            for (CacheConnection connection : endpoint.connections()) {
-                result.get(connection.cacheId()).add(
-                        new EndpointLink(endpointId, connection.latency(), endpoint));
+    /**
+     * Builds a CSR-like index in two passes. Each candidate stores a contiguous slice of only
+     * the requests it can improve. Parallel primitive arrays avoid one Java object per edge.
+     */
+    private static SparseCandidateIndex buildSparseIndex(ProblemInstance problem) {
+        List<DemandView> demands = enumerateDemands(problem);
+        Map<Long, CandidateBuilder> builders = new HashMap<>();
+        long contributionTotal = 0L;
+
+        for (DemandView demand : demands) {
+            for (CacheConnection connection : demand.endpoint().connections()) {
+                long key = pack(connection.cacheId(), demand.request().videoId());
+                CandidateBuilder builder = builders.computeIfAbsent(key,
+                        ignored -> new CandidateBuilder(connection.cacheId(), demand.request().videoId()));
+                builder.initialGain += demand.request().requestCount()
+                        * (long) (demand.endpoint().dataCenterLatency() - connection.latency());
+                builder.contributionCount++;
+                contributionTotal++;
             }
         }
-        return result;
+        if (contributionTotal > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException(
+                    "Sparse candidate index is too large: " + contributionTotal + " contributions");
+        }
+
+        int candidateCount = builders.size();
+        int[] cacheIds = new int[candidateCount];
+        int[] videoIds = new int[candidateCount];
+        long[] initialGains = new long[candidateCount];
+        int[] offsets = new int[candidateCount + 1];
+        int candidateId = 0;
+        for (CandidateBuilder builder : builders.values()) {
+            builder.candidateId = candidateId;
+            cacheIds[candidateId] = builder.cacheId;
+            videoIds[candidateId] = builder.videoId;
+            initialGains[candidateId] = builder.initialGain;
+            offsets[candidateId + 1] = offsets[candidateId] + builder.contributionCount;
+            candidateId++;
+        }
+
+        int[] demandIds = new int[(int) contributionTotal];
+        short[] cacheLatencies = new short[(int) contributionTotal];
+        int[] writePositions = offsets.clone();
+        for (DemandView demand : demands) {
+            for (CacheConnection connection : demand.endpoint().connections()) {
+                CandidateBuilder builder = builders.get(
+                        pack(connection.cacheId(), demand.request().videoId()));
+                int position = writePositions[builder.candidateId]++;
+                demandIds[position] = demand.demandId();
+                cacheLatencies[position] = (short) connection.latency();
+            }
+        }
+
+        int[] bestLatencies = new int[demands.size()];
+        long[] requestCounts = new long[demands.size()];
+        for (DemandView demand : demands) {
+            bestLatencies[demand.demandId()] = demand.endpoint().dataCenterLatency();
+            requestCounts[demand.demandId()] = demand.request().requestCount();
+        }
+
+        return new SparseCandidateIndex(cacheIds, videoIds, initialGains, offsets,
+                demandIds, cacheLatencies, bestLatencies, requestCounts);
     }
 
-    private static Map<Long, Long> calculateInitialGains(ProblemInstance problem) {
-        Map<Long, Long> gains = new HashMap<>();
+    private static List<DemandView> enumerateDemands(ProblemInstance problem) {
+        List<DemandView> demands = new ArrayList<>();
         for (Endpoint endpoint : problem.endpoints()) {
             for (RequestDemand request : endpoint.requestsByVideo().values()) {
-                for (CacheConnection connection : endpoint.connections()) {
-                    long gain = request.requestCount()
-                            * (long) (endpoint.dataCenterLatency() - connection.latency());
-                    gains.merge(pack(connection.cacheId(), request.videoId()), gain, Long::sum);
-                }
+                demands.add(new DemandView(demands.size(), endpoint, request));
             }
         }
-        return gains;
+        return demands;
     }
 
-    private static Map<Long, Integer> initializeBestLatencies(ProblemInstance problem) {
-        Map<Long, Integer> result = new HashMap<>();
-        for (int endpointId = 0; endpointId < problem.endpointCount(); endpointId++) {
-            Endpoint endpoint = problem.endpoints().get(endpointId);
-            for (int videoId : endpoint.requestsByVideo().keySet()) {
-                result.put(pack(endpointId, videoId), endpoint.dataCenterLatency());
-            }
-        }
-        return result;
-    }
-
-    private static long marginalGain(int cacheId, int videoId,
-            List<List<EndpointLink>> endpointsByCache, Map<Long, Integer> bestLatencies) {
+    private static long marginalGain(int candidateId, SparseCandidateIndex index) {
         long gain = 0L;
-        for (EndpointLink link : endpointsByCache.get(cacheId)) {
-            RequestDemand request = link.endpoint().requestsByVideo().get(videoId);
-            if (request == null) continue;
-            int currentBest = bestLatencies.get(pack(link.endpointId(), videoId));
-            if (link.cacheLatency() < currentBest) {
-                gain += request.requestCount() * (long) (currentBest - link.cacheLatency());
+        int start = index.offsets()[candidateId];
+        int end = index.offsets()[candidateId + 1];
+        for (int position = start; position < end; position++) {
+            int demandId = index.demandIds()[position];
+            int cacheLatency = Short.toUnsignedInt(index.cacheLatencies()[position]);
+            int currentBest = index.bestLatencies()[demandId];
+            if (cacheLatency < currentBest) {
+                gain += index.requestCounts()[demandId] * (long) (currentBest - cacheLatency);
             }
         }
         return gain;
     }
 
-    private static void applyPlacement(int cacheId, int videoId,
-            List<List<EndpointLink>> endpointsByCache, Map<Long, Integer> bestLatencies) {
-        for (EndpointLink link : endpointsByCache.get(cacheId)) {
-            if (!link.endpoint().requestsByVideo().containsKey(videoId)) continue;
-            long key = pack(link.endpointId(), videoId);
-            int currentBest = bestLatencies.get(key);
-            if (link.cacheLatency() < currentBest) bestLatencies.put(key, link.cacheLatency());
+    private static void applyPlacement(int candidateId, SparseCandidateIndex index) {
+        int start = index.offsets()[candidateId];
+        int end = index.offsets()[candidateId + 1];
+        for (int position = start; position < end; position++) {
+            int demandId = index.demandIds()[position];
+            int cacheLatency = Short.toUnsignedInt(index.cacheLatencies()[position]);
+            if (cacheLatency < index.bestLatencies()[demandId]) {
+                index.bestLatencies()[demandId] = cacheLatency;
+            }
         }
     }
 
     private static long pack(int high, int low) {
         return ((long) high << 32) | (low & 0xffffffffL);
     }
-    private static int unpackHigh(long key) { return (int) (key >>> 32); }
-    private static int unpackLow(long key) { return (int) key; }
 
-    private record EndpointLink(int endpointId, int cacheLatency, Endpoint endpoint) { }
-    private record Candidate(int cacheId, int videoId, long gain, double density) {
-        private static Candidate of(int cacheId, int videoId, long gain, int size) {
-            return new Candidate(cacheId, videoId, gain, (double) gain / size);
+    private static final class CandidateBuilder {
+        private final int cacheId;
+        private final int videoId;
+        private long initialGain;
+        private int contributionCount;
+        private int candidateId;
+
+        private CandidateBuilder(int cacheId, int videoId) {
+            this.cacheId = cacheId;
+            this.videoId = videoId;
+        }
+    }
+
+    private record DemandView(int demandId, Endpoint endpoint, RequestDemand request) { }
+
+    private record SparseCandidateIndex(
+            int[] cacheIds,
+            int[] videoIds,
+            long[] initialGains,
+            int[] offsets,
+            int[] demandIds,
+            short[] cacheLatencies,
+            int[] bestLatencies,
+            long[] requestCounts) {
+        private int candidateCount() {
+            return cacheIds.length;
+        }
+    }
+
+    private record QueueEntry(int candidateId, long gain, double density) {
+        private static QueueEntry of(int candidateId, long gain, int size) {
+            return new QueueEntry(candidateId, gain, (double) gain / size);
         }
     }
 }
