@@ -8,6 +8,7 @@ import com.hashcode.streaming.scoring.SolutionValidator;
 import com.hashcode.streaming.solution.Solution;
 import com.hashcode.streaming.solver.BaselineSolver;
 import com.hashcode.streaming.solver.GreedySolver;
+import com.hashcode.streaming.solver.LocalSearchSolver;
 import java.nio.file.Path;
 
 /** Command-line entry point. */
@@ -27,6 +28,7 @@ public final class Main {
             Solution solution = switch (algorithm) {
                 case "greedy" -> new GreedySolver().solve(problem);
                 case "baseline" -> new BaselineSolver().solve(problem);
+                case "local-search" -> new LocalSearchSolver().solve(problem);
                 default -> throw new IllegalArgumentException("Unknown algorithm: " + algorithm);
             };
             new SolutionValidator().validate(problem, solution);
@@ -44,6 +46,6 @@ public final class Main {
     private static void printUsage() {
         System.err.println("Usage:");
         System.err.println("  java -cp out com.hashcode.streaming.Main <input> <output>");
-        System.err.println("  java -cp out com.hashcode.streaming.Main <greedy|baseline> <input> <output>");
+        System.err.println("  java -cp out com.hashcode.streaming.Main <greedy|baseline|local-search> <input> <output>");
     }
 }

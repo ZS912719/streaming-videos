@@ -14,6 +14,7 @@ public final class Solution {
         for (int i = 0; i < cacheCount; i++) videosByCache.add(new LinkedHashSet<>());
     }
     public boolean addVideo(int cacheId, int videoId) { return videosByCache.get(cacheId).add(videoId); }
+    public boolean removeVideo(int cacheId, int videoId) { return videosByCache.get(cacheId).remove(videoId); }
     public boolean contains(int cacheId, int videoId) { return videosByCache.get(cacheId).contains(videoId); }
     public Set<Integer> videosInCache(int cacheId) {
         return Collections.unmodifiableSet(videosByCache.get(cacheId));
