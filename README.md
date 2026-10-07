@@ -2,7 +2,33 @@
 
 This repository solves the Google Hash Code 2017 **Streaming Videos** problem. Videos must be placed in capacity-limited caches so requests are served with less latency than from the data center. The official score is the average saved latency, multiplied by 1,000.
 
-## Algorithms
+## Web Workspace
+
+Build the optional Spring Boot module with Maven 3.6.3+ and Java 17:
+
+```powershell
+mvn -f web/pom.xml package
+java -Xmx512m -jar web/target/streaming-web.jar
+```
+
+Run these commands from the project root and open `http://127.0.0.1:8080`.
+Drag an `.in` file into the upload area to create a session. The page shows
+dataset dimensions, request counts, connections and sparse contribution counts.
+Baseline, greedy and local-search run sequentially in separate Java processes,
+each with a 2 GB heap and a 300-second timeout. Each solver has its own score,
+runtime, output preview and full output download. Failed or timed-out solvers
+are reported separately and do not prevent later solvers from running.
+
+Inputs, results and logs are saved under `data/sessions` (ignored by Git).
+History is shared by users of this local server and persists across restarts.
+Interrupted runs are marked as interrupted on restart. The queue holds eight
+waiting sessions. Uploads are limited to 32 MB and checked against the problem
+constraints. The app binds to localhost and is intended for local experiments.
+Change `--server.port`, `--streaming.sessions`, or `--streaming.timeout-seconds`
+on the launch command to override defaults. Keep the packaged worker JAR in
+`web/target/streaming-web.jar` and run from the project root.
+
+## Solver Algorithms
 
 `baseline` ranks videos globally by `total requests / video size` and fills every cache from the same ranking. It is intentionally simple and ignores endpoint-specific latency and overlap between caches.
 

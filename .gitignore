@@ -3,6 +3,8 @@
 out/
 *.out
 tmp/
+web/target/
+data/sessions/
 
 # Log file
 *.log
