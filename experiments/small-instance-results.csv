@@ -1,0 +1,8 @@
+dataset,algorithm,official_score,optimal_score,optimality_gap,interpretation
+local-search,greedy,370588,529411,158823,density choice leaves unusable capacity
+local-search,greedy-ls,529411,529411,0,one-cache replacement reaches optimum
+local-search,ocag,370588,529411,158823,no alternative cache exists so regret does not change the choice
+opportunity-cost,greedy,549500,925000,375500,immediate gain assigns both videos to their wrong cache
+opportunity-cost,greedy-ls,549500,925000,375500,one-cache moves cannot perform the coordinated reassignment
+opportunity-cost,ocag,925000,925000,0,alternative-cache regret chooses the scarce assignment first
+opportunity-cost,ocag-ls,925000,925000,0,construction is already optimal

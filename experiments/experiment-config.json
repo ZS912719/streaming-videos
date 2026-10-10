@@ -1,0 +1,38 @@
+{
+  "experiment_date": "2026-10-10",
+  "git_branch": "experiment/opportunity-cost-greedy",
+  "java_runtime": "Oracle Java 21.0.10; sources compiled with --release 17",
+  "operating_system": "Windows 10 Home, version 2009, AMD64",
+  "processor_identifier": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+  "cpp_compiler": "MinGW-W64 g++ 15.2.0",
+  "java_heap_limit": "4g",
+  "official_judge": "judgeHashCode2017.cpp supplied by path to the scripts",
+  "timing": {
+    "process_model": "fresh JVM for each repetition",
+    "algorithm_time_excludes": ["parsing", "validation", "scoring", "serialization", "judge"],
+    "fast_dataset_repetitions": 5,
+    "kittens_repetitions": 3,
+    "reported_summary": "median with min and max",
+    "memory_note": "Reliable peak working-set data was not available from the execution host and is not reported."
+  },
+  "local_search": {
+    "maximum_passes": 3,
+    "selection": "best improving addition or one-for-one replacement per cache and pass",
+    "deterministic": true
+  },
+  "ocag": {
+    "regret": "initial marginal gain at candidate cache minus best initial alternative-cache gain",
+    "priority": "(current marginal gain + fixed nonnegative regret) / video size",
+    "tunable_parameters": 0,
+    "deterministic": true
+  },
+  "robustness": {
+    "scenario_seeds": {"first": 10001, "last": 10030, "count": 30},
+    "paired_scenarios": true,
+    "fixed_placements": true,
+    "multiplicative_noise_standard_deviations": [0.05, 0.10, 0.20, 0.30],
+    "localized_shift": "random 20% of endpoints and 10% of videos; matching demand counts multiplied by 3",
+    "localized_shift_conserves_total_requests": false,
+    "representative_official_judge_checks": 40
+  }
+}
