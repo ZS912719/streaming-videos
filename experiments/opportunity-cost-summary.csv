@@ -1,0 +1,17 @@
+dataset,algorithm,official_score,absolute_difference_vs_greedy,relative_difference_vs_greedy_percent,median_algorithm_ms,additional_ms_vs_greedy
+kittens,greedy,1021681,0,0.000000,31173.273,0.000
+kittens,ocag,1021938,257,0.025155,31110.066,-63.207
+kittens,greedy-ls,1021735,54,0.005285,34634.825,3461.552
+kittens,ocag-ls,1021997,316,0.030929,34907.576,3734.303
+me_at_the_zoo,greedy,507906,0,0.000000,14.597,0.000
+me_at_the_zoo,ocag,507906,0,0.000000,16.954,2.357
+me_at_the_zoo,greedy-ls,507906,0,0.000000,18.934,4.337
+me_at_the_zoo,ocag-ls,507906,0,0.000000,20.298,5.701
+trending_today,greedy,499794,0,0.000000,2554.949,0.000
+trending_today,ocag,499794,0,0.000000,2641.795,86.846
+trending_today,greedy-ls,499851,57,0.011405,2934.511,379.562
+trending_today,ocag-ls,499851,57,0.011405,3064.646,509.697
+videos_worth_spreading,greedy,608302,0,0.000000,307.935,0.000
+videos_worth_spreading,ocag,608329,27,0.004439,317.221,9.286
+videos_worth_spreading,greedy-ls,609221,919,0.151076,894.447,586.512
+videos_worth_spreading,ocag-ls,609323,1021,0.167844,680.306,372.371

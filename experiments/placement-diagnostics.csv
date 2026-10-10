@@ -1,0 +1,9 @@
+dataset,algorithm,placements,unique_videos,duplicate_copies,mean_cache_utilization_percent,jaccard_vs_greedy,symmetric_pair_difference_vs_greedy
+me_at_the_zoo,greedy,51,29,22,93.600,1.000000,0
+me_at_the_zoo,ocag,51,29,22,93.600,1.000000,0
+videos_worth_spreading,greedy,6110,2279,3831,99.966,1.000000,0
+videos_worth_spreading,ocag,6114,2314,3800,99.964,0.860578,916
+trending_today,greedy,9976,9976,0,99.572,1.000000,0
+trending_today,ocag,9976,9976,0,99.572,1.000000,0
+kittens,greedy,10805,7407,3398,99.988,1.000000,0
+kittens,ocag,10798,7409,3389,99.987,0.788180,2559

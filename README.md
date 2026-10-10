@@ -51,6 +51,18 @@ It preserves capacity constraints but can stop before reaching a local optimum.
 It does not consider replacing multiple videos at once. Evaluating neighboring
 placements adds CPU cost, particularly on dense topologies.
 
+`ocag` is the separate Opportunity-Cost Aware Greedy construction. It augments
+current marginal gain with a fixed, parameter-free alternative-placement regret:
+
+```text
+regret(v,c) = max(0, initialGain(v,c) - bestInitialGain(v, another cache))
+priority(v,c) = (currentMarginalGain(v,c) + regret(v,c)) / videoSize(v)
+```
+
+This makes a uniquely good cache for a video more urgent when that video has no
+comparable alternative. The regret remains fixed, so the lazy queue still uses
+valid upper bounds. The original `greedy` implementation is unchanged.
+
 ## Build
 
 Java 17 or newer is required for the solver. Python 3.9 or newer is recommended
@@ -66,7 +78,7 @@ Build only the solver:
 Build the solver and the supplied official judge by passing its location:
 
 ```powershell
-.\build.ps1 -JudgeSource "..\judgeHashCode2017.cpp"
+.\build.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
 ```
 
 ## Run
@@ -75,6 +87,7 @@ Build the solver and the supplied official judge by passing its location:
 java -cp out com.hashcode.streaming.Main greedy examples\me_at_the_zoo.in tmp\zoo.out
 java -cp out com.hashcode.streaming.Main baseline examples\me_at_the_zoo.in tmp\zoo-baseline.out
 java -Xmx4g -cp out com.hashcode.streaming.Main local-search examples\me_at_the_zoo.in tmp\zoo-local.out
+java -Xmx4g -cp out com.hashcode.streaming.Main ocag examples\me_at_the_zoo.in tmp\zoo-ocag.out
 ```
 
 The original two-argument syntax remains shorthand for `greedy`:
@@ -96,13 +109,44 @@ After building the judge:
 Run both algorithms on all four official datasets and create `benchmark-results.csv`:
 
 ```powershell
-.\benchmark.ps1 -JudgeSource "..\judgeHashCode2017.cpp"
+.\benchmark.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
 ```
 
 The CSV contains the dataset, algorithm, official judge score, and end-to-end runtime. The comparison shows why endpoint-aware dynamic marginal gains outperform a global popularity ranking, while keeping the experiment reproducible and easy to demonstrate.
 
 The benchmark script currently runs `baseline` and `greedy`. Run `local-search`
 separately using the command above; the existing CSV does not include it.
+
+## Scientific Study
+
+The controlled study compares construction (`greedy`, `ocag`) with repair
+(`greedy-ls`, `ocag-ls`), includes Local Search ablations and exact tiny cases,
+and evaluates fixed placements under paired demand perturbations. Its full
+interpretation is in [`experiments/SCIENTIFIC_REPORT.md`](experiments/SCIENTIFIC_REPORT.md).
+
+Run the fast regression checks:
+
+```powershell
+.\test.ps1
+```
+
+Reproduce the official score/runtime experiments and their CSV summaries:
+
+```powershell
+.\run-scientific-experiments.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+python .\summarize-experiments.py
+```
+
+Reproduce the paired robustness study. It constructs every placement only from
+the nominal instance and judge-checks representative perturbed scenarios:
+
+```powershell
+.\run-robustness-experiments.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
+Raw measurements and compact summaries are versioned under `experiments/`;
+generated solutions, judge binaries and per-run temporary files stay under
+the ignored `tmp/` directory.
 
 ## Local Search Regression Case
 
