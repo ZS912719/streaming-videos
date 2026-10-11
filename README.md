@@ -14,19 +14,44 @@ java -Xmx512m -jar web/target/streaming-web.jar
 Run these commands from the project root and open `http://127.0.0.1:8080`.
 Drag an `.in` file into the upload area to create a session. The page shows
 dataset dimensions, request counts, connections and sparse contribution counts.
-Baseline, greedy and local-search run sequentially in separate Java processes,
-each with a 2 GB heap and a 300-second timeout. Each solver has its own score,
-runtime, output preview and full output download. Failed or timed-out solvers
+Five strategies run sequentially in separate Java processes: `baseline`,
+`greedy`, `ocag`, `local-search` (greedy + Local Search), and `ocag-ls`.
+Each worker has a 2 GB heap and a 300-second timeout, and reuses the scientific
+experiment runner rather than a separate solver implementation. Each solver has its own score,
+runtime, output preview and full output download. Completed cards show the
+score difference relative to greedy and highlight the best score, including ties.
+New sessions also expose construction and Local Search timings, the initial
+score before repair, accepted moves, stop reason and OCAG regret statistics.
+Static regret is a priority signal, not additional realized score. Download
+worker logs, metrics CSVs and applicable construction/repair traces from each card.
+Failed or timed-out solvers
 are reported separately and do not prevent later solvers from running.
 
 Inputs, results and logs are saved under `data/sessions` (ignored by Git).
 History is shared by users of this local server and persists across restarts.
+Older sessions keep their original solver lists and may lack phase metrics;
+upload the input again to run the current comparison. Algorithm timings exclude
+startup, parsing, validation/scoring and output. Worker runtime includes those
+costs. The three-pass Local Search limit does not guarantee convergence.
 Interrupted runs are marked as interrupted on restart. The queue holds eight
 waiting sessions. Uploads are limited to 32 MB and checked against the problem
-constraints. The app binds to localhost and is intended for local experiments.
+dimension and request bounds. To support `examples/opportunity-cost.in`, cache
+latencies may exceed the official 500 ms bound, but must remain positive and
+strictly below the endpoint's data center latency (at most 4,000 ms).
+The app binds to localhost and is intended for local experiments.
 Change `--server.port`, `--streaming.sessions`, or `--streaming.timeout-seconds`
 on the launch command to override defaults. Keep the packaged worker JAR in
 `web/target/streaming-web.jar` and run from the project root.
+
+After source updates, stop the existing service, rebuild with `mvn -f web/pom.xml
+package`, then restart using the same port and session directory. Existing
+packaged JARs and running processes do not update automatically. For a Tailscale
+deployment, retain the existing Serve configuration if it forwards to localhost;
+no additional public binding or port exposure is needed for this update.
+
+Web regression tests (`mvn -f web/pom.xml test`) verify all five worker strategies,
+scientific metrics/trace generation, artifact download allowlisting, experimental
+input validation and legacy-session compatibility.
 
 ## Solver Algorithms
 
