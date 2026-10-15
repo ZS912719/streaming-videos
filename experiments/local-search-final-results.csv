@@ -1,0 +1,5 @@
+dataset,previous_best,tuned_ls,extended_ls,final_best,gain,gain_percent,winning_start,approx_algorithm_seconds,officially_judged
+me_at_the_zoo,507906,507906,,507906,0,0.000000,greedy,0.015,true
+videos_worth_spreading,609323,609635,610023,610023,700,0.114882,ocag,248.4,true
+trending_today,499851,499857,499857,499857,6,0.001200,greedy,2.923,true
+kittens,1021997,1022004,1022005,1022005,8,0.000783,ocag,78.5,true

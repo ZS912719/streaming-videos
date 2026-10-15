@@ -148,6 +148,44 @@ Raw measurements and compact summaries are versioned under `experiments/`;
 generated solutions, judge binaries and per-run temporary files stay under
 the ignored `tmp/` directory.
 
+## Local Search optimization follow-up
+
+The [final optimization study](experiments/FINAL_OCAG_LS_OPTIMIZATION_REPORT.md)
+adds exact dynamic alternative regret, indexed exchanges and bounded cache
+repacking. `dynamic-ocag` selects weight 1; `dynamic-greedy` is the zero-regret
+control with explicit deterministic tie rules. That control can differ from
+the historical `greedy` ordering.
+
+```powershell
+.\reproduce-final-optimization.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+.\reproduce-final-optimization.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Subset efficient
+```
+
+The first command checks the absolute records; the second runs the shorter
+practical configurations. `-Subset shared` applies common settings. New records
+are versioned under `experiments/final-best-solutions/`, and the full replay
+graph is in `experiments/final-ocag-ls-configurations.json`. The optional figure
+script uses Matplotlib; solvers, tests and reproduction use no external libraries.
+
+The [optimization report](experiments/LOCAL_SEARCH_OPTIMIZATION_REPORT.md)
+documents pass limits, move selection and order experiments. The original CLI
+`local-search` behavior remains the three-pass default. Winning tuned outputs
+and the final optional two-cache exchange results are archived under
+`experiments/tuned-solutions/` and `experiments/best-solutions/`.
+
+Reproduce and judge the four final records from scratch:
+
+```powershell
+.\reproduce-local-search-records.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
+This bounded full reproduction takes several minutes. For the faster
+one-cache search finalists and three-run timing checks:
+
+```powershell
+.\measure-local-search-winners.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
 ## Local Search Regression Case
 
 `examples/local-search.in` has one 10 MB cache and two videos of sizes 6 MB and

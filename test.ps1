@@ -12,6 +12,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Test compilation failed." }
     & java -cp $testOutput com.hashcode.streaming.SolverRegressionTest
     if ($LASTEXITCODE -ne 0) { throw "Solver regression tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.AdvancedOptimizationTest
+    if ($LASTEXITCODE -ne 0) { throw "Advanced differential tests failed." }
 } finally {
     Pop-Location
 }
