@@ -27,10 +27,12 @@ public final class NeighborhoodBudgetRunner {
                     + new ScoreCalculator().calculate(problem, seed) + "," + ms(elapsed) + "\n");
             return;
         }
-        if (args.length != 7 || !(args[0].equals("one") || args[0].equals("two"))) {
+        if ((args.length != 7 && args.length != 8)
+                || (args.length == 8 && !args[7].equals("--audit"))
+                || !(args[0].equals("one") || args[0].equals("two"))) {
             throw new IllegalArgumentException("Usage: NeighborhoodBudgetRunner "
                     + "--prepare <input> <seed.out> <seed.csv> | "
-                    + "<one|two> <input> <seed.out> <output> <metrics.csv> <trace.csv> <budget-ms>");
+                    + "<one|two> <input> <seed.out> <output> <metrics.csv> <trace.csv> <budget-ms> [--audit]");
         }
         long budgetMs = Long.parseLong(args[6]);
         if (budgetMs < 0) throw new IllegalArgumentException("Negative budget");
@@ -54,10 +56,23 @@ public final class NeighborhoodBudgetRunner {
             throw new IllegalStateException("Search statistics disagree with independently scored output");
         }
         new SolutionWriter().write(Path.of(args[3]), problem, result.solution());
+        long lastImprovementNanos = stats.trace().get(stats.trace().size() - 1).elapsedNanos();
+        long auditStart = System.nanoTime();
+        NeighborhoodAudit.Result audit = args.length == 8
+                ? NeighborhoodAudit.audit(problem, result.solution(), args[0].equals("one") ? 1 : 2)
+                : null;
+        long auditNanos = audit == null ? 0 : System.nanoTime() - auditStart;
+        if (audit != null && audit.maximumGain() > 0
+                && stats.termination().equals("no_improving_move")) {
+            throw new IllegalStateException("Convergence claim contradicted by independent audit");
+        }
         Files.writeString(Path.of(args[4]),
                 "dataset,variant,budget_ms,initial_score,score,search_ms,overrun_ms,passes,"
                 + "evaluated_candidates,evaluated_removal_pairs,accepted_moves,additions,"
-                + "single_replacements,double_replacements,saved_latency_gain,termination\n"
+                + "single_replacements,double_replacements,saved_latency_gain,termination,"
+                + "last_improvement_ms,audit_ms,verified_local_optimum,best_remaining_gain,"
+                + "audit_improving_caches,audit_cache_id,audit_added_video_id,"
+                + "audit_removed_video_id,audit_second_removed_video_id\n"
                 + String.join(",", Path.of(args[1]).getFileName().toString(), args[0],
                         Long.toString(budgetMs), Long.toString(initialScore), Long.toString(score),
                         ms(elapsed), ms(Math.max(0L, elapsed - budgetNanos)),
@@ -66,7 +81,14 @@ public final class NeighborhoodBudgetRunner {
                         Integer.toString(stats.additions()),
                         Integer.toString(stats.replacements() - stats.doubleReplacements()),
                         Integer.toString(stats.doubleReplacements()), Long.toString(stats.totalImprovement()),
-                        stats.termination()) + "\n");
+                        stats.termination(), stats.acceptedMoves() == 0 ? "" : ms(lastImprovementNanos),
+                        ms(auditNanos), audit == null ? "" : Boolean.toString(audit.maximumGain() == 0),
+                        audit == null ? "" : Long.toString(audit.maximumGain()),
+                        audit == null ? "" : Integer.toString(audit.improvingCaches()),
+                        audit == null ? "" : Integer.toString(audit.cacheId()),
+                        audit == null ? "" : Integer.toString(audit.addedVideoId()),
+                        audit == null ? "" : Integer.toString(audit.removedVideoId()),
+                        audit == null ? "" : Integer.toString(audit.secondRemovedVideoId())) + "\n");
         try (var writer = Files.newBufferedWriter(Path.of(args[5]))) {
             writer.write("accepted_move,pass,cache_id,move_type,added_video_id,removed_video_id,"
                     + "second_removed_video_id,saved_latency_gain,cumulative_saved_latency,score,elapsed_ms\n");

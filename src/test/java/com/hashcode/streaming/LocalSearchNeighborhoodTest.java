@@ -1,6 +1,7 @@
 package com.hashcode.streaming;
 
 import com.hashcode.streaming.io.InputParser;
+import com.hashcode.streaming.experiments.NeighborhoodAudit;
 import com.hashcode.streaming.model.CacheConnection;
 import com.hashcode.streaming.model.Endpoint;
 import com.hashcode.streaming.model.ProblemInstance;
@@ -89,9 +90,18 @@ final class LocalSearchNeighborhoodTest {
             for (var neighborhood : List.of(LocalSearchSolver.Neighborhood.COMPLETE,
                     LocalSearchSolver.Neighborhood.TWO_REMOVALS)) {
                 int limit = neighborhood == LocalSearchSolver.Neighborhood.COMPLETE ? 1 : 2;
+                long exactMaximum = 0;
+                for (int c = 0; c < tiny.cacheCount(); c++) {
+                    exactMaximum = Math.max(exactMaximum, bestDelta(tiny, placement, c, limit));
+                }
+                require(NeighborhoodAudit.audit(tiny, placement, limit).maximumGain() == exactMaximum,
+                        "independent suffix audit matches exhaustive oracle");
                 var search = solver.improveWithStatistics(tiny, copy(tiny, placement), neighborhood);
                 replay(tiny, placement, search, limit);
-
+                if (search.statistics().termination().equals("no_improving_move")) {
+                    require(NeighborhoodAudit.audit(tiny, search.solution(), limit).maximumGain() == 0,
+                            "independent convergence verification");
+                }
             }
         }
         System.out.println("Local-search exact-neighborhood and deadline checks passed.");

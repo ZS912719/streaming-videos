@@ -228,6 +228,23 @@ discarded at the deadline. The output directory must be new. See the
 [equal-budget neighborhood study](experiments/two-removal-budget-2026-10-18/REPORT.md)
 for scores, time ranges, accepted moves and separate two-removal counts.
 
+For the Kittens long-budget follow-up with independent convergence audits:
+
+```powershell
+python .\benchmark-neighborhoods.py --datasets kittens --budgets-ms 20000 30000 60000 --repetitions 3 --audit --output-dir .\experiments\my-kittens-long-study
+```
+
+The driver records the last accepted positive raw improvement time and gain in
+each elapsed interval `[s, s+1)`. `per-second-runs.csv` retains every repetition;
+`per-second-summary.csv` reports medians/ranges and the number of active runs.
+Intervals after an early stop are explicitly marked with zero active time.
+With `--audit`, a read-only exact neighborhood check runs after timed search,
+rescanning actual cache copies and using a separate suffix-minimum method for
+removal losses. Audit time is separate from repair time. A verified local
+optimum means no positive raw-gain move in that neighborhood, not global
+optimality. All accepted-move traces are retained. See the
+[Kittens long-budget report](experiments/kittens-long-budget-2026-10-18-v2/REPORT.md).
+
 The current Local Search limit is 20 passes. The follow-up benchmark compares
 baseline, greedy, and Greedy + Local Search with both 3-pass and 20-pass budgets
 on the four official inputs, using three fresh JVM runs per variant:
