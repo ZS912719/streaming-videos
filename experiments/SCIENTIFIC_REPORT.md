@@ -1,5 +1,10 @@
 # Scientific Optimization Study
 
+This report records the historical three-pass experiments. The current solver
+uses a twenty-pass limit; the follow-up benchmark and convergence analysis are in
+[`ls20-2026-10-18/REPORT.md`](ls20-2026-10-18/REPORT.md). Historical measurements
+below have not been replaced with results from the new implementation.
+
 ## 1. Research questions
 
 This study asks two primary questions:

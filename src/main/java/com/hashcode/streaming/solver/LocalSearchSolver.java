@@ -13,7 +13,7 @@ import java.util.Map;
 
 /** Improves a supplied placement through feasible additions and one-for-one swaps. */
 public final class LocalSearchSolver {
-    private static final int MAX_PASSES = 3;
+    private static final int MAX_PASSES = 20;
 
     public enum Neighborhood {
         COMPLETE,

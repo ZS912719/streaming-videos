@@ -32,7 +32,7 @@ History is shared by users of this local server and persists across restarts.
 Older sessions keep their original solver lists and may lack phase metrics;
 upload the input again to run the current comparison. Algorithm timings exclude
 startup, parsing, validation/scoring and output. Worker runtime includes those
-costs. The three-pass Local Search limit does not guarantee convergence.
+costs. The twenty-pass Local Search limit does not guarantee convergence.
 Interrupted runs are marked as interrupted on restart. The queue holds eight
 waiting sessions. Uploads are limited to 32 MB and checked against the problem
 dimension and request bounds. To support `examples/opportunity-cost.in`, cache
@@ -71,7 +71,7 @@ or one-for-one video replacements within a cache. Every accepted move has a
 strictly positive change in total request-weighted saved latency. Removal losses
 are evaluated with the selected cache excluded, so copies in other caches are
 accounted for exactly. The search accepts at most one move per cache per pass
-and runs up to three passes, stopping earlier when an entire pass has no move.
+and runs up to twenty passes, stopping earlier when an entire pass has no move.
 It preserves capacity constraints but can stop before reaching a local optimum.
 It does not consider replacing multiple videos at once. Evaluating neighboring
 placements adds CPU cost, particularly on dense topologies.
@@ -200,6 +200,24 @@ The benchmark script currently runs `baseline` and `greedy`. Run `local-search`
 separately using the command above; the existing CSV does not include it.
 
 ## Scientific Study
+
+The current Local Search limit is 20 passes. The follow-up benchmark compares
+baseline, greedy, and Greedy + Local Search with both 3-pass and 20-pass budgets
+on the four official inputs, using three fresh JVM runs per variant:
+
+```powershell
+python .\benchmark-local-search.py --output-dir .\experiments\my-ls20-study
+```
+
+Runs are sequential with a 4 GB heap and a 600-second timeout per worker.
+Set `JAVA_HOME` to a Java 17+ JDK. The script compiles a snapshot of current
+sources and a separate 3-pass control that changes only the pass limit; it does
+not edit production sources. It validates and scores solutions internally,
+records every run, reports median/min/max timings, and preserves accepted-move
+traces and per-pass gains. The output directory must not already exist. See the
+[20-pass benchmark report](experiments/ls20-2026-10-18/REPORT.md) for measurements
+and convergence limits. Existing packaged JARs require rebuilding and restarting
+before the new limit takes effect in a running web service.
 
 The controlled study compares construction (`greedy`, `ocag`) with repair
 (`greedy-ls`, `ocag-ls`), includes Local Search ablations and exact tiny cases,

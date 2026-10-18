@@ -1,0 +1,15 @@
+dataset,algorithm,accepted_move,pass,cache_id,move_type,added_video_id,removed_video_id,saved_latency_gain,cumulative_saved_latency,score_equivalent,elapsed_ms
+trending_today.in,greedy-ls,0,0,-1,initial,-1,-1,0,250152644000,499794,0.000
+trending_today.in,greedy-ls,1,1,16,replacement,2311,9280,1725500,250154369500,499797,317.469
+trending_today.in,greedy-ls,2,1,17,replacement,9280,3467,2167500,250156537000,499802,318.873
+trending_today.in,greedy-ls,3,1,24,replacement,4575,2098,987500,250157524500,499804,326.128
+trending_today.in,greedy-ls,4,1,26,replacement,2098,3860,2330500,250159855000,499808,328.206
+trending_today.in,greedy-ls,5,1,28,insertion,3467,-1,2843500,250162698500,499814,329.239
+trending_today.in,greedy-ls,6,1,30,insertion,3860,-1,2750500,250165449000,499820,330.215
+trending_today.in,greedy-ls,7,1,34,replacement,6212,8171,1267500,250166716500,499822,332.184
+trending_today.in,greedy-ls,8,1,35,insertion,8171,-1,4569000,250171285500,499831,332.693
+trending_today.in,greedy-ls,9,1,51,replacement,5745,1055,955000,250172240500,499833,340.763
+trending_today.in,greedy-ls,10,1,53,insertion,1055,-1,3130000,250175370500,499839,341.786
+trending_today.in,greedy-ls,11,1,57,replacement,1368,9828,381500,250175752000,499840,343.819
+trending_today.in,greedy-ls,12,1,63,replacement,9828,4956,21000,250175773000,499840,347.120
+trending_today.in,greedy-ls,13,1,64,insertion,4956,-1,5364500,250181137500,499851,347.858
