@@ -1,0 +1,2 @@
+accepted_move,pass,cache_id,move_type,added_video_id,removed_video_id,second_removed_video_id,saved_latency_gain,cumulative_saved_latency,score,elapsed_ms
+0,0,-1,initial,-1,-1,-1,0,1021928473402,1021681,0.000

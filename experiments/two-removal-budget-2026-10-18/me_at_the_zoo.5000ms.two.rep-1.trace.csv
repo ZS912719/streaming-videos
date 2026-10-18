@@ -1,0 +1,5 @@
+accepted_move,pass,cache_id,move_type,added_video_id,removed_video_id,second_removed_video_id,saved_latency_gain,cumulative_saved_latency,score,elapsed_ms
+0,0,-1,initial,-1,-1,-1,0,27077027,507906,0.000
+1,1,5,replacement_two,13,1,81,111677,27188704,510001,11.367
+2,2,1,insertion,81,-1,-1,109440,27298144,512054,11.815
+3,2,4,insertion,81,-1,-1,3240,27301384,512115,11.993

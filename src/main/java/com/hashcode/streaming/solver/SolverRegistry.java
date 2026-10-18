@@ -20,6 +20,9 @@ public final class SolverRegistry {
         solvers.put("local-search", problem -> new LocalSearchSolver().solve(problem));
         solvers.put("ocag-ls", problem -> new LocalSearchSolver().improve(
                 problem, new OpportunityCostGreedySolver().solve(problem)));
+        solvers.put("local-search-two", problem -> new LocalSearchSolver().improveWithStatistics(
+                problem, new GreedySolver().solve(problem),
+                LocalSearchSolver.Neighborhood.TWO_REMOVALS).solution());
         // Register a new strategy here; the comparison script discovers this list automatically.
         SOLVERS = Collections.unmodifiableMap(solvers);
     }

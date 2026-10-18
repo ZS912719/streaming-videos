@@ -108,6 +108,7 @@ public final class ScientificExperimentRunner {
                     LocalSearchSolver.Neighborhood.COMPLETE;
             case "greedy-ls-insertion" -> LocalSearchSolver.Neighborhood.INSERTION_ONLY;
             case "greedy-ls-replacement" -> LocalSearchSolver.Neighborhood.REPLACEMENT_ONLY;
+            case "greedy-ls-two" -> LocalSearchSolver.Neighborhood.TWO_REMOVALS;
             default -> null;
         };
     }
@@ -126,7 +127,8 @@ public final class ScientificExperimentRunner {
                     + "validation_scoring_ms,writing_ms,algorithm_ms,end_to_end_ms,"
                     + "ls_passes,ls_evaluated_moves,ls_accepted_moves,ls_rejected_moves,"
                     + "ls_additions,ls_replacements,ls_saved_latency_gain,ls_termination,"
-                    + "ocag_placements,ocag_regret_placements,ocag_selected_static_regret");
+                    + "ocag_placements,ocag_regret_placements,ocag_selected_static_regret,"
+                    + "ls_double_replacements,ls_evaluated_removal_pairs");
             writer.newLine();
             writer.write(String.join(",",
                     dataset, algorithm, initialAlgorithm,
@@ -145,7 +147,9 @@ public final class ScientificExperimentRunner {
                     local == null ? "not_applicable" : local.termination(),
                     ocag == null ? "0" : Integer.toString(ocag.placements()),
                     ocag == null ? "0" : Integer.toString(ocag.regretPlacements()),
-                    ocag == null ? "0" : Long.toString(ocag.selectedStaticRegret())));
+                    ocag == null ? "0" : Long.toString(ocag.selectedStaticRegret()),
+                    local == null ? "0" : Integer.toString(local.doubleReplacements()),
+                    local == null ? "0" : Long.toString(local.evaluatedRemovalPairs())));
             writer.newLine();
         }
     }
@@ -157,7 +161,7 @@ public final class ScientificExperimentRunner {
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
             writer.write("dataset,algorithm,accepted_move,pass,cache_id,move_type,"
                     + "added_video_id,removed_video_id,saved_latency_gain,"
-                    + "cumulative_saved_latency,score_equivalent,elapsed_ms");
+                    + "cumulative_saved_latency,score_equivalent,elapsed_ms,second_removed_video_id");
             writer.newLine();
             for (LocalSearchSolver.TracePoint point : statistics.trace()) {
                 long score = problem.totalRequestCount() == 0 ? 0
@@ -168,7 +172,8 @@ public final class ScientificExperimentRunner {
                         Integer.toString(point.addedVideoId()),
                         Integer.toString(point.removedVideoId()),
                         Long.toString(point.improvement()), Long.toString(point.savedLatency()),
-                        Long.toString(score), milliseconds(point.elapsedNanos())));
+                        Long.toString(score), milliseconds(point.elapsedNanos()),
+                        Integer.toString(point.secondRemovedVideoId())));
                 writer.newLine();
             }
         }

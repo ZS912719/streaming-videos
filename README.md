@@ -76,6 +76,15 @@ It preserves capacity constraints but can stop before reaching a local optimum.
 It does not consider replacing multiple videos at once. Evaluating neighboring
 placements adds CPU cost, particularly on dense topologies.
 
+`local-search-two` is a separate experimental strategy starting from greedy. Its
+neighborhood includes additions, one-for-one replacements, and replacing two
+stored videos with one absent video in the same cache. It evaluates every stored
+pair, retaining the lowest exact removal loss for each required space threshold.
+Pairs are considered even when a single removal is feasible. Equal-loss options
+prefer fewer removals, then video IDs; only strictly positive net gains are
+accepted. The default command-line strategy has the same 20-pass cap. Existing
+web sessions and the five web strategy names retain their original meaning.
+
 `ocag` is the separate Opportunity-Cost Aware Greedy construction. It augments
 current marginal gain with a fixed, parameter-free alternative-placement regret:
 
@@ -144,7 +153,7 @@ python .\compare-solvers.py "C:\datasets\first.in" "C:\datasets\second.in"
 
 The script builds the current Java sources in its own result directory and
 automatically discovers every strategy registered in `SolverRegistry`:
-`baseline`, `greedy`, `ocag`, `local-search`, and `ocag-ls`. No Maven or external
+`baseline`, `greedy`, `ocag`, `local-search`, `ocag-ls`, and `local-search-two`. No Maven or external
 judge is required. Each solution is capacity-validated and scored with the
 repository's implementation of the official scoring formula.
 
@@ -200,6 +209,24 @@ The benchmark script currently runs `baseline` and `greedy`. Run `local-search`
 separately using the command above; the existing CSV does not include it.
 
 ## Scientific Study
+
+Compare one- and two-removal neighborhoods under equal repair-time allowances:
+
+```powershell
+python .\benchmark-neighborhoods.py --output-dir .\experiments\my-neighborhood-study
+```
+
+Defaults are 1, 5, and 10 seconds per repair, three repetitions, four official
+inputs, fresh sequential JVMs, and a 4 GB heap. Set `JAVA_HOME` to a Java 17+ JDK.
+Each input's greedy placement is constructed once and reused byte-for-byte by
+both neighborhoods. Repair timing includes index initialization and excludes
+seed construction, parsing, validation/scoring, and output. Timed searches have
+no pass cap and stop early if an entire pass has no improvement. Deadlines are
+cooperative: initialization and an accepted move's atomic update may overrun;
+actual elapsed time and overruns are recorded. An unfinished cache evaluation is
+discarded at the deadline. The output directory must be new. See the
+[equal-budget neighborhood study](experiments/two-removal-budget-2026-10-18/REPORT.md)
+for scores, time ranges, accepted moves and separate two-removal counts.
 
 The current Local Search limit is 20 passes. The follow-up benchmark compares
 baseline, greedy, and Greedy + Local Search with both 3-pass and 20-pass budgets

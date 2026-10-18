@@ -1,0 +1,13 @@
+dataset,budget_ms,score_delta_median,score_delta_min,score_delta_max,two_wins,ties,two_losses
+me_at_the_zoo,1000,4209,4209,4209,3,0,0
+me_at_the_zoo,5000,4209,4209,4209,3,0,0
+me_at_the_zoo,10000,4209,4209,4209,3,0,0
+videos_worth_spreading,1000,522,522,522,3,0,0
+videos_worth_spreading,5000,522,522,522,3,0,0
+videos_worth_spreading,10000,522,522,522,3,0,0
+trending_today,1000,0,0,0,0,3,0
+trending_today,5000,0,0,0,0,3,0
+trending_today,10000,0,0,0,0,3,0
+kittens,1000,0,0,0,0,3,0
+kittens,5000,1004,924,1014,3,0,0
+kittens,10000,1156,1156,1157,3,0,0
