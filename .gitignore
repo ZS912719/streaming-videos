@@ -8,6 +8,12 @@ data/sessions/
 
 # Log file
 *.log
+__pycache__/
+*.pyc
+
+# Local attachments and interrupted experiment attempts
+/.codex-remote-attachments/
+/experiments/kittens-long-budget-2026-10-18/
 
 # BlueJ files
 *.ctxt

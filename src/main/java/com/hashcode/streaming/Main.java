@@ -6,10 +6,7 @@ import com.hashcode.streaming.model.ProblemInstance;
 import com.hashcode.streaming.scoring.ScoreCalculator;
 import com.hashcode.streaming.scoring.SolutionValidator;
 import com.hashcode.streaming.solution.Solution;
-import com.hashcode.streaming.solver.BaselineSolver;
-import com.hashcode.streaming.solver.GreedySolver;
-import com.hashcode.streaming.solver.LocalSearchSolver;
-import com.hashcode.streaming.solver.OpportunityCostGreedySolver;
+import com.hashcode.streaming.solver.SolverRegistry;
 import java.nio.file.Path;
 
 /** Command-line entry point. */
@@ -26,13 +23,7 @@ public final class Main {
             Path input = Path.of(args.length == 2 ? args[0] : args[1]);
             Path output = Path.of(args.length == 2 ? args[1] : args[2]);
             ProblemInstance problem = new InputParser().parse(input);
-            Solution solution = switch (algorithm) {
-                case "greedy" -> new GreedySolver().solve(problem);
-                case "baseline" -> new BaselineSolver().solve(problem);
-                case "local-search" -> new LocalSearchSolver().solve(problem);
-                case "ocag" -> new OpportunityCostGreedySolver().solve(problem);
-                default -> throw new IllegalArgumentException("Unknown algorithm: " + algorithm);
-            };
+            Solution solution = SolverRegistry.solve(algorithm, problem);
             new SolutionValidator().validate(problem, solution);
             long score = new ScoreCalculator().calculate(problem, solution);
             new SolutionWriter().write(output, problem, solution);
@@ -48,6 +39,7 @@ public final class Main {
     private static void printUsage() {
         System.err.println("Usage:");
         System.err.println("  java -cp out com.hashcode.streaming.Main <input> <output>");
-        System.err.println("  java -cp out com.hashcode.streaming.Main <greedy|baseline|local-search|ocag> <input> <output>");
+        System.err.println("  java -cp out com.hashcode.streaming.Main <"
+                + String.join("|", SolverRegistry.names()) + "> <input> <output>");
     }
 }

@@ -131,6 +131,63 @@ After building the judge:
 
 ## Benchmark
 
+### Compare all solvers on your own datasets
+
+With Python 3.9+ and a Java 17+ JDK (set `JAVA_HOME` to the JDK, or put
+`java` and `javac` on PATH), run
+from the repository root:
+
+```powershell
+python .\compare-solvers.py "C:\datasets\my-data.in"
+python .\compare-solvers.py "C:\datasets\first.in" "C:\datasets\second.in"
+```
+
+The script builds the current Java sources in its own result directory and
+automatically discovers every strategy registered in `SolverRegistry`:
+`baseline`, `greedy`, `ocag`, `local-search`, and `ocag-ls`. No Maven or external
+judge is required. Each solution is capacity-validated and scored with the
+repository's implementation of the official scoring formula.
+
+Default execution is sequential for comparable timings. To run workers
+concurrently, choose the number of workers explicitly:
+
+```powershell
+python .\compare-solvers.py "C:\datasets\my-data.in" --jobs 2 --heap 2g --timeout 600
+python .\compare-solvers.py .\examples\local-search.in --output-dir .\tmp\my-comparison
+python .\compare-solvers.py .\examples\example.in --algorithms greedy local-search
+```
+
+`--heap` is the heap limit **per worker**; concurrent workers share CPU and RAM,
+so parallel timings reflect contention. The default timeout is 300 seconds per
+run and the default heap is 2 GB. Paths supplied by the user are resolved from
+the current working directory, including paths containing spaces.
+
+Results are saved in a unique `tmp/comparisons/<timestamp>-<suffix>/` directory,
+or the new directory specified by `--output-dir`. Existing output directories
+are rejected to preserve previous results. `comparison.csv` contains scores,
+score ranks (ties share a rank), differences from greedy, solver-only timing
+(`solve_ms`), worker timing (`worker_seconds`, including startup, parsing,
+validation/scoring and output), nonempty cache counts, statuses and artifact
+paths. `dataset-001/`, `dataset-002/`, etc. keep each dataset's solutions,
+metrics and logs separate even when input filenames are identical. Failed or
+timed-out solvers do not stop the remaining comparisons; failed solutions are
+discarded. Exit codes: 0 = all succeeded, 1 = at least one run failed or timed
+out, 2 = invalid arguments or build failure.
+
+To add a solver, implement a class under
+`src/main/java/com/hashcode/streaming/solver/` that returns a `Solution` for a
+`ProblemInstance`, then add a registration in `SolverRegistry`:
+
+```java
+solvers.put("my-solver", problem -> new MySolver().solve(problem));
+```
+
+Use a unique filename-safe name consisting of letters, digits and hyphens.
+Construct a fresh solver inside the registration lambda so runs do not share
+mutable solver state. The comparison script discovers the new entry on its next
+run, and `Main` also accepts the registered name. Web strategy lists and the
+scientific study's phase-specific algorithms remain configured separately.
+
 Run both algorithms on all four official datasets and create `benchmark-results.csv`:
 
 ```powershell
