@@ -1,0 +1,129 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "intensive",
+  "budget_ms": 180000,
+  "score": 951327,
+  "raw_objective": 8991000,
+  "parse_ms": 15.306,
+  "algorithm_ms": 50.93,
+  "construction_ms": 7.544,
+  "search_ms": 40.634,
+  "validation_ms": 0.505,
+  "output_ms": 0.699,
+  "entry_elapsed_ms": 95.971,
+  "engine_offset_ms": 85.0,
+  "accepted": 2,
+  "distinct_starts": 1,
+  "duplicates": 2,
+  "termination": "bounded_neighborhood_stagnation",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 3.42,
+    "local": 0.696,
+    "packing": 0.43,
+    "repack128": 0.102,
+    "repack32": 3.75,
+    "repack512": 0.076,
+    "repack64": 1.08
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 47672,
+      "final_score": 951327,
+      "repair_ms": 8.761,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 47672,
+      "final_score": 951327,
+      "repair_ms": 0.792,
+      "cycle": 8,
+      "phase": 1,
+      "finished": true
+    }
+  ],
+  "instance": "2_2_2_1.in",
+  "label": "final-fresh",
+  "input_sha256": "070fafaa1b3eba6c92d0cfb704d5fbe4333d99b0169bf88c28c4c290a62abbfd",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 180,
+    "extra": [
+      "--policy",
+      "intensive"
+    ],
+    "incumbent": null,
+    "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+    "input_sha256": "070fafaa1b3eba6c92d0cfb704d5fbe4333d99b0169bf88c28c4c290a62abbfd",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/solution.txt",
+  "solution_sha256": "12557c0d0933cb6808fcd17e35c99ae73895df407d19352f5cc13db40468bfe2",
+  "wall_seconds": 0.241489,
+  "independent_validation_seconds": 0.013712,
+  "trace": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\2_2_2_1.in",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-10381aac671b4ebd\\solution.txt",
+    "--seconds",
+    "180",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-10381aac671b4ebd\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-10381aac671b4ebd\\trace.csv",
+    "--policy",
+    "intensive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-10381aac671b4ebd\\checkpoints"
+  ],
+  "judge_sha256": "958cf31a06160148904fc221022129dadf52804ec91b7d5b9d729ae375580b7b",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "8991000",
+      "score": "951327",
+      "observed_ms": "113.632",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "12557c0d0933cb6808fcd17e35c99ae73895df407d19352f5cc13db40468bfe2"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "8991000",
+      "score": "951327",
+      "observed_ms": "113.632",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "12557c0d0933cb6808fcd17e35c99ae73895df407d19352f5cc13db40468bfe2"
+    },
+    {
+      "budget_seconds": "60",
+      "raw_objective": "8991000",
+      "score": "951327",
+      "observed_ms": "113.632",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/checkpoints/checkpoint-60.txt",
+      "solution_sha256": "12557c0d0933cb6808fcd17e35c99ae73895df407d19352f5cc13db40468bfe2"
+    },
+    {
+      "budget_seconds": "180",
+      "raw_objective": "8991000",
+      "score": "951327",
+      "observed_ms": "113.632",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-10381aac671b4ebd/checkpoints/checkpoint-180.txt",
+      "solution_sha256": "12557c0d0933cb6808fcd17e35c99ae73895df407d19352f5cc13db40468bfe2"
+    }
+  ]
+}

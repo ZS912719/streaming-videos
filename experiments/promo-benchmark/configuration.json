@@ -1,0 +1,66 @@
+{
+  "name": "dynamic-repack-exchange",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 5,
+    "candidates": 64,
+    "exchange_rounds": 5,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "pilot_instances": [
+    "8_2_8_2.in",
+    "6970_311_100000_69.in",
+    "dense2.in",
+    "medium_mixed_lambda.in",
+    "regional_instance.in"
+  ],
+  "selection": "smallest mean relative pilot score deficit; total pilot algorithm time breaks exact ties",
+  "pilot_ranking": [
+    {
+      "name": "dynamic-repack-exchange",
+      "mean_relative_deficit": 0.0,
+      "total_algorithm_ms": 12279.045999999998
+    },
+    {
+      "name": "dynamic-repack",
+      "mean_relative_deficit": 0.0001508436502975351,
+      "total_algorithm_ms": 10324.72
+    },
+    {
+      "name": "static-repack",
+      "mean_relative_deficit": 0.0013487892369077738,
+      "total_algorithm_ms": 10768.992
+    },
+    {
+      "name": "zero-repack",
+      "mean_relative_deficit": 0.08736837034483128,
+      "total_algorithm_ms": 10568.966
+    }
+  ],
+  "external_safety_seconds": 180,
+  "heap": "4g",
+  "frozen_before_final_evaluation": true,
+  "resource_policy": {
+    "repack_max_estimated_cells": 3000000000,
+    "exchange_max_transfer_slots": 50000000,
+    "exchange_pairs": 1000,
+    "exchange_videos_per_cache": 64,
+    "exchange_seed": 20170317
+  },
+  "input_validation": "official constraints; CRLF accepted",
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.2",
+    "java": "java version \"21.0.10\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 21.0.10+8-LTS-217)\nJava HotSpot(TM) 64-Bit Server VM (build 21.0.10+8-LTS-217, mixed mode, sharing)"
+  },
+  "source_revision": "ec801dab8220335a9b685225effd510a9f17b607",
+  "judge_policy": {
+    "normal": "unchanged supplied judgeHashCode2017.cpp",
+    "overflow_affected": "separate authorized judgeHashCode2017-wide.cpp with long long totalRequest and 1LL product promotion",
+    "solver_parameters_unchanged": true,
+    "invalid_inputs": "reported, not silently repaired or benchmarked"
+  }
+}

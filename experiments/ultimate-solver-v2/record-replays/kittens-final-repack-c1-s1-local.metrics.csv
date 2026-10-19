@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,kittens-after-repack32-forward.txt,50,1,best,forward,forward,1025076,1025076,1025324303005,1025324303005,1,0,0,0,4924765,1970.914,no_improving_move

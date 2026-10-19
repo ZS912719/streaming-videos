@@ -14,13 +14,34 @@ import java.util.Map;
 
 /** Improves a placement through additions and bounded one- or two-video removals. */
 public final class LocalSearchSolver {
-    private static final int MAX_PASSES = 20;
+    private static final int MAX_PASSES = 3;
 
     public enum Neighborhood {
         COMPLETE,
         INSERTION_ONLY,
         REPLACEMENT_ONLY,
         TWO_REMOVALS
+    }
+
+    public enum Selection { BEST, FIRST }
+
+    public enum CacheOrder { FORWARD, REVERSE }
+
+    public enum CandidateOrder { FORWARD, REVERSE }
+
+    public record Settings(int maxPasses, int maxMovesPerCache,
+            Selection selection, CacheOrder cacheOrder, CandidateOrder candidateOrder) {
+        public static final Settings DEFAULT = new Settings(MAX_PASSES, 1,
+                Selection.BEST, CacheOrder.FORWARD, CandidateOrder.FORWARD);
+
+        public Settings {
+            if (maxPasses < 1 || maxMovesPerCache < 1) {
+                throw new IllegalArgumentException("Pass and move limits must be positive");
+            }
+            java.util.Objects.requireNonNull(selection);
+            java.util.Objects.requireNonNull(cacheOrder);
+            java.util.Objects.requireNonNull(candidateOrder);
+        }
     }
 
     public Solution solve(ProblemInstance problem) {
@@ -39,7 +60,13 @@ public final class LocalSearchSolver {
     /** Runs the same search while collecting compact aggregate and anytime statistics. */
     public SearchResult improveWithStatistics(
             ProblemInstance problem, Solution solution, Neighborhood neighborhood) {
-        return search(problem, solution, neighborhood, MAX_PASSES, -1L);
+        return search(problem, solution, neighborhood, Settings.DEFAULT, -1L);
+    }
+
+    /** Preserves the explicit tuning controls and their historical three-pass default. */
+    public SearchResult improveWithStatistics(ProblemInstance problem, Solution solution,
+            Neighborhood neighborhood, Settings settings) {
+        return search(problem, solution, neighborhood, settings, -1L);
     }
 
     /**
@@ -50,11 +77,12 @@ public final class LocalSearchSolver {
     public SearchResult improveWithinBudget(ProblemInstance problem, Solution solution,
             Neighborhood neighborhood, long budgetNanos) {
         if (budgetNanos < 0) throw new IllegalArgumentException("Negative search budget");
-        return search(problem, solution, neighborhood, Integer.MAX_VALUE, budgetNanos);
+        return search(problem, solution, neighborhood,
+                new Settings(Integer.MAX_VALUE, 1, Selection.BEST, CacheOrder.FORWARD, CandidateOrder.FORWARD), budgetNanos);
     }
 
     private SearchResult search(ProblemInstance problem, Solution solution,
-            Neighborhood neighborhood, int maxPasses, long budgetNanos) {
+            Neighborhood neighborhood, Settings settings, long budgetNanos) {
         long searchStart = System.nanoTime();
         Deadline deadline = new Deadline(searchStart, budgetNanos);
         SearchIndex index = buildSearchIndex(problem, solution);
@@ -75,97 +103,105 @@ public final class LocalSearchSolver {
 
         try {
             deadline.check();
-            for (int pass = 0; pass < maxPasses; pass++) {
+            for (int pass = 0; pass < settings.maxPasses(); pass++) {
                 passes++;
                 boolean changed = false;
-                for (int cache = 0; cache < problem.cacheCount(); cache++) {
-                    deadline.check();
-                    long[] benefits = benefitsWithoutCache(cache, problem, index, deadline);
-                    int used = 0;
-                    List<Integer> stored = new ArrayList<>(solution.videosInCache(cache));
-                    for (int video : stored) used += problem.videoSizes()[video];
-                    stored.sort(Comparator.<Integer>comparingLong(video -> benefits[video])
-                            .thenComparingInt(Integer::intValue));
-                    int remaining = problem.cacheCapacity() - used;
-                    int bestAdded = -1;
-                    int bestRemoved = -1;
-                    int bestSecondRemoved = -1;
-                    long bestDelta = 0L;
-                    RemovalTable removals = neighborhood == Neighborhood.TWO_REMOVALS
-                            ? buildRemovalTable(problem, solution, cache, stored, remaining,
-                                    benefits, deadline, evaluatedRemovalPairs) : null;
+                for (int position = 0; position < problem.cacheCount(); position++) {
+                    int cache = settings.cacheOrder() == CacheOrder.FORWARD
+                            ? position : problem.cacheCount() - 1 - position;
+                    for (int attempt = 0; attempt < settings.maxMovesPerCache(); attempt++) {
+                        deadline.check();
+                        long[] benefits = benefitsWithoutCache(cache, problem, index, deadline);
+                        int used = 0;
+                        List<Integer> stored = new ArrayList<>(solution.videosInCache(cache));
+                        for (int video : stored) used += problem.videoSizes()[video];
+                        stored.sort(Comparator.<Integer>comparingLong(video -> benefits[video])
+                                .thenComparingInt(Integer::intValue));
+                        int remaining = problem.cacheCapacity() - used;
+                        int bestAdded = -1;
+                        int bestRemoved = -1;
+                        int bestSecondRemoved = -1;
+                        long bestDelta = 0L;
+                        RemovalTable removals = neighborhood == Neighborhood.TWO_REMOVALS
+                                ? buildRemovalTable(problem, solution, cache, stored, remaining,
+                                        benefits, deadline, evaluatedRemovalPairs) : null;
 
-                    for (int video = 0; video < problem.videoCount(); video++) {
-                        if ((video & 127) == 0) deadline.check();
-                        if (solution.contains(cache, video) || benefits[video] <= 0) continue;
-                        evaluatedMoves++;
-                        int size = problem.videoSizes()[video];
-                        int removed = -1;
-                        int secondRemoved = -1;
-                        long loss = 0L;
-                        if (size <= remaining) {
-                            if (neighborhood == Neighborhood.REPLACEMENT_ONLY) continue;
-                        } else {
-                            if (neighborhood == Neighborhood.INSERTION_ONLY) continue;
-                            if (removals != null) {
-                                int option = Arrays.binarySearch(removals.required, size - remaining);
-                                if (option < 0 || removals.first[option] < 0) continue;
-                                removed = removals.first[option];
-                                secondRemoved = removals.second[option];
-                                loss = removals.loss[option];
+                        for (int candidate = 0; candidate < problem.videoCount(); candidate++) {
+                            int video = settings.candidateOrder() == CandidateOrder.FORWARD
+                                    ? candidate : problem.videoCount() - 1 - candidate;
+                            if ((candidate & 127) == 0) deadline.check();
+                            if (solution.contains(cache, video) || benefits[video] <= 0) continue;
+                            evaluatedMoves++;
+                            int size = problem.videoSizes()[video];
+                            int removed = -1;
+                            int secondRemoved = -1;
+                            long loss = 0L;
+                            if (size <= remaining) {
+                                if (neighborhood == Neighborhood.REPLACEMENT_ONLY) continue;
                             } else {
-                                boolean fits = false;
-                                // The first feasible removal has the lowest loss because stored is sorted.
-                                for (int previous : stored) {
-                                    if (size <= remaining + problem.videoSizes()[previous]) {
-                                        removed = previous;
-                                        loss = benefits[previous];
-                                        fits = true;
-                                        break;
+                                if (neighborhood == Neighborhood.INSERTION_ONLY) continue;
+                                if (removals != null) {
+                                    int option = Arrays.binarySearch(removals.required, size - remaining);
+                                    if (option < 0 || removals.first[option] < 0) continue;
+                                    removed = removals.first[option];
+                                    secondRemoved = removals.second[option];
+                                    loss = removals.loss[option];
+                                } else {
+                                    boolean fits = false;
+                                    // The first feasible removal has the lowest loss because stored is sorted.
+                                    for (int previous : stored) {
+                                        if (size <= remaining + problem.videoSizes()[previous]) {
+                                            removed = previous;
+                                            loss = benefits[previous];
+                                            fits = true;
+                                            break;
+                                        }
                                     }
+                                    if (!fits) continue;
                                 }
-                                if (!fits) continue;
+                            }
+                            long delta = benefits[video] - loss;
+                            if (delta > bestDelta) {
+                                bestDelta = delta;
+                                bestAdded = video;
+                                bestRemoved = removed;
+                                bestSecondRemoved = secondRemoved;
+                                if (settings.selection() == Selection.FIRST) break;
                             }
                         }
-                        long delta = benefits[video] - loss;
-                        if (delta > bestDelta) {
-                            bestDelta = delta;
-                            bestAdded = video;
-                            bestRemoved = removed;
-                            bestSecondRemoved = secondRemoved;
-                        }
-                    }
 
-                    // Never commit a partially evaluated cache or interrupt a placement update.
-                    deadline.check();
-                    if (bestAdded >= 0) {
-                        if (bestRemoved >= 0) {
-                            solution.removeVideo(cache, bestRemoved);
-                            replacements++;
-                        } else {
-                            additions++;
+                        // Never commit a partially evaluated cache or interrupt a placement update.
+                        deadline.check();
+                        if (bestAdded < 0) break;
+                        if (bestAdded >= 0) {
+                            if (bestRemoved >= 0) {
+                                solution.removeVideo(cache, bestRemoved);
+                                replacements++;
+                            } else {
+                                additions++;
+                            }
+                            if (bestSecondRemoved >= 0) {
+                                solution.removeVideo(cache, bestSecondRemoved);
+                                doubleReplacements++;
+                            }
+                            solution.addVideo(cache, bestAdded);
+                            refreshDemandStates(cache, bestAdded, solution, index);
+                            if (bestRemoved >= 0) {
+                                refreshDemandStates(cache, bestRemoved, solution, index);
+                            }
+                            if (bestSecondRemoved >= 0) {
+                                refreshDemandStates(cache, bestSecondRemoved, solution, index);
+                            }
+                            acceptedMoves++;
+                            totalImprovement += bestDelta;
+                            changed = true;
+                            long currentSavedLatency = initialSavedLatency + totalImprovement;
+                            trace.add(new TracePoint(acceptedMoves, pass + 1, cache,
+                                    bestRemoved < 0 ? "insertion"
+                                            : bestSecondRemoved < 0 ? "replacement" : "replacement_two",
+                                    bestAdded, bestRemoved, bestSecondRemoved, bestDelta, currentSavedLatency,
+                                    System.nanoTime() - searchStart));
                         }
-                        if (bestSecondRemoved >= 0) {
-                            solution.removeVideo(cache, bestSecondRemoved);
-                            doubleReplacements++;
-                        }
-                        solution.addVideo(cache, bestAdded);
-                        refreshDemandStates(cache, bestAdded, solution, index);
-                        if (bestRemoved >= 0) {
-                            refreshDemandStates(cache, bestRemoved, solution, index);
-                        }
-                        if (bestSecondRemoved >= 0) {
-                            refreshDemandStates(cache, bestSecondRemoved, solution, index);
-                        }
-                        acceptedMoves++;
-                        totalImprovement += bestDelta;
-                        changed = true;
-                        long currentSavedLatency = initialSavedLatency + totalImprovement;
-                        trace.add(new TracePoint(acceptedMoves, pass + 1, cache,
-                                bestRemoved < 0 ? "insertion"
-                                        : bestSecondRemoved < 0 ? "replacement" : "replacement_two",
-                                bestAdded, bestRemoved, bestSecondRemoved, bestDelta, currentSavedLatency,
-                                System.nanoTime() - searchStart));
                     }
                 }
                 if (!changed) {
@@ -409,7 +445,14 @@ public final class LocalSearchSolver {
             int secondRemovedVideoId,
             long improvement,
             long savedLatency,
-            long elapsedNanos) { }
+            long elapsedNanos) {
+        public TracePoint(int acceptedMove, int pass, int cacheId, String moveType,
+                int addedVideoId, int removedVideoId, long improvement,
+                long savedLatency, long elapsedNanos) {
+            this(acceptedMove, pass, cacheId, moveType, addedVideoId, removedVideoId,
+                    -1, improvement, savedLatency, elapsedNanos);
+        }
+    }
 
     public record SearchStatistics(
             String neighborhood,
@@ -426,7 +469,16 @@ public final class LocalSearchSolver {
             String termination,
             List<TracePoint> trace,
             int doubleReplacements,
-            long evaluatedRemovalPairs) { }
+            long evaluatedRemovalPairs) {
+        public SearchStatistics(String neighborhood, int passes, long evaluatedMoves,
+                int acceptedMoves, long rejectedMoves, int additions, int replacements,
+                long initialSavedLatency, long totalImprovement, long finalSavedLatency,
+                long elapsedNanos, String termination, List<TracePoint> trace) {
+            this(neighborhood, passes, evaluatedMoves, acceptedMoves, rejectedMoves,
+                    additions, replacements, initialSavedLatency, totalImprovement,
+                    finalSavedLatency, elapsedNanos, termination, trace, 0, 0L);
+        }
+    }
 
     public record SearchResult(Solution solution, SearchStatistics statistics) { }
 }

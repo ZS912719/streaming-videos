@@ -65,8 +65,11 @@ def main():
         hashes[str(relative)] = hashlib.sha256(source.read_bytes()).hexdigest()
     local_relative = Path('com/hashcode/streaming/solver/LocalSearchSolver.java')
     local_text = (snapshot / local_relative).read_text(encoding='utf-8')
-    if len(re.findall(r'MAX_PASSES = 20;', local_text)) != 1:
-        raise RuntimeError('Expected production Local Search to have a 20-pass limit')
+    if len(re.findall(r'MAX_PASSES = (?:3|20);', local_text)) != 1:
+        raise RuntimeError('Expected the configurable Local Search pass-limit constant')
+    # Compare explicit snapshots, independently of the authoritative current default.
+    local_text = re.sub(r'MAX_PASSES = (?:3|20);', 'MAX_PASSES = 20;', local_text)
+    (snapshot / local_relative).write_text(local_text, encoding='utf-8')
     classes = raw / 'classes-20'
     classes.mkdir()
     subprocess.run([javac, '--release', '17', '-encoding', 'UTF-8', '-d', str(classes)]

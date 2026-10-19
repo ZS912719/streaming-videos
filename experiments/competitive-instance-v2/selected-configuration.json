@@ -1,0 +1,234 @@
+{
+  "best_v2": {
+    "name": "focus-0.1-noise131",
+    "family": "focus",
+    "background": 0.1,
+    "seed": 17,
+    "noise_seed": 131
+  },
+  "input_sha256": "577a76ca72ec4e6c83d87456b6a3542c5522e7b020140c4954ab4ece32bb77e7",
+  "output_sha256": "706ee76cdaa0804e71ffb3ce166382a39f1c85e7ec70d16b61f6521f5301192d",
+  "official_score": 1014358,
+  "strongest_reference_score": 1012043,
+  "gap": 2315,
+  "relative_gap_percent": 0.22874522129988548,
+  "median_ms": {
+    "ours": 69.232,
+    "static": 81.546
+  },
+  "v1_gap_percent": 0.28427886734300495,
+  "recommendation": "V1",
+  "shared": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 5,
+    "candidates": 64,
+    "exchange_rounds": 5,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "reference_configurations": {
+    "ours": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "zero": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-reverse": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "zero-reverse": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "static-deep": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "zero-deep": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "greedy-deep": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    }
+  },
+  "tested_candidates": [
+    {
+      "name": "focus-0.1",
+      "family": "focus",
+      "background": 0.1,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.25",
+      "family": "focus",
+      "background": 0.25,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.5",
+      "family": "focus",
+      "background": 0.5,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.75",
+      "family": "focus",
+      "background": 0.75,
+      "seed": 17
+    },
+    {
+      "name": "pressure-180",
+      "family": "pressure",
+      "capacity": 180,
+      "seed": 17
+    },
+    {
+      "name": "pressure-210",
+      "family": "pressure",
+      "capacity": 210,
+      "seed": 17
+    },
+    {
+      "name": "pressure-270",
+      "family": "pressure",
+      "capacity": 270,
+      "seed": 17
+    },
+    {
+      "name": "pressure-300",
+      "family": "pressure",
+      "capacity": 300,
+      "seed": 17
+    },
+    {
+      "name": "coupling-1",
+      "family": "coupling",
+      "degree": 1,
+      "seed": 17
+    },
+    {
+      "name": "coupling-2",
+      "family": "coupling",
+      "degree": 2,
+      "seed": 17
+    },
+    {
+      "name": "coupling-3",
+      "family": "coupling",
+      "degree": 3,
+      "seed": 17
+    },
+    {
+      "name": "coupling-2-seed29",
+      "family": "coupling",
+      "degree": 2,
+      "seed": 29
+    },
+    {
+      "name": "scarcity-17",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 17
+    },
+    {
+      "name": "scarcity-29",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 29
+    },
+    {
+      "name": "scarcity-43",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 43
+    },
+    {
+      "name": "scarcity-71",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 71
+    }
+  ],
+  "finalists": [
+    "focus-0.1",
+    "focus-0.25",
+    "pressure-180",
+    "coupling-3"
+  ],
+  "counterattack_finalists": [
+    "focus-0.1",
+    "focus-0.25"
+  ],
+  "robustness": "Independent +/-2% request-count noise with seeds 101 and 131; same underlying V1 topology",
+  "selection_note": "Best local noise variant selected after inspecting robustness results, then independently counterattacked; not held-out evidence",
+  "judge": "unchanged supplied judgeHashCode2017.cpp; safe request totals and products"
+}

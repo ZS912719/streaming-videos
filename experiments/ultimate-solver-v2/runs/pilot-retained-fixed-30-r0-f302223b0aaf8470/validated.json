@@ -1,0 +1,82 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "fixed",
+  "budget_ms": 30000,
+  "score": 1022789,
+  "raw_objective": 1023037114338,
+  "parse_ms": 214.305,
+  "algorithm_ms": 31282.726,
+  "construction_ms": 5191.345,
+  "search_ms": 24522.779,
+  "validation_ms": 1569.043,
+  "output_ms": 3.888,
+  "entry_elapsed_ms": 31535.067,
+  "engine_offset_ms": 292.0,
+  "accepted": 2109,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "instance": "kittens.in",
+  "label": "pilot-retained-fixed-30-r0",
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "fixed"
+    ],
+    "incumbent": null,
+    "source_sha256": "7e6abf1cccff8ea771a7c1736a7ddea0d94b7abaec873e3142d137c3789368cf",
+    "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-retained-fixed-30-r0-f302223b0aaf8470/solution.txt",
+  "solution_sha256": "85a246ad9052d135820b94488b20ac393065122c9ff6541b0db07c07115e037d",
+  "wall_seconds": 31.761908,
+  "independent_validation_seconds": 0.757558,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-retained-fixed-30-r0-f302223b0aaf8470/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-retained-fixed-30-r0-f302223b0aaf8470\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-retained-fixed-30-r0-f302223b0aaf8470\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-retained-fixed-30-r0-f302223b0aaf8470\\trace.csv",
+    "--policy",
+    "fixed",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-retained-fixed-30-r0-f302223b0aaf8470\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "1022884683677",
+      "score": "1022637",
+      "observed_ms": "10000.249",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-retained-fixed-30-r0-f302223b0aaf8470/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "6df650f8407974e8b734f82c54146efde32d183f775bf0dddee6c6e324aa494b"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "1023037114338",
+      "score": "1022789",
+      "observed_ms": "30000.660",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-retained-fixed-30-r0-f302223b0aaf8470/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "85a246ad9052d135820b94488b20ac393065122c9ff6541b0db07c07115e037d"
+    }
+  ]
+}

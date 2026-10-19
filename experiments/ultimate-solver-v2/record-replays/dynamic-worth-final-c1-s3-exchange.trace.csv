@@ -1,0 +1,3 @@
+step,raw_objective,elapsed_ms,cache_a,video_a,cache_b,video_b,gain,regret
+1,305674500021,452.934,87,2045,92,426,751812,0
+2,305674573077,779.967,32,3160,87,426,73056,0

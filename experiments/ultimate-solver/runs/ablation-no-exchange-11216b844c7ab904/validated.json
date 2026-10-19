@@ -1,0 +1,52 @@
+{
+  "mode": "adaptive",
+  "budget_ms": 3000,
+  "seed": 20170317,
+  "score": 51568,
+  "raw_objective": 1086847045,
+  "parse_ms": 73.558,
+  "algorithm_ms": 1215.79,
+  "construction_ms": 346.236,
+  "search_ms": 869.554,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "accepted": 128,
+  "units": 285,
+  "termination": "candidate_stagnation",
+  "incumbent": false,
+  "instance": "medium_mixed_lambda.in",
+  "label": "ablation-no-exchange",
+  "input_sha256": "8a689fb2ca424c2acd3ef7c19c2b166345dfccccfe569bb57436ba9caca77fd7",
+  "configuration": {
+    "mode": "adaptive",
+    "seconds": 3,
+    "extra": [
+      "--no-exchange"
+    ],
+    "incumbent": null,
+    "source_sha256": "41bd5424feff1ab2ef01559eaabaa8760b142b6b20a909f96cce5fd312545094",
+    "input_sha256": "8a689fb2ca424c2acd3ef7c19c2b166345dfccccfe569bb57436ba9caca77fd7"
+  },
+  "solution": "experiments/ultimate-solver/runs/ablation-no-exchange-11216b844c7ab904/solution.txt",
+  "solution_sha256": "5067a3c3a524aa9af8e1ac42125bb1f733bc1e85deb7055b06f0756b5acb544e",
+  "wall_seconds": 1.482922,
+  "trace": "experiments/ultimate-solver/runs/ablation-no-exchange-11216b844c7ab904/trace.csv",
+  "command": [
+    "java",
+    "-Xmx2g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "adaptive",
+    "tmp\\promo-inputs\\medium_mixed_lambda.in",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-11216b844c7ab904\\solution.txt",
+    "--seconds",
+    "3",
+    "--metadata",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-11216b844c7ab904\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-11216b844c7ab904\\trace.csv",
+    "--no-exchange"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

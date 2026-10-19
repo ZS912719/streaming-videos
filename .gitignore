@@ -1,18 +1,20 @@
 # Compiled class file
 *.class
+*.exe
 out/
 *.out
+!experiments/competitive-instance/competitive_streaming_videos.out
+__pycache__/
+*.pyc
 tmp/
 web/target/
 data/sessions/
 
 # Log file
 *.log
-__pycache__/
-*.pyc
 
 # Local attachments and interrupted experiment attempts
-/.codex-remote-attachments/
+/*-remote-attachments/
 /experiments/kittens-long-budget-2026-10-18/
 
 # BlueJ files

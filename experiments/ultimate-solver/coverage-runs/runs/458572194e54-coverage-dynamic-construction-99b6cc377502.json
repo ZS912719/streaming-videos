@@ -1,0 +1,58 @@
+{
+  "instance": "custom_dejavu42.in",
+  "input_path": "tmp/promo-inputs/custom_dejavu42.in",
+  "input_sha256": "458572194e541e93495cce68bedab5f52fa5482ead016d19921cf34b008ada24",
+  "configuration": "coverage-dynamic-construction",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 63985,
+  "raw_objective": 409118883897,
+  "construction_ms": 153.625,
+  "search_ms": 0,
+  "algorithm_ms": 153.625,
+  "wall_seconds": 0.547155,
+  "solution": "experiments/ultimate-solver/coverage-runs/solutions/458572194e54-coverage-dynamic-construction-99b6cc377502-63985.txt",
+  "solution_sha256": "2945b8294f7def13b3501eaf4dabde1dc174aa49726e95ac48ef6c10f7307d16",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "63985",
+      "raw_objective": "409118883897",
+      "algorithm_ms": "153.625",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 63985
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "tmp\\promo-inputs\\custom_dejavu42.in",
+    "tmp\\promo-runs\\458572194e54-coverage-dynamic-construction-99b6cc377502",
+    "dynamic",
+    "1",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d934485dc77aa4fd8a44705e02de46cf314f5c2fd5c7a99fcb9b0ca3719b8377"
+}

@@ -1,0 +1,3 @@
+previous_archive_score,instance,score,algorithm_ms,construction_ms,search_ms,accepted,termination,solution
+612126,videos_worth_spreading.in,612126,8959.349,160.088,8799.261,375,candidate_stagnation,experiments/ultimate-solver/runs/incumbent-polish-30s-7f5f6450e3afe08d/solution.txt
+1025096,kittens.in,1025110,31436.194,1451.019,29985.176,1028,time_budget,experiments/ultimate-solver/runs/incumbent-polish-30s-f127480ebe728e80/solution.txt

@@ -1,0 +1,5 @@
+dataset,official_score,selected_run,cumulative_algorithm_ms
+me_at_the_zoo,512115,efficient-zoo-final,37.297
+videos_worth_spreading,611388,fair-repack-videos_worth_spreading-dynamic-local,5232.007
+trending_today,499966,dyn-trending_today-w0,1112.700
+kittens,1025024,fair-repack-kittens-dynamic-local,30954.321

@@ -36,6 +36,8 @@ class WorkerTimeoutTest(unittest.TestCase):
 
 
 class SolverComparisonTest(unittest.TestCase):
+    ALGORITHMS = {"baseline", "greedy", "ocag", "local-search", "ocag-ls",
+                  "local-search-two", "dynamic-ocag", "dynamic-greedy"}
     @classmethod
     def setUpClass(cls):
         (ROOT / "tmp").mkdir(exist_ok=True)
@@ -69,16 +71,17 @@ class SolverComparisonTest(unittest.TestCase):
         cls.temporary.cleanup()
 
     def test_runs_all_registered_strategies_and_keeps_same_named_inputs_separate(self):
-        self.assertEqual(18, len(self.rows))
-        self.assertEqual({"baseline", "greedy", "ocag", "local-search", "ocag-ls", "local-search-two"},
+        self.assertEqual(3 * len(self.ALGORITHMS), len(self.rows))
+        self.assertEqual(self.ALGORITHMS,
                          {row["algorithm"] for row in self.rows})
         paths = [row["solution_path"] for row in self.rows if row["status"] == "complete"]
-        self.assertEqual(12, len(set(paths)))
+        self.assertEqual(2 * len(self.ALGORITHMS), len(set(paths)))
         self.assertTrue(all(Path(path).is_file() for path in paths))
 
     def test_known_scores_ranks_and_greedy_differences(self):
-        local = {row["algorithm"]: row for row in self.rows[:6]}
-        opportunity = {row["algorithm"]: row for row in self.rows[6:12]}
+        count = len(self.ALGORITHMS)
+        local = {row["algorithm"]: row for row in self.rows[:count]}
+        opportunity = {row["algorithm"]: row for row in self.rows[count:2 * count]}
         self.assertEqual(370588, int(local["greedy"]["score"]))
         self.assertEqual(529411, int(local["local-search"]["score"]))
         self.assertEqual(529411, int(local["local-search-two"]["score"]))
@@ -87,14 +90,14 @@ class SolverComparisonTest(unittest.TestCase):
         self.assertEqual(925000, int(opportunity["ocag"]["score"]))
         self.assertEqual(opportunity["ocag"]["rank"], opportunity["ocag-ls"]["rank"])
         self.assertEqual("1", opportunity["ocag"]["rank"])
-        for row in self.rows[:12]:
+        for row in self.rows[:2 * count]:
             self.assertEqual("complete", row["status"])
             self.assertGreaterEqual(float(row["solve_ms"]), 0)
             self.assertGreaterEqual(float(row["worker_seconds"]), float(row["solve_ms"]) / 1000 - .001)
 
     def test_failure_does_not_stop_other_workers_or_publish_invalid_solutions(self):
         self.assertEqual(1, self.process.returncode)
-        for row in self.rows[12:]:
+        for row in self.rows[2 * len(self.ALGORITHMS):]:
             self.assertEqual("failed", row["status"])
             self.assertEqual("", row["score"])
             self.assertEqual("", row["solution_path"])

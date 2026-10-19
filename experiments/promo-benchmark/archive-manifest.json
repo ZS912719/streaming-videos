@@ -1,0 +1,8 @@
+{
+  "archive_name": "instances_promo.zip",
+  "archive_sha256": "a19c03a5324ad08591d880cdfb58ff57a85f491970ed6a4ddf15e53e4f1e8f0a",
+  "ordering": "natural case-insensitive relative filename",
+  "file_count": 33,
+  "validation": "official numeric ranges and line structure; CRLF accepted as portable whitespace",
+  "extraction_directory": "tmp/promo-inputs"
+}

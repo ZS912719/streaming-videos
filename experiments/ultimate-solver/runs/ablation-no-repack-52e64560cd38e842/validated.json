@@ -1,0 +1,52 @@
+{
+  "mode": "adaptive",
+  "budget_ms": 3000,
+  "seed": 20170317,
+  "score": 2376139,
+  "raw_objective": 1201100554,
+  "parse_ms": 26.083,
+  "algorithm_ms": 389.763,
+  "construction_ms": 88.671,
+  "search_ms": 301.092,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "accepted": 46,
+  "units": 9506,
+  "termination": "candidate_stagnation",
+  "incumbent": false,
+  "instance": "regional_instance.in",
+  "label": "ablation-no-repack",
+  "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419",
+  "configuration": {
+    "mode": "adaptive",
+    "seconds": 3,
+    "extra": [
+      "--no-repack"
+    ],
+    "incumbent": null,
+    "source_sha256": "41bd5424feff1ab2ef01559eaabaa8760b142b6b20a909f96cce5fd312545094",
+    "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419"
+  },
+  "solution": "experiments/ultimate-solver/runs/ablation-no-repack-52e64560cd38e842/solution.txt",
+  "solution_sha256": "d466148618d98af3cfa217ecd4ae6ae470b9021f3d5df4f4e538bb3ff2179dd4",
+  "wall_seconds": 0.79412,
+  "trace": "experiments/ultimate-solver/runs/ablation-no-repack-52e64560cd38e842/trace.csv",
+  "command": [
+    "java",
+    "-Xmx2g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "adaptive",
+    "tmp\\promo-inputs\\regional_instance.in",
+    "experiments\\ultimate-solver\\runs\\ablation-no-repack-52e64560cd38e842\\solution.txt",
+    "--seconds",
+    "3",
+    "--metadata",
+    "experiments\\ultimate-solver\\runs\\ablation-no-repack-52e64560cd38e842\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver\\runs\\ablation-no-repack-52e64560cd38e842\\trace.csv",
+    "--no-repack"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

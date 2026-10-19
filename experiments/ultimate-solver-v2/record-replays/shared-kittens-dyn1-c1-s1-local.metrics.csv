@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,dyn-kittens-w1.txt,50,1,best,forward,forward,1022060,1022789,1022307412029,1023037248212,9,626,80,546,44158160,7497.028,no_improving_move

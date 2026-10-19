@@ -1,0 +1,81 @@
+{
+  "instance": "mixed.seed_29.in",
+  "input_sha256": "1873c0f81d82c0da30d6714204cfb0bd266a2b2e0a24e0006d92c1f49d0cfc3e",
+  "configuration": "dynamic-ordinary",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 962016,
+  "raw_objective": 4810864463,
+  "construction_ms": 24.451,
+  "search_ms": 22.73,
+  "algorithm_ms": 47.181,
+  "wall_seconds": 0.305708,
+  "solution": "experiments/competitive-instance/solutions/1873c0f81d82-dynamic-ordinary-899ac025693a-962016.txt",
+  "solution_sha256": "99d1ab2c191337b984e8b4e5ceabd9493ac4cbaadedd506081b02e73cefb56e6",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "955518",
+      "raw_objective": "4778371751",
+      "algorithm_ms": "24.451",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 955518
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "962016",
+      "raw_objective": "4810864463",
+      "algorithm_ms": "19.571",
+      "passes": "3",
+      "accepted": "14",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 962016
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "962016",
+      "raw_objective": "4810864463",
+      "algorithm_ms": "3.159",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 962016
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\mixed.seed_29.in",
+    "tmp\\promo-runs\\1873c0f81d82-dynamic-ordinary-899ac025693a",
+    "dynamic",
+    "1",
+    "10",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

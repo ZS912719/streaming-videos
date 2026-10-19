@@ -14,6 +14,16 @@ public final class Main {
     private Main() { }
 
     public static void main(String[] args) {
+        if (args.length > 0 && args[0].equals("ultimate-v2")) {
+            try { UltimateV2Main.main(args); }
+            catch (Exception error) { error.printStackTrace(System.err); System.exit(1); }
+            return;
+        }
+        if (args.length > 0 && java.util.Set.of("ultimate", "adaptive", "portfolio", "competition").contains(args[0])) {
+            try { GeneralMain.main(args); }
+            catch (Exception error) { error.printStackTrace(System.err); System.exit(1); }
+            return;
+        }
         if (args.length != 2 && args.length != 3) {
             printUsage();
             System.exit(2);

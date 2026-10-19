@@ -32,7 +32,7 @@ History is shared by users of this local server and persists across restarts.
 Older sessions keep their original solver lists and may lack phase metrics;
 upload the input again to run the current comparison. Algorithm timings exclude
 startup, parsing, validation/scoring and output. Worker runtime includes those
-costs. The twenty-pass Local Search limit does not guarantee convergence.
+costs. A pass-limited Local Search does not guarantee convergence.
 Interrupted runs are marked as interrupted on restart. The queue holds eight
 waiting sessions. Uploads are limited to 32 MB and checked against the problem
 dimension and request bounds. To support `examples/opportunity-cost.in`, cache
@@ -71,7 +71,7 @@ or one-for-one video replacements within a cache. Every accepted move has a
 strictly positive change in total request-weighted saved latency. Removal losses
 are evaluated with the selected cache excluded, so copies in other caches are
 accounted for exactly. The search accepts at most one move per cache per pass
-and runs up to twenty passes, stopping earlier when an entire pass has no move.
+and defaults to three passes, stopping earlier when an entire pass has no move.
 It preserves capacity constraints but can stop before reaching a local optimum.
 It does not consider replacing multiple videos at once. Evaluating neighboring
 placements adds CPU cost, particularly on dense topologies.
@@ -82,7 +82,7 @@ stored videos with one absent video in the same cache. It evaluates every stored
 pair, retaining the lowest exact removal loss for each required space threshold.
 Pairs are considered even when a single removal is feasible. Equal-loss options
 prefer fewer removals, then video IDs; only strictly positive net gains are
-accepted. The default command-line strategy has the same 20-pass cap. Existing
+accepted. The command-line strategy uses the same three-pass default. Existing
 web sessions and the five web strategy names retain their original meaning.
 
 `ocag` is the separate Opportunity-Cost Aware Greedy construction. It augments
@@ -116,6 +116,28 @@ Build the solver and the supplied official judge by passing its location:
 ```
 
 ## Run
+
+The general-purpose solver is available independently of the historical modes:
+
+```powershell
+java -Xmx2g -cp out com.hashcode.streaming.Main ultimate examples\me_at_the_zoo.in tmp\ultimate.txt --seconds 10
+java -Xmx2g -cp out com.hashcode.streaming.Main portfolio examples\kittens.in tmp\portfolio.txt --seconds 10
+java -Xmx2g -cp out com.hashcode.streaming.Main competition examples\kittens.in tmp\competition.txt --seconds 30
+```
+
+`ultimate` uses the adaptive policy: distinct dynamic/zero/static constructions,
+exact repair, progress-based scheduling and best-checkpoint retention. `portfolio`
+uses fixed round-robin allocation as a quality reference. `competition` increases
+search depth and adds seeded destroy-and-repair. All accept `--seconds` so they can
+be compared at equal nominal budgets. `--incumbent saved.txt` safely continues a
+validated placement; it is separate from a fresh solve. The old commands below
+retain their behavior. Full protocol, exact arithmetic labels and 33-row exports:
+[`experiments/ultimate-solver/ULTIMATE_SOLVER_REPORT.md`](experiments/ultimate-solver/ULTIMATE_SOLVER_REPORT.md).
+
+```powershell
+.\run-ultimate-solver.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Archive "<promotion-zip>"
+python .\test-ultimate-tools.py
+```
 
 ```powershell
 java -cp out com.hashcode.streaming.Main greedy examples\me_at_the_zoo.in tmp\zoo.out
@@ -245,7 +267,8 @@ optimum means no positive raw-gain move in that neighborhood, not global
 optimality. All accepted-move traces are retained. See the
 [Kittens long-budget report](experiments/kittens-long-budget-2026-10-18-v2/REPORT.md).
 
-The current Local Search limit is 20 passes. The follow-up benchmark compares
+The follow-up benchmark compares explicit limits independently of the current
+three-pass default. It compares
 baseline, greedy, and Greedy + Local Search with both 3-pass and 20-pass budgets
 on the four official inputs, using three fresh JVM runs per variant:
 
@@ -261,7 +284,7 @@ records every run, reports median/min/max timings, and preserves accepted-move
 traces and per-pass gains. The output directory must not already exist. See the
 [20-pass benchmark report](experiments/ls20-2026-10-18/REPORT.md) for measurements
 and convergence limits. Existing packaged JARs require rebuilding and restarting
-before the new limit takes effect in a running web service.
+before source updates take effect in a running web service.
 
 The controlled study compares construction (`greedy`, `ocag`) with repair
 (`greedy-ls`, `ocag-ls`), includes Local Search ablations and exact tiny cases,
@@ -292,6 +315,82 @@ Raw measurements and compact summaries are versioned under `experiments/`;
 generated solutions, judge binaries and per-run temporary files stay under
 the ignored `tmp/` directory.
 
+## Local Search optimization follow-up
+
+The [final optimization study](experiments/FINAL_OCAG_LS_OPTIMIZATION_REPORT.md)
+adds exact dynamic alternative regret, indexed exchanges and bounded cache
+repacking. `dynamic-ocag` selects weight 1; `dynamic-greedy` is the zero-regret
+control with explicit deterministic tie rules. That control can differ from
+the historical `greedy` ordering.
+
+```powershell
+.\reproduce-final-optimization.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+.\reproduce-final-optimization.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Subset efficient
+```
+
+The first command checks the absolute records; the second runs the shorter
+practical configurations. `-Subset shared` applies common settings. New records
+are versioned under `experiments/final-best-solutions/`, and the full replay
+graph is in `experiments/final-ocag-ls-configurations.json`. The optional figure
+script uses Matplotlib; solvers, tests and reproduction use no external libraries.
+
+The [optimization report](experiments/LOCAL_SEARCH_OPTIMIZATION_REPORT.md)
+documents pass limits, move selection and order experiments. The original CLI
+`local-search` behavior remains the three-pass default. Winning tuned outputs
+and the final optional two-cache exchange results are archived under
+`experiments/tuned-solutions/` and `experiments/best-solutions/`.
+
+## Promotion benchmark and competitive instance
+
+The [promotion report](experiments/promo-benchmark/PROMO_BENCHMARK_REPORT.md)
+documents one frozen pipeline, the input inventory and copy-ready scores.
+Run from the repository root with Java 17+, Python 3.9+ and g++:
+
+```powershell
+.\run-promo-benchmark.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
+This finds `instances_promo.zip` in the current user's Downloads, safely extracts
+it under ignored `tmp/`, builds, resumes saved runs and checks every valid input.
+Use `-Archive "<archive-path>"` to supply another location. Invalid inputs are
+listed, not repaired. One valid input exceeds the supplied judge's 32-bit request
+total. Only that row uses the separately labelled, arithmetic-only wide-integer
+judge; the supplied source is unchanged. CSV, TSV and scores-only exports are in
+`experiments/promo-benchmark/`. `scores-only-order.csv` maps each numeric line.
+To recompute all solutions in fresh JVMs without changing archived measurements:
+
+```powershell
+.\run-promo-benchmark.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Phase replay
+```
+
+The [competitive-instance report](experiments/competitive-instance/COMPETITIVE_INSTANCE_REPORT.md)
+compares a deliberately selected structural instance against matched advanced
+repair, deeper repair and multistart controls. It does not establish superiority
+over untested student solvers. The submitted input/output and generator settings
+are in `experiments/competitive-instance/`. Reproduce the staged study or replay
+only the final primary-instance comparisons:
+
+```powershell
+.\run-competitive-study.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+python .\replay-promotion-study.py competitive
+python .\test-promotion-tools.py
+```
+
+## Earlier Local Search reproduction
+
+Reproduce and judge the four earlier Local Search records from scratch:
+
+```powershell
+.\reproduce-local-search-records.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
+This bounded full reproduction takes several minutes. For the faster
+one-cache search finalists and three-run timing checks:
+
+```powershell
+.\measure-local-search-winners.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
 ## Local Search Regression Case
 
 `examples/local-search.in` has one 10 MB cache and two videos of sizes 6 MB and
@@ -303,6 +402,47 @@ from 370,588 to 529,411. Both placements satisfy the capacity constraint.
 java -cp out com.hashcode.streaming.Main greedy examples/local-search.in tmp/swap-greedy.out
 java -cp out com.hashcode.streaming.Main local-search examples/local-search.in tmp/swap-local.out
 ```
+
+## Ultimate V2
+
+The general-purpose V2 solver combines three deterministic constructors with
+exact local repair, packing, bounded knapsack repacking and cache exchanges.
+Its intensive default allocates measured search time between complementary
+starts and the leading solution. It always retains its best valid placement.
+Historical solver commands remain available unchanged.
+
+Integration retains our authoritative three-pass `local-search` default and all
+explicit tuning controls. The teammate's optional `local-search-two` neighborhood,
+deadline support, registry, diagnostics and web contributions remain available.
+Twenty-pass experiments use explicit source snapshots in the benchmark helper.
+The V1/V2 engines and original Greedy algorithm are unchanged.
+
+```powershell
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 examples/me_at_the_zoo.in tmp/v2.txt --seconds 10
+.\tmp\judgeHashCode2017.exe examples/me_at_the_zoo.in tmp/v2.txt
+# Larger shared budget; optionally resume a validated placement:
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 input.in tmp/result.txt --preset competition
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 input.in tmp/improved.txt --seconds 180 --incumbent tmp/result.txt
+.\run-ultimate-v2.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Archive "<promotion-zip>"
+```
+
+Policies `--policy fixed|adaptive|intensive` use the same requested budget.
+Fresh and incumbent benchmarks are separate and resumable. Validation/output
+may add overhead after the cooperative search deadline. See
+[V2 results and limitations](experiments/ultimate-solver-v2/ULTIMATE_V2_REPORT.md)
+and [reproduction instructions](experiments/ultimate-solver-v2/reproduction-instructions.md).
+
+The benchmark wrapper replays commit `d30ef6e` in an isolated ignored directory:
+the frozen study intentionally checks its entire source tree, not just the V2
+engine. It does not relabel integrated sources as the historical configuration.
+To revalidate all 66 archived outputs without rerunning timed searches:
+
+```powershell
+.\replay-frozen-v2.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Phase validate
+```
+
+Use a full-history checkout for this replay. New solver runs use the integrated
+`Main ultimate-v2` command above; frozen reports and scores are never overwritten.
 
 ## Generate Experimental Datasets
 

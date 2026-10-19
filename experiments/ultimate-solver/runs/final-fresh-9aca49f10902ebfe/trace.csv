@@ -1,0 +1,7 @@
+unit,start,operation,delta,best_raw,elapsed_ms,accepted
+0,dynamic,construction,0,450549,11.342,0
+0,zero,construction,0,450549,11.412,0
+0,static,construction,0,450549,11.459,0
+1,dynamic,local,8540451,8991000,15.157,1
+2,dynamic,repack,0,8991000,16.949,0
+3,dynamic,exchange,0,8991000,16.983,0

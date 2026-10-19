@@ -4,7 +4,7 @@
   "processor_identifier": "AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD",
   "java": "java version \"17.0.12\" 2024-07-16 LTS\nJava(TM) SE Runtime Environment (build 17.0.12+8-LTS-286)\nJava HotSpot(TM) 64-Bit Server VM (build 17.0.12+8-LTS-286, mixed mode, sharing)",
   "git_head": "510f707347d9d7b118c564105de435409bf553fe",
-  "git_status": " M .gitignore\n M README.md\n M src/main/java/com/hashcode/streaming/Main.java\n M src/main/java/com/hashcode/streaming/solver/LocalSearchSolver.java\n M web/src/main/resources/static/index.html\n?? .codex-remote-attachments/\n?? benchmark-local-search.py\n?? compare-solvers.py\n?? src/main/java/com/hashcode/streaming/experiments/SolverComparisonWorker.java\n?? src/main/java/com/hashcode/streaming/solver/SolverRegistry.java\n?? tests/\n",
+  "git_status": " M .gitignore\n M README.md\n M src/main/java/com/hashcode/streaming/Main.java\n M src/main/java/com/hashcode/streaming/solver/LocalSearchSolver.java\n M web/src/main/resources/static/index.html\n?? [local-attachment-directory]/\n?? benchmark-local-search.py\n?? compare-solvers.py\n?? src/main/java/com/hashcode/streaming/experiments/SolverComparisonWorker.java\n?? src/main/java/com/hashcode/streaming/solver/SolverRegistry.java\n?? tests/\n",
   "source_sha256": {
     "com\\hashcode\\streaming\\experiments\\ExactSmallSolver.java": "cfe6076ae768691a32dba8ee995a9f4c91d48224fb1a5db88d97aa8b9fc713dd",
     "com\\hashcode\\streaming\\experiments\\RobustnessExperiment.java": "a17b471cc19ffb2201cb504bd5a9481dddb68d31a6aefffa931884c2f4d9ad6a",

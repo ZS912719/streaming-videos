@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+videos_worth_spreading.in,dynamic-worth-deep-c2-s3-exchange.txt,50,1,best,forward,forward,611609,611647,305612938374,305632053339,5,24,5,19,560863,428.043,no_improving_move

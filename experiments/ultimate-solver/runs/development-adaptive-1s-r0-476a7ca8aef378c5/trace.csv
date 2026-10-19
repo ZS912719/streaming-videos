@@ -1,0 +1,16 @@
+unit,start,operation,delta,best_raw,elapsed_ms,accepted
+0,dynamic,construction,0,54432423,13.228,0
+0,zero,construction,0,54432423,13.438,0
+0,static,construction,0,54432423,13.628,0
+1,dynamic,local,8540451,62972874,17.583,1
+2,dynamic,local,0,62972874,18.523,0
+3,dynamic,repack,0,62972874,19.586,0
+4,dynamic,repack,0,62972874,19.661,0
+5,dynamic,exchange,0,62972874,23.094,0
+6,dynamic,exchange,0,62972874,23.124,0
+7,zero,local,8540451,62972874,23.200,1
+8,zero,local,0,62972874,23.251,0
+9,zero,repack,0,62972874,23.368,0
+10,zero,repack,0,62972874,23.422,0
+11,zero,exchange,0,62972874,23.484,0
+12,zero,exchange,0,62972874,23.503,0

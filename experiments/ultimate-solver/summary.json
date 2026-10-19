@@ -1,0 +1,27 @@
+{
+  "fresh": {
+    "improved": 13,
+    "tied": 13,
+    "regressed": 7,
+    "total_gain": 28842,
+    "mean_relative_percent": 0.16567759292570508,
+    "median_relative_percent": 0.0,
+    "worst_relative_percent": -0.12574432053193066
+  },
+  "archive": {
+    "improved": 19,
+    "tied": 14,
+    "regressed": 0,
+    "total_gain": 37050,
+    "mean_relative_percent": 0.18855930403831148,
+    "median_relative_percent": 0.001365725746661776,
+    "worst_relative_percent": 0.0
+  },
+  "final_score_sum": 30069920,
+  "fresh_algorithm_seconds": 166.454554,
+  "incumbent_algorithm_seconds": 194.38908,
+  "coverage": 33,
+  "original_judge": 27,
+  "wide_official_format": 1,
+  "extended": 5
+}

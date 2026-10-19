@@ -1,0 +1,2 @@
+dataset,mode,algorithm_ms,accepted,candidate_evaluations,passes,candidate_limit,neighborhood,termination,internal_score,raw_objective
+videos_worth_spreading.in,packing,433.255,8,2774967,3,128,both,no_positive_scanned_packing_move,611730,305673748209

@@ -1,0 +1,52 @@
+{
+  "mode": "adaptive",
+  "budget_ms": 3000,
+  "seed": 20170317,
+  "score": 2383856,
+  "raw_objective": 1205001268,
+  "parse_ms": 27.64,
+  "algorithm_ms": 439.594,
+  "construction_ms": 74.999,
+  "search_ms": 364.595,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "accepted": 79,
+  "units": 3500,
+  "termination": "candidate_stagnation",
+  "incumbent": false,
+  "instance": "regional_instance.in",
+  "label": "ablation-no-exchange",
+  "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419",
+  "configuration": {
+    "mode": "adaptive",
+    "seconds": 3,
+    "extra": [
+      "--no-exchange"
+    ],
+    "incumbent": null,
+    "source_sha256": "41bd5424feff1ab2ef01559eaabaa8760b142b6b20a909f96cce5fd312545094",
+    "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419"
+  },
+  "solution": "experiments/ultimate-solver/runs/ablation-no-exchange-1e8428ec143c98b9/solution.txt",
+  "solution_sha256": "9cf99db16368b76a9d5e673eeb37e98fd7269230da0ee27d2805b1b6bcbb02c0",
+  "wall_seconds": 0.749683,
+  "trace": "experiments/ultimate-solver/runs/ablation-no-exchange-1e8428ec143c98b9/trace.csv",
+  "command": [
+    "java",
+    "-Xmx2g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "adaptive",
+    "tmp\\promo-inputs\\regional_instance.in",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-1e8428ec143c98b9\\solution.txt",
+    "--seconds",
+    "3",
+    "--metadata",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-1e8428ec143c98b9\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver\\runs\\ablation-no-exchange-1e8428ec143c98b9\\trace.csv",
+    "--no-exchange"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

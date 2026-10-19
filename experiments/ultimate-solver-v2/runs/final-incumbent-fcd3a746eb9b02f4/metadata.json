@@ -1,0 +1,7 @@
+{
+"mode":"ultimate-v2","policy":"intensive","budget_ms":180000,"score":43744,"raw_objective":336263958,
+"parse_ms":54.723,"algorithm_ms":2070.651,"construction_ms":188.942,"search_ms":1872.699,"validation_ms":6.055,"output_ms":1.071,"entry_elapsed_ms":2157.035,"engine_offset_ms":127.000,
+"accepted":290,"distinct_starts":3,"duplicates":0,"termination":"bounded_neighborhood_stagnation","incumbent":true,
+"operation_ms":{"exchange-global":87.108,"local":60.946,"packing":194.949,"repack128":157.330,"repack32":346.785,"repack512":253.312,"repack64":607.009},
+"trajectories":[{"name":"incumbent","initial_score":43744,"final_score":43744,"repair_ms":355.769,"cycle":8,"phase":2,"finished":true},{"name":"dynamic","initial_score":43299,"final_score":43710,"repair_ms":335.703,"cycle":8,"phase":2,"finished":true},{"name":"dynamic-packing","initial_score":43299,"final_score":43744,"repair_ms":373.684,"cycle":8,"phase":1,"finished":true},{"name":"zero","initial_score":43262,"final_score":43591,"repair_ms":315.703,"cycle":8,"phase":2,"finished":true},{"name":"static","initial_score":43272,"final_score":43556,"repair_ms":326.581,"cycle":8,"phase":2,"finished":true}]
+}

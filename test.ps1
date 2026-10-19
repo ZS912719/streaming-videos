@@ -12,6 +12,14 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Test compilation failed." }
     & java -cp $testOutput com.hashcode.streaming.SolverRegressionTest
     if ($LASTEXITCODE -ne 0) { throw "Solver regression tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.AdvancedOptimizationTest
+    if ($LASTEXITCODE -ne 0) { throw "Advanced differential tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.solver.GeneralSolverTest
+    if ($LASTEXITCODE -ne 0) { throw "General solver differential tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.solver.UltimateV2Test
+    if ($LASTEXITCODE -ne 0) { throw "V2 differential tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.solver.IntegrationReplayTest
+    if ($LASTEXITCODE -ne 0) { throw "Integration replay tests failed." }
 } finally {
     Pop-Location
 }

@@ -1,0 +1,81 @@
+{
+  "instance": "scarcity.seed_29.in",
+  "input_sha256": "83b91275bddd2eb08ff57b0b24d3bce420784e142467cfe9b541a5090eeaeb31",
+  "configuration": "greedy-ordinary",
+  "parameters": {
+    "constructor": "greedy",
+    "weight": 1,
+    "ls_passes": 50,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 1024460,
+  "raw_objective": 4508009548,
+  "construction_ms": 17.664,
+  "search_ms": 17.439,
+  "algorithm_ms": 35.103,
+  "wall_seconds": 0.248148,
+  "solution": "experiments/competitive-instance/solutions/83b91275bddd-greedy-ordinary-27705322c238-1024460.txt",
+  "solution_sha256": "ebabfa8a6e7eb00a34ef8b82ddc4646005b19004f90c23a846030ff60a280899",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "1021138",
+      "raw_objective": "4493393508",
+      "algorithm_ms": "17.664",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 1021138
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "1024460",
+      "raw_objective": "4508009548",
+      "algorithm_ms": "12.328",
+      "passes": "2",
+      "accepted": "13",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 1024460
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "1024460",
+      "raw_objective": "4508009548",
+      "algorithm_ms": "5.111",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 1024460
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\scarcity.seed_29.in",
+    "tmp\\promo-runs\\83b91275bddd-greedy-ordinary-27705322c238",
+    "greedy",
+    "1",
+    "50",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

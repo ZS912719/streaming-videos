@@ -1,0 +1,29 @@
+{
+  "run_id": "dynamic-worth-final-c2-s4-local",
+  "instance": "videos_worth_spreading.in",
+  "mode": "local",
+  "raw_objective": 305675179085,
+  "score": 611733,
+  "algorithm_ms": 191.446,
+  "wall_seconds": 0.5291980000001786,
+  "solution": "experiments/ultimate-solver-v2/record-replays/dynamic-worth-final-c2-s4-local.txt",
+  "solution_sha256": "b87baaf63b64a3cabcff43100998e1f44019e4f464572801f81d47c058a631a3",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.LocalSearchTuningRunner",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments/ultimate-solver-v2/record-replays/dynamic-worth-final-c2-s3-exchange.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\dynamic-worth-final-c2-s4-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\dynamic-worth-final-c2-s4-local.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\dynamic-worth-final-c2-s4-local.trace.csv",
+    "50",
+    "1",
+    "best",
+    "forward",
+    "forward"
+  ],
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b"
+}

@@ -1,0 +1,10 @@
+{
+  "results": 33,
+  "original_judge_binary_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "wide_judge_binary_sha256": "03493d0ffcf6449df1dd6516ab2d4a446fedbb886faa26b19c0fa7351a201d02",
+  "strict_judge_binary_sha256": "e2ff52804c14a44514cfae37e49f9e621d0d420d60163cd9c60f31545211de47",
+  "wide_judge_source_sha256": "14e5f39ef87bf67161e3dd062b3542ebd3a055dbcbb40e8ca30cddb1ea5fa309",
+  "strict_judge_source_sha256": "44aa79ce728e9740755a741721382490d60efbee1cf043cb2f6a7d2462d9bbca",
+  "python_evaluator_sha256": "d63d1e278a779ed984b56171c31ead5deab7e896f9dbf7373a04fc89fb74c99f",
+  "checks": "input/output hashes, independent arbitrary-precision objective, C++ cross-checks, normalization equivalence, archive monotonicity"
+}

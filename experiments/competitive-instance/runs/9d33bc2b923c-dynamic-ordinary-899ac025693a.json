@@ -1,0 +1,81 @@
+{
+  "instance": "packing.seed_29.in",
+  "input_sha256": "9d33bc2b923ca7379974437ccf3970cdcbd7944365fc7ef4aafc43cad9c380dd",
+  "configuration": "dynamic-ordinary",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 749057,
+  "raw_objective": 3869116418,
+  "construction_ms": 27.88,
+  "search_ms": 24.25,
+  "algorithm_ms": 52.13,
+  "wall_seconds": 0.28013,
+  "solution": "experiments/competitive-instance/solutions/9d33bc2b923c-dynamic-ordinary-899ac025693a-749057.txt",
+  "solution_sha256": "4483d44e3b2de670c30fceab27022d0b4ef717e39397dc1cdc7ef52cf2bc5cc7",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "742907",
+      "raw_objective": "3837353895",
+      "algorithm_ms": "27.880",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 742907
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "749057",
+      "raw_objective": "3869116418",
+      "algorithm_ms": "19.625",
+      "passes": "3",
+      "accepted": "19",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 749057
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "749057",
+      "raw_objective": "3869116418",
+      "algorithm_ms": "4.625",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 749057
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\packing.seed_29.in",
+    "tmp\\promo-runs\\9d33bc2b923c-dynamic-ordinary-899ac025693a",
+    "dynamic",
+    "1",
+    "10",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

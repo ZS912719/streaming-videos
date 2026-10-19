@@ -1,0 +1,167 @@
+{
+  "2_2_2_1.in": {
+    "raw": 8991000,
+    "score": 951327,
+    "solution": "experiments/ultimate-solver/coverage-solutions/01-2_2_2_1.txt"
+  },
+  "4_2_4_2.in": {
+    "raw": 26984958,
+    "score": 982271,
+    "solution": "experiments/ultimate-solver/coverage-solutions/02-4_2_4_2.txt"
+  },
+  "6_2_6_2.in": {
+    "raw": 59907003,
+    "score": 998499,
+    "solution": "experiments/ultimate-solver/coverage-solutions/03-6_2_6_2.txt"
+  },
+  "8_2_8_2.in": {
+    "raw": 62972874,
+    "score": 991480,
+    "solution": "experiments/ultimate-solver/coverage-solutions/04-8_2_8_2.txt"
+  },
+  "20_2_20_2.in": {
+    "raw": 170936622,
+    "score": 995902,
+    "solution": "experiments/ultimate-solver/coverage-solutions/05-20_2_20_2.txt"
+  },
+  "3860_246_84901_66.in": {
+    "raw": 167877377,
+    "score": 1977330,
+    "solution": "experiments/ultimate-solver/coverage-solutions/06-3860_246_84901_66.txt"
+  },
+  "4990_246_84901_50.in": {
+    "raw": 152848586,
+    "score": 1800315,
+    "solution": "experiments/ultimate-solver/coverage-solutions/07-4990_246_84901_50.txt"
+  },
+  "6970_311_100000_69.in": {
+    "raw": 183909563,
+    "score": 1839095,
+    "solution": "experiments/ultimate-solver/coverage-solutions/08-6970_311_100000_69.txt"
+  },
+  "10000_500_100000_100.in": {
+    "raw": 202036143,
+    "score": 2020361,
+    "solution": "experiments/ultimate-solver/coverage-solutions/09-10000_500_100000_100.txt"
+  },
+  "big.in": {
+    "raw": 7513270118,
+    "score": 271267,
+    "solution": "experiments/ultimate-solver/coverage-solutions/10-big.txt"
+  },
+  "custom_dejavu42.in": {
+    "raw": 409118883897,
+    "score": 63985,
+    "solution": "experiments/ultimate-solver/coverage-solutions/11-custom_dejavu42.txt"
+  },
+  "custom_universallambda42.in": {
+    "raw": 3915838128071,
+    "score": 1340105,
+    "solution": "experiments/ultimate-solver/coverage-solutions/12-custom_universallambda42.txt"
+  },
+  "custom_universallambda42_asymmetric.in": {
+    "raw": 4719655773,
+    "score": 976467,
+    "solution": "experiments/ultimate-solver/coverage-solutions/13-custom_universallambda42_asymmetric.txt"
+  },
+  "dense2.in": {
+    "raw": 403473899,
+    "score": 284493,
+    "solution": "experiments/ultimate-solver/coverage-solutions/14-dense2.txt"
+  },
+  "dense.in": {
+    "raw": 466564933,
+    "score": 69683,
+    "solution": "experiments/ultimate-solver/coverage-solutions/15-dense.txt"
+  },
+  "INSATANC2D.in": {
+    "raw": 334700969277,
+    "score": 130990,
+    "solution": "experiments/ultimate-solver/coverage-solutions/16-INSATANC2D.txt"
+  },
+  "instance1.in": {
+    "raw": 61562730,
+    "score": 1497840,
+    "solution": "experiments/ultimate-solver/coverage-solutions/17-instance1.txt"
+  },
+  "instance2.in": {
+    "raw": 126662420,
+    "score": 1966777,
+    "solution": "experiments/ultimate-solver/coverage-solutions/18-instance2.txt"
+  },
+  "INSTANCED.in": {
+    "raw": 192684119546,
+    "score": 1272926,
+    "solution": "experiments/ultimate-solver/coverage-solutions/19-INSTANCED.txt"
+  },
+  "kittens.in": {
+    "raw": 1025274550000,
+    "score": 1025026,
+    "solution": "experiments/ultimate-solver/coverage-solutions/20-kittens.txt"
+  },
+  "me_at_the_zoo.in": {
+    "raw": 27301384,
+    "score": 512115,
+    "solution": "experiments/ultimate-solver/coverage-solutions/21-me_at_the_zoo.txt"
+  },
+  "medium_flat_dense_dejavu.in": {
+    "raw": 230183828959,
+    "score": 89890,
+    "solution": "experiments/ultimate-solver/coverage-solutions/22-medium_flat_dense_dejavu.txt"
+  },
+  "medium_flat_sparse_lambda.in": {
+    "raw": 1547467457,
+    "score": 23843,
+    "solution": "experiments/ultimate-solver/coverage-solutions/23-medium_flat_sparse_lambda.txt"
+  },
+  "medium_mixed_lambda.in": {
+    "raw": 1087980254,
+    "score": 51621,
+    "solution": "experiments/ultimate-solver/coverage-solutions/24-medium_mixed_lambda.txt"
+  },
+  "medium_skew_dense_dejavu.in": {
+    "raw": 52839363819,
+    "score": 146022,
+    "solution": "experiments/ultimate-solver/coverage-solutions/25-medium_skew_dense_dejavu.txt"
+  },
+  "medium_skew_sparse_lambda.in": {
+    "raw": 335705947,
+    "score": 43671,
+    "solution": "experiments/ultimate-solver/coverage-solutions/26-medium_skew_sparse_lambda.txt"
+  },
+  "realistic_large_clustered.in": {
+    "raw": 476319623357,
+    "score": 943306,
+    "solution": "experiments/ultimate-solver/coverage-solutions/27-realistic_large_clustered.txt"
+  },
+  "realistic_large_random.in": {
+    "raw": 469207933187,
+    "score": 929876,
+    "solution": "experiments/ultimate-solver/coverage-solutions/28-realistic_large_random.txt"
+  },
+  "regional_instance.in": {
+    "raw": 1205007498,
+    "score": 2383868,
+    "solution": "experiments/ultimate-solver/coverage-solutions/29-regional_instance.txt"
+  },
+  "supra.in": {
+    "raw": 2686754433,
+    "score": 411743,
+    "solution": "experiments/ultimate-solver/coverage-solutions/30-supra.txt"
+  },
+  "trending_today.in": {
+    "raw": 250238576000,
+    "score": 499966,
+    "solution": "experiments/ultimate-solver/coverage-solutions/31-trending_today.txt"
+  },
+  "videos_worth_spreading.in": {
+    "raw": 305511145673,
+    "score": 611405,
+    "solution": "experiments/ultimate-solver/coverage-solutions/32-videos_worth_spreading.txt"
+  },
+  "zipF_instance.in": {
+    "raw": 968973009,
+    "score": 1928623,
+    "solution": "experiments/ultimate-solver/coverage-solutions/33-zipF_instance.txt"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "adaptive",
+  "budget_ms": 30000,
+  "score": 612024,
+  "raw_objective": 305820326128,
+  "parse_ms": 97.492,
+  "algorithm_ms": 29879.058,
+  "construction_ms": 501.567,
+  "search_ms": 29339.866,
+  "validation_ms": 37.099,
+  "output_ms": 2.64,
+  "entry_elapsed_ms": 30006.059,
+  "engine_offset_ms": 164.0,
+  "accepted": 2905,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 8053.62,
+    "local": 431.514,
+    "packing": 1124.31,
+    "repack128": 2996.054,
+    "repack256": 7472.041,
+    "repack32": 2218.082,
+    "repack64": 5936.661
+  },
+  "instance": "videos_worth_spreading.in",
+  "label": "pilot-indexed-adaptive-30-r0",
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "adaptive"
+    ],
+    "incumbent": null,
+    "source_sha256": "d748d46e538d9405679b8fc44bf9672e35cd3dc17277e70ce084a9d1e466907b",
+    "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e/solution.txt",
+  "solution_sha256": "e91014f0f7c05270e8abba74b7fc1a72ae42419c45f737bf8fbb33d2bb40bdef",
+  "wall_seconds": 30.221994,
+  "independent_validation_seconds": 0.16848,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e\\trace.csv",
+    "--policy",
+    "adaptive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "305604169130",
+      "score": "611591",
+      "observed_ms": "10000.283",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "d2fabe11101b334cf7c88053dd1aa409950dabaa3bd608a2b24456f0c9b64e57"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "305820326128",
+      "score": "612024",
+      "observed_ms": "30000.084",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-indexed-adaptive-30-r0-c5d0b0d7579fdb3e/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "e91014f0f7c05270e8abba74b7fc1a72ae42419c45f737bf8fbb33d2bb40bdef"
+    }
+  ]
+}

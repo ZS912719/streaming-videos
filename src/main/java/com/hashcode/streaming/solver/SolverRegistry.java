@@ -17,6 +17,8 @@ public final class SolverRegistry {
         solvers.put("baseline", problem -> new BaselineSolver().solve(problem));
         solvers.put("greedy", problem -> new GreedySolver().solve(problem));
         solvers.put("ocag", problem -> new OpportunityCostGreedySolver().solve(problem));
+        solvers.put("dynamic-ocag", problem -> new DynamicOcagSolver().solve(problem));
+        solvers.put("dynamic-greedy", problem -> new DynamicOcagSolver().solve(problem, 0.0, false).solution());
         solvers.put("local-search", problem -> new LocalSearchSolver().solve(problem));
         solvers.put("ocag-ls", problem -> new LocalSearchSolver().improve(
                 problem, new OpportunityCostGreedySolver().solve(problem)));

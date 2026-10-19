@@ -1,0 +1,3 @@
+candidate,our_score,reference_score,gap,relative_gap_percent,our_ms,best_reference,best_reference_ms,portfolio_ms
+focus-0.1,1013541,1011798,1743,0.17226758700847403,66.708,static,106.663,725.674
+focus-0.25,987618,986126,1492,0.15129912404702847,80.26,static,76.272,683.437

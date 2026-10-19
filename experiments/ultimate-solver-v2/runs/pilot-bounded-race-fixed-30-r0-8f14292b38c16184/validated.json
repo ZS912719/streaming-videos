@@ -1,0 +1,129 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "fixed",
+  "budget_ms": 30000,
+  "score": 611870,
+  "raw_objective": 305743346681,
+  "parse_ms": 77.702,
+  "algorithm_ms": 29898.87,
+  "construction_ms": 521.028,
+  "search_ms": 29337.867,
+  "validation_ms": 38.333,
+  "output_ms": 2.387,
+  "entry_elapsed_ms": 30003.014,
+  "engine_offset_ms": 146.0,
+  "accepted": 3063,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 9761.16,
+    "local": 561.277,
+    "packing": 1359.383,
+    "repack128": 5270.86,
+    "repack256": 1432.952,
+    "repack32": 2396.791,
+    "repack64": 8168.558
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 607245,
+      "final_score": 611655,
+      "repair_ms": 7542.622,
+      "cycle": 6,
+      "phase": 4,
+      "finished": false
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 607245,
+      "final_score": 611870,
+      "repair_ms": 7124.187,
+      "cycle": 5,
+      "phase": 2,
+      "finished": false
+    },
+    {
+      "name": "zero",
+      "initial_score": 608277,
+      "final_score": 610953,
+      "repair_ms": 6926.85,
+      "cycle": 6,
+      "phase": 4,
+      "finished": false
+    },
+    {
+      "name": "static",
+      "initial_score": 608315,
+      "final_score": 611091,
+      "repair_ms": 7357.322,
+      "cycle": 6,
+      "phase": 4,
+      "finished": false
+    }
+  ],
+  "instance": "videos_worth_spreading.in",
+  "label": "pilot-bounded-race-fixed-30-r0",
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "fixed"
+    ],
+    "incumbent": null,
+    "source_sha256": "f1caa1bba82eddfa0d47b9164c5d0859bc4b465a8e2d5b243a9d571c7fc5242f",
+    "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-fixed-30-r0-8f14292b38c16184/solution.txt",
+  "solution_sha256": "9f771b392bbe0331bc4d4317430fd29343bd0f58ec78e5a89a740cf7e40c271d",
+  "wall_seconds": 30.236819,
+  "independent_validation_seconds": 0.172128,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-fixed-30-r0-8f14292b38c16184/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-fixed-30-r0-8f14292b38c16184\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-fixed-30-r0-8f14292b38c16184\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-fixed-30-r0-8f14292b38c16184\\trace.csv",
+    "--policy",
+    "fixed",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-fixed-30-r0-8f14292b38c16184\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "305537756475",
+      "score": "611458",
+      "observed_ms": "10000.002",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-fixed-30-r0-8f14292b38c16184/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "682e5e5d3ccbac001c5ac81e54d52c3a21ea0ac2b01b95692967a690a1e8cfd4"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "305743346681",
+      "score": "611870",
+      "observed_ms": "30000.074",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-fixed-30-r0-8f14292b38c16184/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "9f771b392bbe0331bc4d4317430fd29343bd0f58ec78e5a89a740cf7e40c271d"
+    }
+  ]
+}

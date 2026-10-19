@@ -1,0 +1,97 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "adaptive",
+  "budget_ms": 60000,
+  "score": 1025026,
+  "raw_objective": 1025274550000,
+  "parse_ms": 183.667,
+  "algorithm_ms": 61068.534,
+  "construction_ms": 4220.048,
+  "search_ms": 55540.713,
+  "validation_ms": 1307.488,
+  "output_ms": 3.716,
+  "entry_elapsed_ms": 61279.455,
+  "engine_offset_ms": 244.0,
+  "accepted": 6048,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 3194.034,
+    "local": 4531.81,
+    "packing": 14603.929,
+    "repack64": 31729.61
+  },
+  "instance": "kittens.in",
+  "label": "pilot-final-race-adaptive-60-r0",
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 60,
+    "extra": [
+      "--policy",
+      "adaptive"
+    ],
+    "incumbent": null,
+    "source_sha256": "e78e10436e63baeb077f910953115129ae226917bcb70023da0cec0d1a1a98f8",
+    "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-final-race-adaptive-60-r0-311fd5f76b58ea18/solution.txt",
+  "solution_sha256": "5d8dbb3a30ab0ecbb8e3a1b7b32d5c2467a920e3f30fdabb290bd24a4f050ce4",
+  "wall_seconds": 61.577846,
+  "independent_validation_seconds": 0.737187,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-final-race-adaptive-60-r0-311fd5f76b58ea18/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-final-race-adaptive-60-r0-311fd5f76b58ea18\\solution.txt",
+    "--seconds",
+    "60",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-final-race-adaptive-60-r0-311fd5f76b58ea18\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-final-race-adaptive-60-r0-311fd5f76b58ea18\\trace.csv",
+    "--policy",
+    "adaptive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-final-race-adaptive-60-r0-311fd5f76b58ea18\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "1024979288113",
+      "score": "1024731",
+      "observed_ms": "10002.071",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-final-race-adaptive-60-r0-311fd5f76b58ea18/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "b43669bf0472f97c905fad3bc8e848ae832448f275288e85970fc2d7f7b1b57d"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "1025274550000",
+      "score": "1025026",
+      "observed_ms": "30000.740",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-final-race-adaptive-60-r0-311fd5f76b58ea18/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "5d8dbb3a30ab0ecbb8e3a1b7b32d5c2467a920e3f30fdabb290bd24a4f050ce4"
+    },
+    {
+      "budget_seconds": "60",
+      "raw_objective": "1025274550000",
+      "score": "1025026",
+      "observed_ms": "60000.131",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-final-race-adaptive-60-r0-311fd5f76b58ea18/checkpoints/checkpoint-60.txt",
+      "solution_sha256": "5d8dbb3a30ab0ecbb8e3a1b7b32d5c2467a920e3f30fdabb290bd24a4f050ce4"
+    }
+  ]
+}

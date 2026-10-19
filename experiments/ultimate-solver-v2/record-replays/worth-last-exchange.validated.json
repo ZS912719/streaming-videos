@@ -1,0 +1,30 @@
+{
+  "run_id": "worth-last-exchange",
+  "instance": "videos_worth_spreading.in",
+  "mode": "exchange",
+  "raw_objective": 305793139104,
+  "score": 611969,
+  "algorithm_ms": 6831.186,
+  "wall_seconds": 7.137053200000082,
+  "solution": "experiments/ultimate-solver-v2/record-replays/worth-last-exchange.txt",
+  "solution_sha256": "e0d6dafbaaa1c6426634ed877d1cd275cf3b35aa195a98f196fcd344479083f5",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.FinalOptimizationRunner",
+    "exchange",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments/ultimate-solver-v2/record-replays/worth-after-repack-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-last-exchange.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-last-exchange.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-last-exchange.trace.csv",
+    "2147483647",
+    "2147483647",
+    "100",
+    "false",
+    "0"
+  ],
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b"
+}

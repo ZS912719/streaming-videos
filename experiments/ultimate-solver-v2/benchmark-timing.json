@@ -1,0 +1,17 @@
+{
+  "scope": "33 frozen V2 fresh runs, 33 incumbent runs, independent final validation",
+  "first_worker_log_created_utc": "2026-10-19T02:47:16.0347437Z",
+  "first_validation_manifest_written_utc": "2026-10-19T03:51:21.0777802Z",
+  "workflow_elapsed_seconds": 3845.043,
+  "elapsed_method": "File timestamps from first worker launch to validation manifest; excludes initial compilation and later comparison experiments",
+  "fresh_algorithm_seconds": 1728.712907,
+  "fresh_worker_wall_seconds": 1740.162912,
+  "incumbent_algorithm_seconds": 1774.327143,
+  "incumbent_worker_wall_seconds": 1785.979308,
+  "total_worker_wall_seconds": 3526.142220,
+  "matched_v1_worker_wall_seconds": 1342.642568,
+  "all_three_promotion_passes_worker_wall_seconds": 4868.784788,
+  "comparison_validation_written_utc": "2026-10-19T04:17:34.3807795Z",
+  "workflow_with_matched_controls_seconds": 5418.346,
+  "extended_elapsed_scope": "First V2 worker through final 66-output revalidation after matched V1, held-out and competitive controls; excludes later CSV review, report writing and two additional saved synthetic diagnostics"
+}

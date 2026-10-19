@@ -1,0 +1,29 @@
+{
+  "run_id": "kittens-record-c1-s1-local",
+  "instance": "kittens.in",
+  "mode": "local",
+  "raw_objective": 1024235130725,
+  "score": 1023987,
+  "algorithm_ms": 2415.279,
+  "wall_seconds": 7.563011299998834,
+  "solution": "experiments/ultimate-solver-v2/record-replays/kittens-record-c1-s1-local.txt",
+  "solution_sha256": "177e9dddd5babd2fbe13b28001bd17e7965540c761d9fe45b90310bcb997ac0f",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.LocalSearchTuningRunner",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments/ultimate-solver-v2/record-replays/shared-kittens-dyn1-c1-s4-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-record-c1-s1-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-record-c1-s1-local.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-record-c1-s1-local.trace.csv",
+    "50",
+    "1",
+    "best",
+    "reverse",
+    "forward"
+  ],
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b"
+}

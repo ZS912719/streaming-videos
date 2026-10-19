@@ -1,0 +1,6 @@
+{
+"mode":"ultimate-v2","policy":"fixed","budget_ms":300000,"score":611417,"raw_objective":305517005931,
+"parse_ms":75.999,"algorithm_ms":7872.368,"construction_ms":524.011,"search_ms":7313.359,"validation_ms":34.383,"output_ms":8.025,"entry_elapsed_ms":7981.137,"engine_offset_ms":138.000,
+"accepted":2317,"distinct_starts":3,"duplicates":0,"termination":"unit_limit","incumbent":false,
+"operation_ms":{"exchange-global":826.042,"local":353.591,"packing":989.457,"repack32":1739.706,"repack64":3265.171}
+}

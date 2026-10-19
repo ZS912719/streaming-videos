@@ -1,0 +1,81 @@
+{
+  "instance": "overlap.seed_29.in",
+  "input_sha256": "e4266994f3a41c9a6fc5d58c0ade7be967fdb95ac171c61f961f1359301eecf0",
+  "configuration": "greedy-ordinary",
+  "parameters": {
+    "constructor": "greedy",
+    "weight": 1,
+    "ls_passes": 50,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 932240,
+  "raw_objective": 7422516854,
+  "construction_ms": 25.444,
+  "search_ms": 22.595,
+  "algorithm_ms": 48.039,
+  "wall_seconds": 0.286852,
+  "solution": "experiments/competitive-instance/solutions/e4266994f3a4-greedy-ordinary-27705322c238-932240.txt",
+  "solution_sha256": "084e05e8ac4b8b534f611c963ea7ec3733063ddd6689412b28553c431a276eca",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "928604",
+      "raw_objective": "7393573642",
+      "algorithm_ms": "25.444",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 928604
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "932240",
+      "raw_objective": "7422516854",
+      "algorithm_ms": "17.467",
+      "passes": "3",
+      "accepted": "13",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 932240
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "932240",
+      "raw_objective": "7422516854",
+      "algorithm_ms": "5.128",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 932240
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\overlap.seed_29.in",
+    "tmp\\promo-runs\\e4266994f3a4-greedy-ordinary-27705322c238",
+    "greedy",
+    "1",
+    "50",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

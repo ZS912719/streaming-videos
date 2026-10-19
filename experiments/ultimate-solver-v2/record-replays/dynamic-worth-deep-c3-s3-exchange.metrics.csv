@@ -1,0 +1,2 @@
+dataset,mode,pairs,videos_per_cache,round_limit,first_improvement,time_limit_ms,algorithm_ms,index_ms,scan_ms,update_ms,rounds,accepted,candidate_evaluations,feasible,positive,rounded_improvements,estimated_array_bytes,termination,internal_score,raw_objective
+videos_worth_spreading.in,exchange,2147483647,2147483647,50,false,0,2854.719,93.953,2672.774,0.969,20,19,364813200,3672604,204,5,8857600,no_positive_scanned_exchange,611722,305669440101

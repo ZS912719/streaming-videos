@@ -1,0 +1,18 @@
+{
+  "completed_rows": 66,
+  "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+  "judges": {
+    "tmp\\judgeHashCode2017.exe": "958cf31a06160148904fc221022129dadf52804ec91b7d5b9d729ae375580b7b",
+    "tmp\\judgeHashCode2017-wide.exe": "d8079b491ca2f5d94c48300a932cf8bd9539e6b3f4c27ca10ca9bf0c365e8186",
+    "tmp\\judge-exact.exe": "deb7d9e02caa88128bf9bab3445d1160970a7d5573ea03fc09a4d22e9b441481"
+  },
+  "judge_sources": {
+    "judgeHashCode2017-wide.cpp": "14e5f39ef87bf67161e3dd062b3542ebd3a055dbcbb40e8ca30cddb1ea5fa309",
+    "judge-exact.cpp": "44aa79ce728e9740755a741721382490d60efbee1cf043cb2f6a7d2462d9bbca"
+  },
+  "original_judge_source": {
+    "path_name": "judgeHashCode2017.cpp",
+    "sha256": "d6bc06c33d67cecfa17c01a24882d890b0b6481a36b2e4847c91ee9936aa1153"
+  },
+  "historical_files_unchanged": 2439
+}

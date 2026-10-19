@@ -1,0 +1,5 @@
+{
+"mode":"ultimate-v2","policy":"adaptive","budget_ms":30000,"score":611720,"raw_objective":305668781813,
+"parse_ms":73.984,"algorithm_ms":29910.892,"construction_ms":571.612,"search_ms":29296.231,"validation_ms":43.038,"output_ms":3.405,"entry_elapsed_ms":30011.603,"engine_offset_ms":138.000,
+"accepted":1642,"distinct_starts":3,"duplicates":0,"termination":"time_budget","incumbent":false
+}

@@ -1,0 +1,5 @@
+dataset,previous_record,best_ls,best_dynamic,best_combined,final_best,gain,gain_percent,winning_run,source,cumulative_algorithm_ms
+me_at_the_zoo,507906,512115,507906,512115,512115,4209,0.828697,efficient-zoo-final,dynamic_regret,37.297
+videos_worth_spreading,610023,611401,608277,612117,612117,2094,0.343266,worth-final-repack-c2-s4-local,dynamic_regret,44346.828
+trending_today,499857,499966,499966,499966,499966,109,0.021806,dyn-trending_today-w0,canonical_greedy,1112.700
+kittens,1022005,1024904,1022060,1025096,1025096,3091,0.302445,kittens-final-repack-c2-s4-local,dynamic_regret,177770.183

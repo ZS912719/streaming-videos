@@ -1,0 +1,93 @@
+{
+  "instance": "dense2.in",
+  "input_sha256": "842a25d7771609cf3675b6df62c99884b7daea6ac12798b4e82b2d21354cc0ff",
+  "configuration": "zero-repack",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 0,
+    "ls_passes": 10,
+    "repack_passes": 5,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 284493,
+  "raw_objective": 403473899,
+  "construction_ms": 457.046,
+  "search_ms": 4198.666,
+  "algorithm_ms": 4655.712,
+  "wall_seconds": 5.178804,
+  "solution": "experiments/promo-benchmark/pilot/solutions/842a25d77716-zero-repack-01baf7bdb3f2-284493.txt",
+  "solution_sha256": "2f8391600d14dc7bc35a7d7a79ffc384c2dd8018452e995cb34c87cf2af2dad0",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "33227",
+      "raw_objective": "47124016",
+      "algorithm_ms": "457.046",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 33227
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "33229",
+      "raw_objective": "47126232",
+      "algorithm_ms": "2817.120",
+      "passes": "7",
+      "accepted": "114",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 33229
+    },
+    {
+      "stage": "2",
+      "operation": "repack",
+      "internal_score": "284493",
+      "raw_objective": "403473899",
+      "algorithm_ms": "1305.092",
+      "passes": "2",
+      "accepted": "100",
+      "termination": "no_positive_candidate_pool_repack",
+      "solution": "02-repack.txt",
+      "official_score": 284493
+    },
+    {
+      "stage": "3",
+      "operation": "local",
+      "internal_score": "284493",
+      "raw_objective": "403473899",
+      "algorithm_ms": "76.454",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "03-local.txt",
+      "official_score": 284493
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "tmp\\promo-inputs\\dense2.in",
+    "tmp\\promo-runs\\842a25d77716-zero-repack-01baf7bdb3f2",
+    "dynamic",
+    "0",
+    "10",
+    "5",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}
