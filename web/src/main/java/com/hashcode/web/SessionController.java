@@ -1,6 +1,7 @@
 package com.hashcode.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hashcode.streaming.io.InputParser;
 import com.hashcode.streaming.model.ProblemInstance;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +27,7 @@ public class SessionController {
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0,
             TimeUnit.SECONDS, new ArrayBlockingQueue<>(8));
     private volatile Process activeProcess;
-    private static final List<String> ALGORITHMS = List.of("baseline", "greedy", "local-search");
+    static final List<String> ALGORITHMS = List.of("baseline", "greedy", "ocag", "local-search", "ocag-ls");
 
     public SessionController(ObjectMapper mapper, @Value("${streaming.sessions}") String directory,
             @Value("${streaming.timeout-seconds}") int timeout) throws IOException {
@@ -111,7 +112,7 @@ public class SessionController {
 
     @GetMapping("/{id}/files/{file}")
     public ResponseEntity<FileSystemResource> download(@PathVariable String id, @PathVariable String file) {
-        if (!file.equals("input.in") && ALGORITHMS.stream().noneMatch(a -> file.equals(a + ".out"))) {
+        if (!allowedFile(file)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         Path path = directory(id).resolve(file);
@@ -134,26 +135,38 @@ public class SessionController {
                 try {
                     Path log = dir.resolve(result.algorithm + ".log");
                     Process process = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
-                            "-Xmx2g", "-jar", jar.toString(), "--worker", result.algorithm,
-                            dir.resolve("input.in").toString(), dir.resolve(result.algorithm + ".out").toString())
+                            "-Xmx2g", "-jar", jar.toString(), "--worker", workerAlgorithm(result.algorithm),
+                            dir.resolve("input.in").toString(), dir.resolve(result.algorithm + ".out").toString(),
+                            dir.resolve(result.algorithm + ".metrics.csv").toString(),
+                            dir.resolve(result.algorithm + ".ls-trace.csv").toString(),
+                            dir.resolve(result.algorithm + ".ocag-trace.csv").toString())
                             .redirectErrorStream(true).redirectOutput(log.toFile()).start();
                     activeProcess = process;
                     boolean done = process.waitFor(timeout, TimeUnit.SECONDS);
                     if (!done) { process.destroyForcibly(); process.waitFor(); throw new IOException("Solver exceeded " + timeout + " seconds."); }
                     if (process.exitValue() != 0) throw new IOException("Solver failed (exit " + process.exitValue() + ").");
-                    String output = Files.readString(log);
-                    var score = java.util.regex.Pattern.compile("Score: ([\\d,]+)").matcher(output);
-                    if (!score.find()) throw new IOException("Solver did not report a score.");
-                    result.score = Long.parseLong(score.group(1).replace(",", ""));
+                    Map<String, String> metrics = readMetrics(dir.resolve(result.algorithm + ".metrics.csv"));
+                    if (!workerAlgorithm(result.algorithm).equals(metrics.get("algorithm"))) {
+                        throw new IOException("Solver metrics do not match the requested algorithm.");
+                    }
+                    long score = Long.parseLong(metrics.get("internal_final_score"));
                     List<String> lines = Files.readAllLines(dir.resolve(result.algorithm + ".out"));
                     result.nonEmptyCaches = Integer.parseInt(lines.get(0));
                     result.preview = String.join("\n", lines.stream().limit(9).map(l ->
                             l.length() > 600 ? l.substring(0,600) + " ..." : l).toList());
+                    result.score = score;
+                    result.metrics = metrics;
+                    for (String suffix : List.of("metrics.csv", "ls-trace.csv", "ocag-trace.csv")) {
+                        if (Files.exists(dir.resolve(result.algorithm + "." + suffix))) result.artifacts.add(suffix);
+                    }
                     result.status = "complete";
                 } catch (Exception error) {
                     result.status = "failed"; result.error = error.getMessage();
                     Files.deleteIfExists(dir.resolve(result.algorithm + ".out"));
-                } finally { activeProcess = null; }
+                } finally {
+                    activeProcess = null;
+                    result.logAvailable = Files.isRegularFile(dir.resolve(result.algorithm + ".log"));
+                }
                 result.runtimeSeconds = (System.nanoTime() - start) / 1e9;
                 save(session);
             }
@@ -164,6 +177,30 @@ public class SessionController {
             session.status = "failed";
             try { save(session); } catch (IOException ignored) { }
         }
+    }
+
+    static String workerAlgorithm(String algorithm) {
+        return algorithm.equals("local-search") ? "greedy-ls" : algorithm;
+    }
+
+    static boolean allowedFile(String file) {
+        return file.equals("input.in") || ALGORITHMS.stream().anyMatch(a ->
+                List.of("out", "log", "metrics.csv", "ls-trace.csv", "ocag-trace.csv")
+                        .stream().anyMatch(suffix -> file.equals(a + "." + suffix)));
+    }
+
+    /** Read the runner's two-line numeric metrics format; the dataset is always input.in. */
+    static Map<String, String> readMetrics(Path path) throws IOException {
+        List<String> lines = Files.readAllLines(path);
+        if (lines.size() != 2) throw new IOException("Expected one solver metrics row.");
+        String[] headers = lines.get(0).split(",", -1), values = lines.get(1).split(",", -1);
+        if (headers.length != values.length) throw new IOException("Malformed solver metrics.");
+        Map<String, String> metrics = new LinkedHashMap<>();
+        for (int i = 0; i < headers.length; i++) metrics.put(headers[i], values[i]);
+        if (!metrics.containsKey("internal_final_score") || !metrics.containsKey("algorithm")) {
+            throw new IOException("Missing solver score or algorithm.");
+        }
+        return metrics;
     }
 
     /** Validate dimensions before the parser allocates arrays, then check every token. */
@@ -178,7 +215,8 @@ public class SessionController {
                 Set<Integer> seen = new HashSet<>();
                 for (int j=0;j<k;j++) {
                     if (!seen.add(number(tokens,0,c-1))) throw new IOException("Duplicate cache connection.");
-                    number(tokens,1,Math.min(500,dc-1));
+                    // Synthetic opportunity-cost cases may exceed the official 500 ms cache bound.
+                    number(tokens,1,dc-1);
                 }
             }
             for (int i=0;i<r;i++) { number(tokens,0,v-1); number(tokens,0,e-1); number(tokens,1,10000); }
@@ -195,12 +233,13 @@ public class SessionController {
         catch (IllegalArgumentException error) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
         return root.resolve(id);
     }
-    private Session read(String id) throws IOException {
+    // Windows readers can hold a handle that prevents an atomic file replacement.
+    private synchronized Session read(String id) throws IOException {
         Path state = directory(id).resolve("session.json");
         if (!Files.exists(state)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return mapper.readValue(state.toFile(), Session.class);
     }
-    private synchronized void save(Session session) throws IOException {
+    synchronized void save(Session session) throws IOException {
         Path dir = directory(session.id), temporary = dir.resolve("session.tmp");
         mapper.writeValue(temporary.toFile(),session);
         Files.move(temporary,dir.resolve("session.json"),StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.ATOMIC_MOVE);
@@ -210,6 +249,7 @@ public class SessionController {
         Process process = activeProcess;
         if (process != null) process.destroyForcibly();
     }
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Session {
         public String id, filename, createdAt, status = "queued";
         public Summary summary;
@@ -217,10 +257,14 @@ public class SessionController {
     }
     public record Summary(int videos,int endpoints,int caches,int capacity,long totalRequests,
             long uniqueDemands,long connections,long contributions,long bytes) { }
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Result {
         public String algorithm, status = "pending", error, preview;
         public Long score;
         public int nonEmptyCaches;
         public double runtimeSeconds;
+        public boolean logAvailable;
+        public Map<String, String> metrics = new LinkedHashMap<>();
+        public List<String> artifacts = new ArrayList<>();
     }
 }

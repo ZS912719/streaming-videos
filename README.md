@@ -14,19 +14,44 @@ java -Xmx512m -jar web/target/streaming-web.jar
 Run these commands from the project root and open `http://127.0.0.1:8080`.
 Drag an `.in` file into the upload area to create a session. The page shows
 dataset dimensions, request counts, connections and sparse contribution counts.
-Baseline, greedy and local-search run sequentially in separate Java processes,
-each with a 2 GB heap and a 300-second timeout. Each solver has its own score,
-runtime, output preview and full output download. Failed or timed-out solvers
+Five strategies run sequentially in separate Java processes: `baseline`,
+`greedy`, `ocag`, `local-search` (greedy + Local Search), and `ocag-ls`.
+Each worker has a 2 GB heap and a 300-second timeout, and reuses the scientific
+experiment runner rather than a separate solver implementation. Each solver has its own score,
+runtime, output preview and full output download. Completed cards show the
+score difference relative to greedy and highlight the best score, including ties.
+New sessions also expose construction and Local Search timings, the initial
+score before repair, accepted moves, stop reason and OCAG regret statistics.
+Static regret is a priority signal, not additional realized score. Download
+worker logs, metrics CSVs and applicable construction/repair traces from each card.
+Failed or timed-out solvers
 are reported separately and do not prevent later solvers from running.
 
 Inputs, results and logs are saved under `data/sessions` (ignored by Git).
 History is shared by users of this local server and persists across restarts.
+Older sessions keep their original solver lists and may lack phase metrics;
+upload the input again to run the current comparison. Algorithm timings exclude
+startup, parsing, validation/scoring and output. Worker runtime includes those
+costs. A pass-limited Local Search does not guarantee convergence.
 Interrupted runs are marked as interrupted on restart. The queue holds eight
 waiting sessions. Uploads are limited to 32 MB and checked against the problem
-constraints. The app binds to localhost and is intended for local experiments.
+dimension and request bounds. To support `examples/opportunity-cost.in`, cache
+latencies may exceed the official 500 ms bound, but must remain positive and
+strictly below the endpoint's data center latency (at most 4,000 ms).
+The app binds to localhost and is intended for local experiments.
 Change `--server.port`, `--streaming.sessions`, or `--streaming.timeout-seconds`
 on the launch command to override defaults. Keep the packaged worker JAR in
 `web/target/streaming-web.jar` and run from the project root.
+
+After source updates, stop the existing service, rebuild with `mvn -f web/pom.xml
+package`, then restart using the same port and session directory. Existing
+packaged JARs and running processes do not update automatically. For a Tailscale
+deployment, retain the existing Serve configuration if it forwards to localhost;
+no additional public binding or port exposure is needed for this update.
+
+Web regression tests (`mvn -f web/pom.xml test`) verify all five worker strategies,
+scientific metrics/trace generation, artifact download allowlisting, experimental
+input validation and legacy-session compatibility.
 
 ## Solver Algorithms
 
@@ -46,10 +71,19 @@ or one-for-one video replacements within a cache. Every accepted move has a
 strictly positive change in total request-weighted saved latency. Removal losses
 are evaluated with the selected cache excluded, so copies in other caches are
 accounted for exactly. The search accepts at most one move per cache per pass
-and runs up to three passes, stopping earlier when an entire pass has no move.
+and defaults to three passes, stopping earlier when an entire pass has no move.
 It preserves capacity constraints but can stop before reaching a local optimum.
 It does not consider replacing multiple videos at once. Evaluating neighboring
 placements adds CPU cost, particularly on dense topologies.
+
+`local-search-two` is a separate experimental strategy starting from greedy. Its
+neighborhood includes additions, one-for-one replacements, and replacing two
+stored videos with one absent video in the same cache. It evaluates every stored
+pair, retaining the lowest exact removal loss for each required space threshold.
+Pairs are considered even when a single removal is feasible. Equal-loss options
+prefer fewer removals, then video IDs; only strictly positive net gains are
+accepted. The command-line strategy uses the same three-pass default. Existing
+web sessions and the five web strategy names retain their original meaning.
 
 `ocag` is the separate Opportunity-Cost Aware Greedy construction. It augments
 current marginal gain with a fixed, parameter-free alternative-placement regret:
@@ -128,6 +162,63 @@ After building the judge:
 
 ## Benchmark
 
+### Compare all solvers on your own datasets
+
+With Python 3.9+ and a Java 17+ JDK (set `JAVA_HOME` to the JDK, or put
+`java` and `javac` on PATH), run
+from the repository root:
+
+```powershell
+python .\compare-solvers.py "C:\datasets\my-data.in"
+python .\compare-solvers.py "C:\datasets\first.in" "C:\datasets\second.in"
+```
+
+The script builds the current Java sources in its own result directory and
+automatically discovers every strategy registered in `SolverRegistry`:
+`baseline`, `greedy`, `ocag`, `local-search`, `ocag-ls`, and `local-search-two`. No Maven or external
+judge is required. Each solution is capacity-validated and scored with the
+repository's implementation of the official scoring formula.
+
+Default execution is sequential for comparable timings. To run workers
+concurrently, choose the number of workers explicitly:
+
+```powershell
+python .\compare-solvers.py "C:\datasets\my-data.in" --jobs 2 --heap 2g --timeout 600
+python .\compare-solvers.py .\examples\local-search.in --output-dir .\tmp\my-comparison
+python .\compare-solvers.py .\examples\example.in --algorithms greedy local-search
+```
+
+`--heap` is the heap limit **per worker**; concurrent workers share CPU and RAM,
+so parallel timings reflect contention. The default timeout is 300 seconds per
+run and the default heap is 2 GB. Paths supplied by the user are resolved from
+the current working directory, including paths containing spaces.
+
+Results are saved in a unique `tmp/comparisons/<timestamp>-<suffix>/` directory,
+or the new directory specified by `--output-dir`. Existing output directories
+are rejected to preserve previous results. `comparison.csv` contains scores,
+score ranks (ties share a rank), differences from greedy, solver-only timing
+(`solve_ms`), worker timing (`worker_seconds`, including startup, parsing,
+validation/scoring and output), nonempty cache counts, statuses and artifact
+paths. `dataset-001/`, `dataset-002/`, etc. keep each dataset's solutions,
+metrics and logs separate even when input filenames are identical. Failed or
+timed-out solvers do not stop the remaining comparisons; failed solutions are
+discarded. Exit codes: 0 = all succeeded, 1 = at least one run failed or timed
+out, 2 = invalid arguments or build failure.
+
+To add a solver, implement a class under
+`src/main/java/com/hashcode/streaming/solver/` that returns a `Solution` for a
+`ProblemInstance`, then add a registration in `SolverRegistry`:
+
+```java
+solvers.put("my-solver", problem -> new MySolver().solve(problem));
+```
+
+Use a unique filename-safe name consisting of letters, digits and hyphens.
+Construct a fresh solver inside the registration lambda so runs do not share
+mutable solver state. The comparison script discovers the new entry on its next
+run, and `Main` also accepts the registered name. Web strategy lists and the
+scientific study's phase-specific algorithms remain configured separately.
+
 Run both algorithms on all four official datasets and create `benchmark-results.csv`:
 
 ```powershell
@@ -140,6 +231,60 @@ The benchmark script currently runs `baseline` and `greedy`. Run `local-search`
 separately using the command above; the existing CSV does not include it.
 
 ## Scientific Study
+
+Compare one- and two-removal neighborhoods under equal repair-time allowances:
+
+```powershell
+python .\benchmark-neighborhoods.py --output-dir .\experiments\my-neighborhood-study
+```
+
+Defaults are 1, 5, and 10 seconds per repair, three repetitions, four official
+inputs, fresh sequential JVMs, and a 4 GB heap. Set `JAVA_HOME` to a Java 17+ JDK.
+Each input's greedy placement is constructed once and reused byte-for-byte by
+both neighborhoods. Repair timing includes index initialization and excludes
+seed construction, parsing, validation/scoring, and output. Timed searches have
+no pass cap and stop early if an entire pass has no improvement. Deadlines are
+cooperative: initialization and an accepted move's atomic update may overrun;
+actual elapsed time and overruns are recorded. An unfinished cache evaluation is
+discarded at the deadline. The output directory must be new. See the
+[equal-budget neighborhood study](experiments/two-removal-budget-2026-10-18/REPORT.md)
+for scores, time ranges, accepted moves and separate two-removal counts.
+
+For the Kittens long-budget follow-up with independent convergence audits:
+
+```powershell
+python .\benchmark-neighborhoods.py --datasets kittens --budgets-ms 20000 30000 60000 --repetitions 3 --audit --output-dir .\experiments\my-kittens-long-study
+```
+
+The driver records the last accepted positive raw improvement time and gain in
+each elapsed interval `[s, s+1)`. `per-second-runs.csv` retains every repetition;
+`per-second-summary.csv` reports medians/ranges and the number of active runs.
+Intervals after an early stop are explicitly marked with zero active time.
+With `--audit`, a read-only exact neighborhood check runs after timed search,
+rescanning actual cache copies and using a separate suffix-minimum method for
+removal losses. Audit time is separate from repair time. A verified local
+optimum means no positive raw-gain move in that neighborhood, not global
+optimality. All accepted-move traces are retained. See the
+[Kittens long-budget report](experiments/kittens-long-budget-2026-10-18-v2/REPORT.md).
+
+The follow-up benchmark compares explicit limits independently of the current
+three-pass default. It compares
+baseline, greedy, and Greedy + Local Search with both 3-pass and 20-pass budgets
+on the four official inputs, using three fresh JVM runs per variant:
+
+```powershell
+python .\benchmark-local-search.py --output-dir .\experiments\my-ls20-study
+```
+
+Runs are sequential with a 4 GB heap and a 600-second timeout per worker.
+Set `JAVA_HOME` to a Java 17+ JDK. The script compiles a snapshot of current
+sources and a separate 3-pass control that changes only the pass limit; it does
+not edit production sources. It validates and scores solutions internally,
+records every run, reports median/min/max timings, and preserves accepted-move
+traces and per-pass gains. The output directory must not already exist. See the
+[20-pass benchmark report](experiments/ls20-2026-10-18/REPORT.md) for measurements
+and convergence limits. Existing packaged JARs require rebuilding and restarting
+before source updates take effect in a running web service.
 
 The controlled study compares construction (`greedy`, `ocag`) with repair
 (`greedy-ls`, `ocag-ls`), includes Local Search ablations and exact tiny cases,
@@ -266,6 +411,12 @@ Its intensive default allocates measured search time between complementary
 starts and the leading solution. It always retains its best valid placement.
 Historical solver commands remain available unchanged.
 
+Integration retains our authoritative three-pass `local-search` default and all
+explicit tuning controls. The teammate's optional `local-search-two` neighborhood,
+deadline support, registry, diagnostics and web contributions remain available.
+Twenty-pass experiments use explicit source snapshots in the benchmark helper.
+The V1/V2 engines and original Greedy algorithm are unchanged.
+
 ```powershell
 java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 examples/me_at_the_zoo.in tmp/v2.txt --seconds 10
 .\tmp\judgeHashCode2017.exe examples/me_at_the_zoo.in tmp/v2.txt
@@ -280,6 +431,18 @@ Fresh and incumbent benchmarks are separate and resumable. Validation/output
 may add overhead after the cooperative search deadline. See
 [V2 results and limitations](experiments/ultimate-solver-v2/ULTIMATE_V2_REPORT.md)
 and [reproduction instructions](experiments/ultimate-solver-v2/reproduction-instructions.md).
+
+The benchmark wrapper replays commit `d30ef6e` in an isolated ignored directory:
+the frozen study intentionally checks its entire source tree, not just the V2
+engine. It does not relabel integrated sources as the historical configuration.
+To revalidate all 66 archived outputs without rerunning timed searches:
+
+```powershell
+.\replay-frozen-v2.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Phase validate
+```
+
+Use a full-history checkout for this replay. New solver runs use the integrated
+`Main ultimate-v2` command above; frozen reports and scores are never overwritten.
 
 ## Generate Experimental Datasets
 

@@ -1,0 +1,606 @@
+{
+  "frozen_commit": "d30ef6e87cd900aaf904baa2b5c640903205392e",
+  "unchanged_sources": [
+    "src/main/java/com/hashcode/streaming/experiments/CrossCacheSwapProbe.java",
+    "src/main/java/com/hashcode/streaming/experiments/ExactSmallSolver.java",
+    "src/main/java/com/hashcode/streaming/experiments/FinalOptimizationRunner.java",
+    "src/main/java/com/hashcode/streaming/experiments/LocalSearchTuningRunner.java",
+    "src/main/java/com/hashcode/streaming/experiments/PromotionPipelineRunner.java",
+    "src/main/java/com/hashcode/streaming/experiments/RobustnessExperiment.java",
+    "src/main/java/com/hashcode/streaming/GeneralMain.java",
+    "src/main/java/com/hashcode/streaming/io/CheckedInputParser.java",
+    "src/main/java/com/hashcode/streaming/io/InputParser.java",
+    "src/main/java/com/hashcode/streaming/io/SolutionReader.java",
+    "src/main/java/com/hashcode/streaming/io/SolutionWriter.java",
+    "src/main/java/com/hashcode/streaming/model/CacheConnection.java",
+    "src/main/java/com/hashcode/streaming/model/Endpoint.java",
+    "src/main/java/com/hashcode/streaming/model/ProblemInstance.java",
+    "src/main/java/com/hashcode/streaming/model/RequestDemand.java",
+    "src/main/java/com/hashcode/streaming/scoring/ScoreCalculator.java",
+    "src/main/java/com/hashcode/streaming/scoring/SolutionValidator.java",
+    "src/main/java/com/hashcode/streaming/solution/Solution.java",
+    "src/main/java/com/hashcode/streaming/solver/BaselineSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/BenefitIndex.java",
+    "src/main/java/com/hashcode/streaming/solver/BudgetedConstruction.java",
+    "src/main/java/com/hashcode/streaming/solver/CacheRepackSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/DynamicOcagSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/GeneralSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/GreedySolver.java",
+    "src/main/java/com/hashcode/streaming/solver/IndexedExchangeSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/OpportunityCostGreedySolver.java",
+    "src/main/java/com/hashcode/streaming/solver/PackingSolver.java",
+    "src/main/java/com/hashcode/streaming/solver/PlacementState.java",
+    "src/main/java/com/hashcode/streaming/solver/UltimateV2Solver.java",
+    "src/main/java/com/hashcode/streaming/UltimateV2Main.java"
+  ],
+  "archive_checks": [
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "2_2_2_1.in",
+      "score": 951327,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "4_2_4_2.in",
+      "score": 982271,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "6_2_6_2.in",
+      "score": 998499,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "8_2_8_2.in",
+      "score": 991480,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "20_2_20_2.in",
+      "score": 995902,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "3860_246_84901_66.in",
+      "score": 1978409,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "4990_246_84901_50.in",
+      "score": 1801453,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "6970_311_100000_69.in",
+      "score": 1840156,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "10000_500_100000_100.in",
+      "score": 2021468,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "big.in",
+      "score": 271267,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "custom_dejavu42.in",
+      "score": 64783,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "custom_universallambda42.in",
+      "score": 1342213,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "custom_universallambda42_asymmetric.in",
+      "score": 976569,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "dense2.in",
+      "score": 284493,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "dense.in",
+      "score": 69683,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "INSATANC2D.in",
+      "score": 132551,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "instance1.in",
+      "score": 1499643,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "instance2.in",
+      "score": 1968057,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "INSTANCED.in",
+      "score": 1296624,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "kittens.in",
+      "score": 1025188,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "me_at_the_zoo.in",
+      "score": 512115,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "medium_flat_dense_dejavu.in",
+      "score": 90248,
+      "judge_mode": "OFFICIAL_FORMAT_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "medium_flat_sparse_lambda.in",
+      "score": 23889,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "medium_mixed_lambda.in",
+      "score": 51757,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "medium_skew_dense_dejavu.in",
+      "score": 147412,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "medium_skew_sparse_lambda.in",
+      "score": 43744,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "realistic_large_clustered.in",
+      "score": 950399,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "realistic_large_random.in",
+      "score": 930901,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "regional_instance.in",
+      "score": 2384204,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "supra.in",
+      "score": 411743,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "trending_today.in",
+      "score": 499966,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "videos_worth_spreading.in",
+      "score": 612119,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-fresh-results.csv",
+      "instance": "zipF_instance.in",
+      "score": 1931971,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "2_2_2_1.in",
+      "score": 951327,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "4_2_4_2.in",
+      "score": 982271,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "6_2_6_2.in",
+      "score": 998499,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "8_2_8_2.in",
+      "score": 991480,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "20_2_20_2.in",
+      "score": 995902,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "3860_246_84901_66.in",
+      "score": 1978411,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "4990_246_84901_50.in",
+      "score": 1801453,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "6970_311_100000_69.in",
+      "score": 1840169,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "10000_500_100000_100.in",
+      "score": 2021488,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "big.in",
+      "score": 271267,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "custom_dejavu42.in",
+      "score": 64783,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "custom_universallambda42.in",
+      "score": 1342213,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "custom_universallambda42_asymmetric.in",
+      "score": 976569,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "dense2.in",
+      "score": 284493,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "dense.in",
+      "score": 69683,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "INSATANC2D.in",
+      "score": 132551,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "instance1.in",
+      "score": 1499643,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "instance2.in",
+      "score": 1968057,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "INSTANCED.in",
+      "score": 1296624,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "kittens.in",
+      "score": 1025188,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "me_at_the_zoo.in",
+      "score": 512115,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "medium_flat_dense_dejavu.in",
+      "score": 90248,
+      "judge_mode": "OFFICIAL_FORMAT_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "medium_flat_sparse_lambda.in",
+      "score": 23889,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "medium_mixed_lambda.in",
+      "score": 51757,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "medium_skew_dense_dejavu.in",
+      "score": 147412,
+      "judge_mode": "EXTENDED_WIDE_JUDGE",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "medium_skew_sparse_lambda.in",
+      "score": 43744,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "realistic_large_clustered.in",
+      "score": 950588,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "realistic_large_random.in",
+      "score": 930920,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "regional_instance.in",
+      "score": 2384204,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "supra.in",
+      "score": 411743,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "trending_today.in",
+      "score": 499966,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "videos_worth_spreading.in",
+      "score": 612126,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    },
+    {
+      "table": "all-33-best-known-results.csv",
+      "instance": "zipF_instance.in",
+      "score": 1931971,
+      "judge_mode": "ORIGINAL_OFFICIAL",
+      "status": "HASH_VERIFIED_PREVIOUSLY_JUDGED"
+    }
+  ],
+  "benchmarks": [
+    {
+      "dataset": "me_at_the_zoo",
+      "algorithm": "greedy",
+      "version": "frozen",
+      "seed": 20170317,
+      "options": [],
+      "score": 507906,
+      "raw_objective": 27077027,
+      "wall_seconds": 0.20990630000596866,
+      "solution_sha256": "5afe4746588258e9e57d1a04adc2307ee169cc8ebc65f7a873ed9711873ad512",
+      "metadata": {}
+    },
+    {
+      "dataset": "me_at_the_zoo",
+      "algorithm": "greedy",
+      "version": "integrated",
+      "seed": 20170317,
+      "options": [],
+      "score": 507906,
+      "raw_objective": 27077027,
+      "wall_seconds": 0.22306449999450706,
+      "solution_sha256": "5afe4746588258e9e57d1a04adc2307ee169cc8ebc65f7a873ed9711873ad512",
+      "metadata": {}
+    },
+    {
+      "dataset": "videos_worth_spreading",
+      "algorithm": "greedy",
+      "version": "frozen",
+      "seed": 20170317,
+      "options": [],
+      "score": 608302,
+      "raw_objective": 303960837763,
+      "wall_seconds": 0.5458706999997958,
+      "solution_sha256": "ca5a60711d551cd5f31e937ffa0eee7a91189e0744f5deefa6caccf865280b02",
+      "metadata": {}
+    },
+    {
+      "dataset": "videos_worth_spreading",
+      "algorithm": "greedy",
+      "version": "integrated",
+      "seed": 20170317,
+      "options": [],
+      "score": 608302,
+      "raw_objective": 303960837763,
+      "wall_seconds": 0.5328864000039175,
+      "solution_sha256": "ca5a60711d551cd5f31e937ffa0eee7a91189e0744f5deefa6caccf865280b02",
+      "metadata": {}
+    },
+    {
+      "dataset": "trending_today",
+      "algorithm": "greedy",
+      "version": "frozen",
+      "seed": 20170317,
+      "options": [],
+      "score": 499794,
+      "raw_objective": 250152644000,
+      "wall_seconds": 3.0156960999956937,
+      "solution_sha256": "bd8e09b684e11f89807de64104db40bdc8b31c1e0e2fdabad7ed81697e811edc",
+      "metadata": {}
+    },
+    {
+      "dataset": "trending_today",
+      "algorithm": "greedy",
+      "version": "integrated",
+      "seed": 20170317,
+      "options": [],
+      "score": 499794,
+      "raw_objective": 250152644000,
+      "wall_seconds": 3.0084957999933977,
+      "solution_sha256": "bd8e09b684e11f89807de64104db40bdc8b31c1e0e2fdabad7ed81697e811edc",
+      "metadata": {}
+    },
+    {
+      "dataset": "kittens",
+      "algorithm": "greedy",
+      "version": "frozen",
+      "seed": 20170317,
+      "options": [],
+      "score": 1021681,
+      "raw_objective": 1021928473402,
+      "wall_seconds": 35.20393789999798,
+      "solution_sha256": "4ad597e74fb2652f73fed7b414e5639a441ea975a603bead4fd6e747d41d8476",
+      "metadata": {}
+    },
+    {
+      "dataset": "kittens",
+      "algorithm": "greedy",
+      "version": "integrated",
+      "seed": 20170317,
+      "options": [],
+      "score": 1021681,
+      "raw_objective": 1021928473402,
+      "wall_seconds": 42.18871339999896,
+      "solution_sha256": "4ad597e74fb2652f73fed7b414e5639a441ea975a603bead4fd6e747d41d8476",
+      "metadata": {}
+    }
+  ],
+  "fixed_work_replay": "1920 tuned LS replays and 80 fixed-work V1/V2 replays: be4f3f732cd3316a1be9857f30d6401e43b36975b77097fc33f187cb541e86b2",
+  "historical_files_preserved": 2439,
+  "reviewed_historical_integrations": [
+    "experiments/SCIENTIFIC_REPORT.md",
+    "src/main/java/com/hashcode/streaming/solver/LocalSearchSolver.java"
+  ],
+  "mode": "quick_existing_judge_evidence",
+  "status": "PASS"
+}

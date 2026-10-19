@@ -1,0 +1,70 @@
+{
+  "started_at_host": "2026-10-18T18:17:59.632999+02:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 23 Model 113 Stepping 0, AuthenticAMD",
+  "java": "java version \"17.0.12\" 2024-07-16 LTS\nJava(TM) SE Runtime Environment (build 17.0.12+8-LTS-286)\nJava HotSpot(TM) 64-Bit Server VM (build 17.0.12+8-LTS-286, mixed mode, sharing)",
+  "git_head": "510f707347d9d7b118c564105de435409bf553fe",
+  "source_sha256": {
+    "com\\hashcode\\streaming\\experiments\\ExactSmallSolver.java": "cfe6076ae768691a32dba8ee995a9f4c91d48224fb1a5db88d97aa8b9fc713dd",
+    "com\\hashcode\\streaming\\experiments\\NeighborhoodAudit.java": "05aa61ae4362129ee0b4341d37a77e612d0aa43820662a18388623934f9c6199",
+    "com\\hashcode\\streaming\\experiments\\NeighborhoodBudgetRunner.java": "57c0fda9c22f055bebff577fec1c5b89155f7184f31ca36e53ab18f02a547f7f",
+    "com\\hashcode\\streaming\\experiments\\RobustnessExperiment.java": "a17b471cc19ffb2201cb504bd5a9481dddb68d31a6aefffa931884c2f4d9ad6a",
+    "com\\hashcode\\streaming\\experiments\\ScientificExperimentRunner.java": "1f533e72bcda1c33b9206ec37b3246024311c03513dc4680697bb8cc29fca756",
+    "com\\hashcode\\streaming\\experiments\\SolverComparisonWorker.java": "2ce5b601fec0e7ab47263b3d40c3f5eb52549b52f67f18aa1714414d448aa6f8",
+    "com\\hashcode\\streaming\\io\\InputParser.java": "9ab88118f2f88d9a160be9f9df67bc8e8b1dabb387771595e27761f0ebdbd843",
+    "com\\hashcode\\streaming\\io\\SolutionReader.java": "196d9e4ab031cbd71cb8fbc9edf83d80697baca03d90b5ccd04fcab5c5c902fd",
+    "com\\hashcode\\streaming\\io\\SolutionWriter.java": "6338e01a4084e31851a18af9aed2c6ac3566224b17fd1e263db32da273bf245b",
+    "com\\hashcode\\streaming\\Main.java": "4c6976d83c4bcbfef0fd5c9585815be5bea42e7958ca225172df5e850d337462",
+    "com\\hashcode\\streaming\\model\\CacheConnection.java": "fb1381aee1b8e8a1102340d47749fecb6aa562c0dd75b7507c75d950537dcba1",
+    "com\\hashcode\\streaming\\model\\Endpoint.java": "715be0686151462b6b2590caee44fba075a8e7e6f9126862e2daea361ac8dcd7",
+    "com\\hashcode\\streaming\\model\\ProblemInstance.java": "4bae0192b53fe1a7b8d3664e81d1f5de15cfe5c79169817e46e1654710834602",
+    "com\\hashcode\\streaming\\model\\RequestDemand.java": "6d244238c9a13e62e1ffd7dc181f754187235b146663fb697fb1a3f7801e1aa9",
+    "com\\hashcode\\streaming\\scoring\\ScoreCalculator.java": "96ac20e6973e5f72a70ae0e8c22ccaa8856578b718ba8cc79336d1d9e5c9ad27",
+    "com\\hashcode\\streaming\\scoring\\SolutionValidator.java": "4d3d50ddaf27bdee2db0bcd3cd43281c5b432a0dd03ca5187655ae1af970520b",
+    "com\\hashcode\\streaming\\solution\\Solution.java": "b1b7e891b2497f01081706a474835bc5dec22c6f2f67bcc746fd64fc876ab977",
+    "com\\hashcode\\streaming\\solver\\BaselineSolver.java": "d793e01569fcd2bf0f25467d432e3adc641b8c1f3d2ef2523ed0a849ab52f067",
+    "com\\hashcode\\streaming\\solver\\GreedySolver.java": "925e1c550327947c3b2cf9b91c1ec91b87cc4a97f665678bd00f87444bc2f52b",
+    "com\\hashcode\\streaming\\solver\\LocalSearchSolver.java": "f170509672389b80951124d6698c07a09b9d26cc12d61236a7f616c03af85039",
+    "com\\hashcode\\streaming\\solver\\OpportunityCostGreedySolver.java": "5904ad88727e38e228fd2c5e818b76034f4c6a87fc6820aaece4fa01c3be3168",
+    "com\\hashcode\\streaming\\solver\\SolverRegistry.java": "8169cd04d16fdcf607fb7beb963ddf91489c5956d0f54a8d500500505a7c50bc"
+  },
+  "raw_artifacts": "C:\\Users\\sheng\\Documents\\streaming-videos\\tmp\\neighborhood-budget-obdqit7l",
+  "heap": "4g",
+  "budgets_ms": [
+    20000,
+    30000,
+    60000
+  ],
+  "repetitions": 3,
+  "execution": "sequential fresh JVMs; paired order alternates each repetition/budget",
+  "timing": "repair wall time including index construction; no pass cap; cooperative deadline",
+  "scoring": "repository capacity validator and official-formula scorer; no external judge",
+  "independent_audit": true,
+  "second_bins": "[s,s+1); raw accepted request-ms; active_ms=0 marks post-stop padding",
+  "input_sha256": {
+    "kittens": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b"
+  },
+  "seeds": {
+    "kittens": {
+      "score": "1021681",
+      "construction_ms": "38216.082",
+      "sha256": "4ad597e74fb2652f73fed7b414e5639a441ea975a603bead4fd6e747d41d8476"
+    }
+  },
+  "processor_name": "AMD Ryzen 5 3600X 6-Core Processor",
+  "validation": {
+    "completed_runs": 18,
+    "verified_local_optima": 18,
+    "all_traces_replayed": true,
+    "per_second_accounting_checks": true,
+    "per_second_rows": 660,
+    "source_hashes_match": true,
+    "solver_unchanged_from_short_budget_study": true,
+    "identical_final_placement_hash_per_variant": {
+      "one": "e0e6cfaa7cdf86dbf5116712d07e906f0c6976193cccbbb971d72af170b00b14",
+      "two": "fd77a6e5ee70f78375935c9b1f77a304fda694ce975c198a79a043af5c2b82bf"
+    },
+    "solver_regressions": "passed, including 40 random exact neighborhood/audit oracles",
+    "python_tests": 7
+  }
+}

@@ -1,0 +1,4 @@
+dataset,budget_ms,score_delta_median,score_delta_min,score_delta_max,two_wins,ties,two_losses
+kittens,20000,1158,1158,1158,3,0,0
+kittens,30000,1158,1158,1158,3,0,0
+kittens,60000,1158,1158,1158,3,0,0

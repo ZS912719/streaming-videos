@@ -18,6 +18,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "General solver differential tests failed." }
     & java -cp $testOutput com.hashcode.streaming.solver.UltimateV2Test
     if ($LASTEXITCODE -ne 0) { throw "V2 differential tests failed." }
+    & java -cp $testOutput com.hashcode.streaming.solver.IntegrationReplayTest
+    if ($LASTEXITCODE -ne 0) { throw "Integration replay tests failed." }
 } finally {
     Pop-Location
 }

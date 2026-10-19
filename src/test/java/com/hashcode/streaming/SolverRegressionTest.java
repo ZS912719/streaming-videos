@@ -36,6 +36,7 @@ public final class SolverRegressionTest {
             throw new AssertionError("opportunity example optimum: expected 925000, got "
                     + exact.score());
         }
+        LocalSearchNeighborhoodTest.run();
         System.out.println("All solver regression checks passed.");
     }
 
