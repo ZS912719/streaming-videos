@@ -128,7 +128,8 @@ public final class ScientificExperimentRunner {
                     + "ls_passes,ls_evaluated_moves,ls_accepted_moves,ls_rejected_moves,"
                     + "ls_additions,ls_replacements,ls_saved_latency_gain,ls_termination,"
                     + "ocag_placements,ocag_regret_placements,ocag_selected_static_regret,"
-                    + "ls_double_replacements,ls_evaluated_removal_pairs");
+                    + "ls_double_replacements,ls_evaluated_removal_pairs,"
+                    + "ls_neighborhood,ls_last_improvement_ms");
             writer.newLine();
             writer.write(String.join(",",
                     dataset, algorithm, initialAlgorithm,
@@ -149,7 +150,10 @@ public final class ScientificExperimentRunner {
                     ocag == null ? "0" : Integer.toString(ocag.regretPlacements()),
                     ocag == null ? "0" : Long.toString(ocag.selectedStaticRegret()),
                     local == null ? "0" : Integer.toString(local.doubleReplacements()),
-                    local == null ? "0" : Long.toString(local.evaluatedRemovalPairs())));
+                    local == null ? "0" : Long.toString(local.evaluatedRemovalPairs()),
+                    local == null ? "" : local.neighborhood(),
+                    local == null || local.acceptedMoves() == 0 ? ""
+                            : milliseconds(local.trace().get(local.trace().size() - 1).elapsedNanos())));
             writer.newLine();
         }
     }
