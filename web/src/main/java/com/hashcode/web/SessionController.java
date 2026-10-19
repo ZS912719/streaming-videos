@@ -27,7 +27,8 @@ public class SessionController {
     private final ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0,
             TimeUnit.SECONDS, new ArrayBlockingQueue<>(8));
     private volatile Process activeProcess;
-    static final List<String> ALGORITHMS = List.of("baseline", "greedy", "ocag", "local-search", "ocag-ls");
+    static final List<String> ALGORITHMS = List.of(
+            "baseline", "greedy", "ocag", "local-search", "ocag-ls", "local-search-two");
 
     public SessionController(ObjectMapper mapper, @Value("${streaming.sessions}") String directory,
             @Value("${streaming.timeout-seconds}") int timeout) throws IOException {
@@ -180,7 +181,11 @@ public class SessionController {
     }
 
     static String workerAlgorithm(String algorithm) {
-        return algorithm.equals("local-search") ? "greedy-ls" : algorithm;
+        return switch (algorithm) {
+            case "local-search" -> "greedy-ls";
+            case "local-search-two" -> "greedy-ls-two";
+            default -> algorithm;
+        };
     }
 
     static boolean allowedFile(String file) {

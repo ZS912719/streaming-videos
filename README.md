@@ -14,8 +14,11 @@ java -Xmx512m -jar web/target/streaming-web.jar
 Run these commands from the project root and open `http://127.0.0.1:8080`.
 Drag an `.in` file into the upload area to create a session. The page shows
 dataset dimensions, request counts, connections and sparse contribution counts.
-Five strategies run sequentially in separate Java processes: `baseline`,
-`greedy`, `ocag`, `local-search` (greedy + Local Search), and `ocag-ls`.
+Six strategies run sequentially in separate Java processes: `baseline`,
+`greedy`, `ocag`, `local-search` (greedy + one-removal Local Search), `ocag-ls`,
+and `local-search-two` (greedy + optimized two-removal Local Search).
+Both Local Search neighborhoods use the current three-pass default, with at most
+one accepted move per cache per pass.
 Each worker has a 2 GB heap and a 300-second timeout, and reuses the scientific
 experiment runner rather than a separate solver implementation. Each solver has its own score,
 runtime, output preview and full output download. Completed cards show the
@@ -29,6 +32,11 @@ are reported separately and do not prevent later solvers from running.
 
 Inputs, results and logs are saved under `data/sessions` (ignored by Git).
 History is shared by users of this local server and persists across restarts.
+Two-removal diagnostics show separate additions, one-for-one and two-for-one
+counts, evaluated removal pairs, and the last positive raw improvement time.
+The repair trace records both removed video IDs. A full pass without improvement
+is distinct from stopping at the pass limit; integer-score plateaus alone do not
+establish convergence.
 Older sessions keep their original solver lists and may lack phase metrics;
 upload the input again to run the current comparison. Algorithm timings exclude
 startup, parsing, validation/scoring and output. Worker runtime includes those
@@ -49,9 +57,11 @@ packaged JARs and running processes do not update automatically. For a Tailscale
 deployment, retain the existing Serve configuration if it forwards to localhost;
 no additional public binding or port exposure is needed for this update.
 
-Web regression tests (`mvn -f web/pom.xml test`) verify all five worker strategies,
+Web regression tests (`mvn -f web/pom.xml test`) verify all six worker strategies,
 scientific metrics/trace generation, artifact download allowlisting, experimental
 input validation and legacy-session compatibility.
+With Node.js installed, `node --test tests/web-workspace.test.cjs` checks the
+shipped page's two-removal diagnostics, pass-limit wording and legacy rendering.
 
 ## Solver Algorithms
 
@@ -83,7 +93,8 @@ pair, retaining the lowest exact removal loss for each required space threshold.
 Pairs are considered even when a single removal is feasible. Equal-loss options
 prefer fewer removals, then video IDs; only strictly positive net gains are
 accepted. The command-line strategy uses the same three-pass default. Existing
-web sessions and the five web strategy names retain their original meaning.
+web strategy names retain their original meaning. New web sessions also include
+`local-search-two`; historical sessions are not extended or recomputed.
 
 `ocag` is the separate Opportunity-Cost Aware Greedy construction. It augments
 current marginal gain with a fixed, parameter-free alternative-placement regret:
