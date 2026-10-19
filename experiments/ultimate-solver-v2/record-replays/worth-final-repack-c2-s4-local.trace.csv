@@ -1,0 +1,4 @@
+pass,accepted_move,cache_id,move_type,delta_saved_latency,cumulative_saved_latency,score_equivalent,elapsed_ms
+0,0,-1,initial,0,305866486546,612116,0.000
+1,1,20,replacement,240999,305866727545,612117,115.077
+1,2,54,replacement,135594,305866863139,612117,193.095

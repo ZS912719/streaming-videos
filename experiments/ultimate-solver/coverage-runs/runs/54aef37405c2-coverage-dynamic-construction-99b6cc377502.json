@@ -1,0 +1,58 @@
+{
+  "instance": "medium_skew_dense_dejavu.in",
+  "input_path": "tmp/promo-inputs/medium_skew_dense_dejavu.in",
+  "input_sha256": "54aef37405c246a30ee001998a091e2f6e0ff4de8fd3bc388cbf9154bcfba00c",
+  "configuration": "coverage-dynamic-construction",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 146022,
+  "raw_objective": 52839363819,
+  "construction_ms": 185.502,
+  "search_ms": 0,
+  "algorithm_ms": 185.502,
+  "wall_seconds": 0.569939,
+  "solution": "experiments/ultimate-solver/coverage-runs/solutions/54aef37405c2-coverage-dynamic-construction-99b6cc377502-146022.txt",
+  "solution_sha256": "e9608869f36f4af97cb9d5d58bf007bd08947215bb30cef6597320f3f1c40851",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "146022",
+      "raw_objective": "52839363819",
+      "algorithm_ms": "185.502",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 146022
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "tmp\\promo-inputs\\medium_skew_dense_dejavu.in",
+    "tmp\\promo-runs\\54aef37405c2-coverage-dynamic-construction-99b6cc377502",
+    "dynamic",
+    "1",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

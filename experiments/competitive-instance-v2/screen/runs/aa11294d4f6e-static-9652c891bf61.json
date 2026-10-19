@@ -1,0 +1,58 @@
+{
+  "instance": "pressure-180.in",
+  "input_path": "experiments/competitive-instance-v2/candidates/pressure-180.in",
+  "input_sha256": "aa11294d4f6e22bb01c464c052d66ce955977eccb280853ebcbce45f4d61c0e0",
+  "configuration": "static",
+  "parameters": {
+    "constructor": "static",
+    "weight": 1,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 793405,
+  "raw_objective": 4020888098,
+  "construction_ms": 21.117,
+  "search_ms": 0,
+  "algorithm_ms": 21.117,
+  "wall_seconds": 0.219511,
+  "solution": "experiments/competitive-instance-v2/screen/solutions/aa11294d4f6e-static-9652c891bf61-793405.txt",
+  "solution_sha256": "13e18956336471ad47c220f5d1ba94d117fd27dd872d46cd339842ff9e74832b",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "793405",
+      "raw_objective": "4020888098",
+      "algorithm_ms": "21.117",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 793405
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance-v2\\candidates\\pressure-180.in",
+    "tmp\\promo-runs\\aa11294d4f6e-static-9652c891bf61",
+    "static",
+    "1",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

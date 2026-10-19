@@ -1,0 +1,147 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "intensive",
+  "budget_ms": 180000,
+  "score": 2384204,
+  "raw_objective": 1205177082,
+  "parse_ms": 20.662,
+  "algorithm_ms": 1872.739,
+  "construction_ms": 59.984,
+  "search_ms": 1807.487,
+  "validation_ms": 2.424,
+  "output_ms": 1.204,
+  "entry_elapsed_ms": 1918.568,
+  "engine_offset_ms": 83.0,
+  "accepted": 140,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "bounded_neighborhood_stagnation",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 381.254,
+    "local": 23.123,
+    "packing": 26.973,
+    "repack128": 58.991,
+    "repack32": 63.92,
+    "repack512": 56.85,
+    "repack64": 352.767
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 2366677,
+      "final_score": 2383876,
+      "repair_ms": 201.667,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 2366677,
+      "final_score": 2384204,
+      "repair_ms": 391.327,
+      "cycle": 8,
+      "phase": 1,
+      "finished": true
+    },
+    {
+      "name": "zero",
+      "initial_score": 2360453,
+      "final_score": 2372868,
+      "repair_ms": 185.445,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "static",
+      "initial_score": 2359261,
+      "final_score": 2373227,
+      "repair_ms": 185.44,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    }
+  ],
+  "instance": "regional_instance.in",
+  "label": "final-fresh",
+  "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 180,
+    "extra": [
+      "--policy",
+      "intensive"
+    ],
+    "incumbent": null,
+    "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+    "input_sha256": "9ec5e7878fcd2333884ccc8c93cd5349cb0c80045043948787781d122d305419",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/solution.txt",
+  "solution_sha256": "92ff3e47c3dafd07089516ff68b23c021afcf4daa7d24bd6a15eeafebdd02b83",
+  "wall_seconds": 2.108754,
+  "independent_validation_seconds": 0.017457,
+  "trace": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\regional_instance.in",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-f58862a6cbbde37b\\solution.txt",
+    "--seconds",
+    "180",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-f58862a6cbbde37b\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-f58862a6cbbde37b\\trace.csv",
+    "--policy",
+    "intensive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\final-fresh-f58862a6cbbde37b\\checkpoints"
+  ],
+  "judge_sha256": "958cf31a06160148904fc221022129dadf52804ec91b7d5b9d729ae375580b7b",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "1205177082",
+      "score": "2384204",
+      "observed_ms": "1920.226",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "92ff3e47c3dafd07089516ff68b23c021afcf4daa7d24bd6a15eeafebdd02b83"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "1205177082",
+      "score": "2384204",
+      "observed_ms": "1920.226",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "92ff3e47c3dafd07089516ff68b23c021afcf4daa7d24bd6a15eeafebdd02b83"
+    },
+    {
+      "budget_seconds": "60",
+      "raw_objective": "1205177082",
+      "score": "2384204",
+      "observed_ms": "1920.226",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/checkpoints/checkpoint-60.txt",
+      "solution_sha256": "92ff3e47c3dafd07089516ff68b23c021afcf4daa7d24bd6a15eeafebdd02b83"
+    },
+    {
+      "budget_seconds": "180",
+      "raw_objective": "1205177082",
+      "score": "2384204",
+      "observed_ms": "1920.226",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/final-fresh-f58862a6cbbde37b/checkpoints/checkpoint-180.txt",
+      "solution_sha256": "92ff3e47c3dafd07089516ff68b23c021afcf4daa7d24bd6a15eeafebdd02b83"
+    }
+  ]
+}

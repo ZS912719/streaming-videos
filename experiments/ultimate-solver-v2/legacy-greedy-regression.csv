@@ -1,0 +1,5 @@
+"dataset","expected","official_score","validation","solution","sha256"
+"me_at_the_zoo","507906","507906","PASS","tmp/v2-legacy-me_at_the_zoo.txt","5afe4746588258e9e57d1a04adc2307ee169cc8ebc65f7a873ed9711873ad512"
+"videos_worth_spreading","608302","608302","PASS","tmp/v2-legacy-videos_worth_spreading.txt","ca5a60711d551cd5f31e937ffa0eee7a91189e0744f5deefa6caccf865280b02"
+"trending_today","499794","499794","PASS","tmp/v2-legacy-trending_today.txt","bd8e09b684e11f89807de64104db40bdc8b31c1e0e2fdabad7ed81697e811edc"
+"kittens","1021681","1021681","PASS","tmp/v2-legacy-kittens.txt","4ad597e74fb2652f73fed7b414e5639a441ea975a603bead4fd6e747d41d8476"

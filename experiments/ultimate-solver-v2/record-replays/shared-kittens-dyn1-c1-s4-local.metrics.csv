@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,shared-kittens-dyn1-c1-s3-exchange.txt,50,1,best,forward,forward,1023891,1023987,1024139168655,1024235130725,6,538,294,244,29508240,5808.160,no_improving_move

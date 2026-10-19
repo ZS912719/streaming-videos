@@ -1,0 +1,70 @@
+{
+  "default_mode": "adaptive",
+  "standard_seconds": 10,
+  "competition_seconds": 30,
+  "development": [
+    "8_2_8_2.in",
+    "dense2.in",
+    "medium_mixed_lambda.in",
+    "regional_instance.in"
+  ],
+  "heldout": [
+    "3860_246_84901_66.in",
+    "dense.in",
+    "medium_flat_sparse_lambda.in",
+    "zipF_instance.in"
+  ],
+  "development_ranking": [
+    {
+      "mode": "adaptive",
+      "mean_relative_deficit": 0.0
+    },
+    {
+      "mode": "portfolio",
+      "mean_relative_deficit": 0.0
+    },
+    {
+      "mode": "competition",
+      "mean_relative_deficit": 0.00011600479486485442
+    }
+  ],
+  "source_sha256": "41bd5424feff1ab2ef01559eaabaa8760b142b6b20a909f96cce5fd312545094",
+  "canonical_lf_source_sha256": "35eff7a5673eb1e401275e4acdad7a559e3a96a87ca73eb0a6b86096880f6500",
+  "seed": 20170317,
+  "construction_budget_fraction": 0.6,
+  "constructors": [
+    "dynamic weight 1",
+    "zero regret",
+    "indexed static weight 1"
+  ],
+  "initial_repair_passes": {
+    "portfolio": 10,
+    "adaptive_dynamic_zero": 1,
+    "adaptive_static": 10,
+    "competition_dynamic_zero": 1,
+    "competition_static": 10
+  },
+  "repack_candidates": {
+    "portfolio": 64,
+    "adaptive": 64,
+    "competition": 128
+  },
+  "exchange": {
+    "pair_limit": 1000,
+    "videos_per_cache": 64,
+    "rounds": 5,
+    "competition_rounds": 20
+  },
+  "adaptive_policy": "quality + smoothed exact gain/ms + exploration bonus; every eighth unit explores least-tried live start",
+  "diversification": "competition only: remove one eighth from a seeded cache, exact repair, retain global best; stop after 8 failures",
+  "arithmetic": "checked signed long objective bound; BigInteger score numerator; independent Python integers and C++ wide judge",
+  "archive_policy": "input SHA256 matching only for incumbents, never solver strategy selection",
+  "environment": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.2",
+    "logical_processors": 12,
+    "java": "java version \"21.0.10\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 21.0.10+8-LTS-217)\nJava HotSpot(TM) 64-Bit Server VM (build 21.0.10+8-LTS-217, mixed mode, sharing)"
+  },
+  "source_revision": "ec801dab8220335a9b685225effd510a9f17b607",
+  "frozen_before_heldout": true
+}

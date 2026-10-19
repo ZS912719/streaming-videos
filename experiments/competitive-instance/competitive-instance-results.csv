@@ -1,0 +1,14 @@
+algorithm,official_score,median_algorithm_ms,median_wall_seconds,solution
+ours-dynamic,980693,81.386,0.316774,experiments/competitive-instance/stress/solutions/17f3c3960c1f-ours-dynamic-repeat1-4419c6e43003-980693.txt
+static-advanced,977913,71.109,0.311835,experiments/competitive-instance/stress/solutions/17f3c3960c1f-static-advanced-repeat1-ea0f5fef3d8c-977913.txt
+zero-advanced,977770,89.0,0.326275,experiments/competitive-instance/stress/solutions/17f3c3960c1f-zero-advanced-repeat1-76c51764e1e3-977770.txt
+greedy-ordinary,970952,43.948,0.261321,experiments/competitive-instance/stress/solutions/17f3c3960c1f-greedy-ordinary-repeat1-27705322c238-970952.txt
+greedy-advanced,977770,90.503,0.347965,experiments/competitive-instance/stress/solutions/17f3c3960c1f-greedy-advanced-repeat1-5867776fa524-977770.txt
+dynamic-ordinary,971984,42.283,0.247256,experiments/competitive-instance/stress/solutions/17f3c3960c1f-dynamic-ordinary-repeat1-899ac025693a-971984.txt
+static-reverse,977913,99.29,0.37141,experiments/competitive-instance/stress/solutions/17f3c3960c1f-static-reverse-repeat1-fb2b45eb352a-977913.txt
+zero-reverse,977770,105.584,0.36701,experiments/competitive-instance/stress/solutions/17f3c3960c1f-zero-reverse-repeat1-ba5214502adb-977770.txt
+dynamic-deep,980693,104.091,0.355023,experiments/competitive-instance/stress/solutions/17f3c3960c1f-dynamic-deep-repeat1-daf27008d005-980693.txt
+static-deep,977913,93.608,0.352899,experiments/competitive-instance/stress/solutions/17f3c3960c1f-static-deep-repeat1-982060a83810-977913.txt
+zero-deep,977770,115.132,0.373397,experiments/competitive-instance/stress/solutions/17f3c3960c1f-zero-deep-repeat1-1ce392a459b9-977770.txt
+greedy-deep,977770,111.737,0.374411,experiments/competitive-instance/stress/solutions/17f3c3960c1f-greedy-deep-repeat1-6bc43a9c4d86-977770.txt
+multistart-control-portfolio,977913,777.094,2.821094,experiments/competitive-instance/stress/solutions/17f3c3960c1f-static-advanced-repeat1-ea0f5fef3d8c-977913.txt

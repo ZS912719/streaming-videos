@@ -1,0 +1,4 @@
+instance,our_score,strongest_reference,reference_score,gap,relative_gap_percent
+mixed.seed_101.in,921759,static-advanced,922508,-749,-0.081192
+mixed.seed_131.in,1005491,zero-advanced,1006971,-1480,-0.146975
+mixed.seed_173.in,963590,static-reverse,963671,-81,-0.008405

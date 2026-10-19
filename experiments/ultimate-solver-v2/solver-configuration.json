@@ -1,0 +1,35 @@
+{
+  "policy": "intensive",
+  "extra": [],
+  "budget_seconds": 180,
+  "seed": 20170317,
+  "constructors": [
+    "dynamic w1",
+    "zero",
+    "static w1"
+  ],
+  "protected_primary": "LS10,guarded K64 p5,global exchange5,LS10",
+  "complementary": "dynamic LS50,packing10,global exchange20,LS50",
+  "deep": "K32/64/128/256 (intensive K512),global exchanges,LS; exact dependency-version repack skipping",
+  "allocation": {
+    "primary_deep_trial_seconds": 20,
+    "complement_trial_seconds": 5,
+    "intensive_packing_trial_seconds": 12,
+    "exploration_work_fraction": 0.2,
+    "short_budget_trial_fractions": [
+      0.5,
+      0.1,
+      0.25
+    ],
+    "rate_window": "completed cache pass or global exchange round"
+  },
+  "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+  "canonical_source_sha256": "3101d5dd3fdd51a48b09dc7bba365680ae19d88c354509ee747c579f5426ed19",
+  "frozen_before_new_heldout": true,
+  "environment": {
+    "python": "3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "logical_processors": 12,
+    "java": "java version \"21.0.10\" 2026-01-20 LTS\nJava(TM) SE Runtime Environment (build 21.0.10+8-LTS-217)\nJava HotSpot(TM) 64-Bit Server VM (build 21.0.10+8-LTS-217, mixed mode, sharing)"
+  }
+}

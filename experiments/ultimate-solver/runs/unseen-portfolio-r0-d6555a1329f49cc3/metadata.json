@@ -1,0 +1,5 @@
+{
+  "mode": "portfolio", "budget_ms": 3000, "seed": 20170317, "score": 1775673, "raw_objective": 133037669754,
+  "parse_ms": 41.987, "algorithm_ms": 814.050, "construction_ms": 82.784, "search_ms": 731.265,
+  "distinct_starts": 3, "duplicates": 0, "accepted": 115, "units": 5094, "termination": "candidate_stagnation", "incumbent": false
+}

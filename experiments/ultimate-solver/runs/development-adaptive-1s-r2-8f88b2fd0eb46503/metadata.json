@@ -1,0 +1,5 @@
+{
+  "mode": "adaptive", "budget_ms": 1000, "seed": 20170317, "score": 246174, "raw_objective": 349128742,
+  "parse_ms": 88.975, "algorithm_ms": 1048.805, "construction_ms": 392.142, "search_ms": 656.663,
+  "distinct_starts": 1, "duplicates": 0, "accepted": 160, "units": 184, "termination": "time_budget", "incumbent": false
+}

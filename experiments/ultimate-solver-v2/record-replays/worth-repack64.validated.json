@@ -1,0 +1,27 @@
+{
+  "run_id": "worth-repack64",
+  "instance": "videos_worth_spreading.in",
+  "mode": "repack",
+  "raw_objective": 305760960214,
+  "score": 611905,
+  "algorithm_ms": 1870.12,
+  "wall_seconds": 2.1784476000011637,
+  "solution": "experiments/ultimate-solver-v2/record-replays/worth-repack64.txt",
+  "solution_sha256": "7b239171e7366b05b75ca782244011bf82d3ec49a115339a1788f7c59ec6c8fa",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.FinalOptimizationRunner",
+    "repack",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments/ultimate-solver-v2/record-replays/dynamic-worth-final-c2-s4-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-repack64.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-repack64.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\worth-repack64.trace.csv",
+    "3",
+    "64"
+  ],
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b"
+}

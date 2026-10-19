@@ -1,0 +1,2 @@
+dataset,mode,weight,regret_mode,algorithm_ms,index_ms,regret_updates,infeasible_alternatives,candidate_evaluations,estimated_array_bytes,accepted,changed_selected_regrets,positive_regret_placements,termination,internal_score,raw_objective
+videos_worth_spreading.in,dynamic,1.0,dynamic,233.015,75.204,43913,117901,5391300,8000000,6161,5257,6141,no_positive_feasible_candidate,607245,303432667976

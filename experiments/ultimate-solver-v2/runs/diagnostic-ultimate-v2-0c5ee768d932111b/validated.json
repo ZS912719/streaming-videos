@@ -1,0 +1,120 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "intensive",
+  "budget_ms": 10000,
+  "score": 971994,
+  "raw_objective": 4860765011,
+  "parse_ms": 21.934,
+  "algorithm_ms": 421.934,
+  "construction_ms": 30.685,
+  "search_ms": 384.65,
+  "validation_ms": 3.073,
+  "output_ms": 2.125,
+  "entry_elapsed_ms": 467.725,
+  "engine_offset_ms": 84.0,
+  "accepted": 130,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "bounded_neighborhood_stagnation",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 55.684,
+    "local": 12.341,
+    "packing": 15.497,
+    "repack128": 19.494,
+    "repack32": 23.527,
+    "repack512": 16.225,
+    "repack64": 44.818
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 955518,
+      "final_score": 971293,
+      "repair_ms": 56.727,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 955518,
+      "final_score": 970509,
+      "repair_ms": 49.037,
+      "cycle": 8,
+      "phase": 1,
+      "finished": true
+    },
+    {
+      "name": "zero",
+      "initial_score": 951623,
+      "final_score": 969442,
+      "repair_ms": 43.573,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "static",
+      "initial_score": 951819,
+      "final_score": 971994,
+      "repair_ms": 38.248,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    }
+  ],
+  "instance": "mixed.seed_29.in",
+  "label": "diagnostic-ultimate-v2",
+  "input_sha256": "1873c0f81d82c0da30d6714204cfb0bd266a2b2e0a24e0006d92c1f49d0cfc3e",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 10,
+    "extra": [
+      "--policy",
+      "intensive"
+    ],
+    "incumbent": null,
+    "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+    "input_sha256": "1873c0f81d82c0da30d6714204cfb0bd266a2b2e0a24e0006d92c1f49d0cfc3e",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/diagnostic-ultimate-v2-0c5ee768d932111b/solution.txt",
+  "solution_sha256": "0d02ec16568a3e0ea19e5d44f7ca17dcf4353584a1208a03f05766bbbe3e291e",
+  "wall_seconds": 0.65769,
+  "independent_validation_seconds": 0.017166,
+  "trace": "experiments/ultimate-solver-v2/runs/diagnostic-ultimate-v2-0c5ee768d932111b/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "experiments\\competitive-instance\\candidates\\mixed.seed_29.in",
+    "experiments\\ultimate-solver-v2\\runs\\diagnostic-ultimate-v2-0c5ee768d932111b\\solution.txt",
+    "--seconds",
+    "10",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\diagnostic-ultimate-v2-0c5ee768d932111b\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\diagnostic-ultimate-v2-0c5ee768d932111b\\trace.csv",
+    "--policy",
+    "intensive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\diagnostic-ultimate-v2-0c5ee768d932111b\\checkpoints"
+  ],
+  "judge_sha256": "958cf31a06160148904fc221022129dadf52804ec91b7d5b9d729ae375580b7b",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "4860765011",
+      "score": "971994",
+      "observed_ms": "473.845",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/diagnostic-ultimate-v2-0c5ee768d932111b/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "0d02ec16568a3e0ea19e5d44f7ca17dcf4353584a1208a03f05766bbbe3e291e"
+    }
+  ]
+}

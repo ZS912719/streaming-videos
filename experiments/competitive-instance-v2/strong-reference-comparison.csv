@@ -1,0 +1,11 @@
+algorithm,official_score,algorithm_ms,timing,budget,solution
+ours,1014358,69.232,median of 3,matched repair,experiments/competitive-instance-v2/robustness/solutions/577a76ca72ec-ours-4419c6e43003-1014358.txt
+static,1012043,81.546,median of 3,matched repair,experiments/competitive-instance-v2/robustness/solutions/577a76ca72ec-static-ea0f5fef3d8c-1012043.txt
+zero,1001573,69.994,single run,matched repair,experiments/competitive-instance-v2/robustness/solutions/577a76ca72ec-zero-76c51764e1e3-1001573.txt
+greedy,1001573,70.501,single run,matched repair,experiments/competitive-instance-v2/robustness/solutions/577a76ca72ec-greedy-5867776fa524-1001573.txt
+static-reverse,1012043,92.839,single run,increased repair,experiments/competitive-instance-v2/counter-noise/solutions/577a76ca72ec-static-reverse-fb2b45eb352a-1012043.txt
+zero-reverse,1001573,82.127,single run,increased repair,experiments/competitive-instance-v2/counter-noise/solutions/577a76ca72ec-zero-reverse-ba5214502adb-1001573.txt
+static-deep,1012043,114.026,single run,increased repair,experiments/competitive-instance-v2/counter-noise/solutions/577a76ca72ec-static-deep-982060a83810-1012043.txt
+zero-deep,1001573,83.921,single run,increased repair,experiments/competitive-instance-v2/counter-noise/solutions/577a76ca72ec-zero-deep-1ce392a459b9-1001573.txt
+greedy-deep,1001573,84.12,single run,increased repair,experiments/competitive-instance-v2/counter-noise/solutions/577a76ca72ec-greedy-deep-6bc43a9c4d86-1001573.txt
+eight-start-portfolio,1012043,685.051,sum of 8 measured components,increased total work,experiments/competitive-instance-v2/robustness/solutions/577a76ca72ec-static-ea0f5fef3d8c-1012043.txt

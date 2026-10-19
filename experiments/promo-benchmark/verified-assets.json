@@ -1,0 +1,31 @@
+{
+  "branch": "experiment/local-search-tuning",
+  "sha256": {
+    "competitive-study.py": "21eef21c0c457f5dcf10eeacffd400220e555fdc834dbdcd94d11931f698137b",
+    "experiments/final-best-solutions/kittens-1025096.txt": "cb39b4737b41f10f1301c766d443c1aa2375b7ae3ebfa246def2308a65f92abe",
+    "experiments/final-best-solutions/me_at_the_zoo-512115.txt": "89faff00c398262911b1c7a4f6f4792d371292d1b5bd6dde8cfe19eae9620940",
+    "experiments/final-best-solutions/trending_today-499966.txt": "a40bf766edb9b28a1b56be02c385b726a9524d831428e944e03ad8ff3162f035",
+    "experiments/final-best-solutions/videos_worth_spreading-612117.txt": "2da69e57f43b8ab48ea5ba52599b105c67e781482290b83649ee54147b417e62",
+    "generate-experiments.py": "7ef5a186148fab536234e7c0ea7898d0cf079af224410ac9a58218cd717f54c7",
+    "inventory-promotion.py": "9e2e16ee765cf40aea8f6fa9ec76c182941142e7f6444cdecb48be9d7d2f5288",
+    "promo-benchmark.py": "a6b4eb61d7ca1c0b6f7194950f430046fe8ebfce1f073727ee488070e22e9d87",
+    "replay-promotion-study.py": "0dc83344dc0e3143ce755447b81e4f6932203a3f0d9e4f1767ca0b92e9449365",
+    "run-competitive-study.ps1": "4b234a97da202d3ff4b89b6ace745f18c1ad37f3200897ef3c1f4dbac6653491",
+    "run-promo-benchmark.ps1": "cf5be01dd26c1e1505202f731d5da6cf18b34dd44d3780f998b87bc5cb413b30",
+    "src/main/java/com/hashcode/streaming/experiments/PromotionPipelineRunner.java": "7955a12977dcb234c432a99318ec753d5feac3cce4379c0e5e1ab37309a86907",
+    "src/main/java/com/hashcode/streaming/solver/BaselineSolver.java": "d793e01569fcd2bf0f25467d432e3adc641b8c1f3d2ef2523ed0a849ab52f067",
+    "src/main/java/com/hashcode/streaming/solver/CacheRepackSolver.java": "fea1ae4d1b480a2746b0cae542c54ac8ff2b6b219d414d200cab69a4a27633c7",
+    "src/main/java/com/hashcode/streaming/solver/DynamicOcagSolver.java": "791fea10369ff1d65cd20e4f4f6df30f07dfc0786f676b54edf599db72ba3cdc",
+    "src/main/java/com/hashcode/streaming/solver/GreedySolver.java": "925e1c550327947c3b2cf9b91c1ec91b87cc4a97f665678bd00f87444bc2f52b",
+    "src/main/java/com/hashcode/streaming/solver/IndexedExchangeSolver.java": "20f6565a58c48edd1fcf9d53238d6af4e39bdc4b9ddb1d571ab395b65b8a9496",
+    "src/main/java/com/hashcode/streaming/solver/LocalSearchSolver.java": "1f9c77867b252b64dce93ff420eabf4575cd54223f2768d644940d74c0f2aa4c",
+    "src/main/java/com/hashcode/streaming/solver/OpportunityCostGreedySolver.java": "dff1acfb2ddd8833017b66344acaf9c4b10cb05dc7bcaa05d193061a0e803101",
+    "src/main/java/com/hashcode/streaming/solver/PackingSolver.java": "a722e0c88e0f01eead935682be9b9a3dc8d12857900184ea5206d74363e358a0",
+    "src/main/java/com/hashcode/streaming/solver/PlacementState.java": "f46b588fe6fc923865d54e1bccaf7de916b3c2d6ef100c9cbced37fd91f949f0",
+    "summarize-competitive.py": "b8eab881270f79f7eeb8669b439ccafd83da42ba4d654b5c45d4a4b5e572eaf2",
+    "summarize-promotion.py": "ed95c33e6b593665bba766baa28fc6bda7599e0202e0b7b0cc45b852412514fa",
+    "test-promotion-tools.py": "18418cb9bc17024251b7414c3426a962ee5c2e5bc494751259c1ceb425248da0"
+  },
+  "supplied_judge_sha256": "d6bc06c33d67cecfa17c01a24882d890b0b6481a36b2e4847c91ee9936aa1153",
+  "wide_judge_source_sha256": "14e5f39ef87bf67161e3dd062b3542ebd3a055dbcbb40e8ca30cddb1ea5fa309"
+}

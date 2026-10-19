@@ -1,0 +1,12 @@
+{
+  "source_sha256": "f1caa1bba82eddfa0d47b9164c5d0859bc4b465a8e2d5b243a9d571c7fc5242f",
+  "canonical_source_sha256": "3017704bc8bc378a7455bcd1c8685bf15950317f030107472e5a21e4878f02ac",
+  "files": {
+    "src/main/java/com/hashcode/streaming/Main.java": "Main.java",
+    "src/main/java/com/hashcode/streaming/UltimateV2Main.java": "UltimateV2Main.java",
+    "src/main/java/com/hashcode/streaming/solver/BenefitIndex.java": "BenefitIndex.java",
+    "src/main/java/com/hashcode/streaming/solver/UltimateV2Solver.java": "UltimateV2Solver.java"
+  },
+  "removed": [],
+  "legacy_source_sha256": "35eff7a5673eb1e401275e4acdad7a559e3a96a87ca73eb0a6b86096880f6500"
+}

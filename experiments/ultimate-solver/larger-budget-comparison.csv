@@ -1,0 +1,13 @@
+budget_seconds,instance,mode,score,algorithm_ms,construction_ms,search_ms,accepted,termination,solution
+10,videos_worth_spreading.in,portfolio,611443,9105.679,669.708,8435.971,1511,candidate_stagnation,experiments/ultimate-solver/runs/large-budget-portfolio-10s-7eac416d8f262179/solution.txt
+10,videos_worth_spreading.in,adaptive,611477,8591.273,691.025,7900.249,1082,candidate_stagnation,experiments/ultimate-solver/runs/large-budget-adaptive-10s-2990ba9aadcc29c7/solution.txt
+10,videos_worth_spreading.in,competition,611503,10035.072,515.451,9519.621,1024,time_budget,experiments/ultimate-solver/runs/large-budget-competition-10s-c379acca93578ac9/solution.txt
+30,videos_worth_spreading.in,portfolio,611443,8618.651,697.111,7921.54,1511,candidate_stagnation,experiments/ultimate-solver/runs/large-budget-portfolio-30s-a3f7564ecd8b35fd/solution.txt
+30,videos_worth_spreading.in,adaptive,611477,8805.855,545.339,8260.517,1082,candidate_stagnation,experiments/ultimate-solver/runs/large-budget-adaptive-30s-284e8634794ed4a9/solution.txt
+30,videos_worth_spreading.in,competition,611503,16520.117,706.766,15813.351,1107,candidate_stagnation,experiments/ultimate-solver/runs/large-budget-competition-30s-9cbcffe2733882fb/solution.txt
+10,kittens.in,portfolio,1022744,11481.393,4619.577,6861.817,1101,time_budget,experiments/ultimate-solver/runs/large-budget-portfolio-10s-d534fd14043dd481/solution.txt
+10,kittens.in,adaptive,1024573,11421.826,4409.995,7011.831,864,time_budget,experiments/ultimate-solver/runs/large-budget-adaptive-10s-9580cb5da4f50223/solution.txt
+10,kittens.in,competition,1024780,11416.71,2665.886,8750.824,618,time_budget,experiments/ultimate-solver/runs/large-budget-competition-10s-dda5d381532b61e7/solution.txt
+30,kittens.in,portfolio,1024304,31485.272,4421.475,27063.797,2042,time_budget,experiments/ultimate-solver/runs/large-budget-portfolio-30s-9c77a8a8438b1f71/solution.txt
+30,kittens.in,adaptive,1024793,31410.661,4465.747,26944.914,1726,time_budget,experiments/ultimate-solver/runs/large-budget-adaptive-30s-c706d81802da85d6/solution.txt
+30,kittens.in,competition,1024812,31404.907,4465.534,26939.372,1715,time_budget,experiments/ultimate-solver/runs/large-budget-competition-30s-637c3b4527373df2/solution.txt

@@ -1,7 +1,11 @@
 # Compiled class file
 *.class
+*.exe
 out/
 *.out
+!experiments/competitive-instance/competitive_streaming_videos.out
+__pycache__/
+*.pyc
 tmp/
 web/target/
 data/sessions/

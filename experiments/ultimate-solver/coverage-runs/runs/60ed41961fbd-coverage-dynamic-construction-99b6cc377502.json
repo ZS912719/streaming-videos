@@ -1,0 +1,58 @@
+{
+  "instance": "custom_universallambda42.in",
+  "input_path": "tmp/promo-inputs/custom_universallambda42.in",
+  "input_sha256": "60ed41961fbd91b32e6d16636a48ef4cb40b42e508f8fb94386b23d268f84413",
+  "configuration": "coverage-dynamic-construction",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 1340105,
+  "raw_objective": 3915838128071,
+  "construction_ms": 1121.3,
+  "search_ms": 0,
+  "algorithm_ms": 1121.3,
+  "wall_seconds": 1.933016,
+  "solution": "experiments/ultimate-solver/coverage-runs/solutions/60ed41961fbd-coverage-dynamic-construction-99b6cc377502-1340105.txt",
+  "solution_sha256": "6313dc284c3fee7b2b4e43d6c9dd37037fa9f9bf33aaf338b8a8fd03d4df015f",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "1340105",
+      "raw_objective": "3915838128071",
+      "algorithm_ms": "1121.300",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 1340105
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "tmp\\promo-inputs\\custom_universallambda42.in",
+    "tmp\\promo-runs\\60ed41961fbd-coverage-dynamic-construction-99b6cc377502",
+    "dynamic",
+    "1",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d934485dc77aa4fd8a44705e02de46cf314f5c2fd5c7a99fcb9b0ca3719b8377"
+}

@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,kittens-final-repack-c1-s3-exchange.txt,50,1,best,forward,forward,1025089,1025093,1025337092929,1025341013981,5,34,5,29,24624697,5454.249,no_improving_move

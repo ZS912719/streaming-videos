@@ -1,0 +1,30 @@
+[
+  {
+    "name": "focus-0.1-noise101",
+    "family": "focus",
+    "background": 0.1,
+    "seed": 17,
+    "noise_seed": 101
+  },
+  {
+    "name": "focus-0.1-noise131",
+    "family": "focus",
+    "background": 0.1,
+    "seed": 17,
+    "noise_seed": 131
+  },
+  {
+    "name": "focus-0.25-noise101",
+    "family": "focus",
+    "background": 0.25,
+    "seed": 17,
+    "noise_seed": 101
+  },
+  {
+    "name": "focus-0.25-noise131",
+    "family": "focus",
+    "background": 0.25,
+    "seed": 17,
+    "noise_seed": 131
+  }
+]

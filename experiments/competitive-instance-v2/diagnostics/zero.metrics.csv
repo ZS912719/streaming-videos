@@ -1,0 +1,2 @@
+dataset,mode,weight,regret_mode,algorithm_ms,index_ms,regret_updates,infeasible_alternatives,candidate_evaluations,estimated_array_bytes,accepted,changed_selected_regrets,positive_regret_placements,termination,internal_score,raw_objective
+competitive_streaming_videos.in,dynamic,0.0,dynamic,15.988,7.780,1155,1169,73872,147456,233,114,233,no_positive_feasible_candidate,968172,4906586899

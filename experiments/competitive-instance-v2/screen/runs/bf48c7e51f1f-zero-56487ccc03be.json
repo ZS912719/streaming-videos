@@ -1,0 +1,58 @@
+{
+  "instance": "focus-0.25.in",
+  "input_path": "experiments/competitive-instance-v2/candidates/focus-0.25.in",
+  "input_sha256": "bf48c7e51f1f7a0854c2e35d38bb90748d9d61384b2dde46adc24c0e15a7e37f",
+  "configuration": "zero",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 0,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 963155,
+  "raw_objective": 2143232664,
+  "construction_ms": 25.729,
+  "search_ms": 0,
+  "algorithm_ms": 25.729,
+  "wall_seconds": 0.256803,
+  "solution": "experiments/competitive-instance-v2/screen/solutions/bf48c7e51f1f-zero-56487ccc03be-963155.txt",
+  "solution_sha256": "97eabfc095ee2924207ba0be0b0566c7956530409413b55e5b91e3400a6b8a5e",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "963155",
+      "raw_objective": "2143232664",
+      "algorithm_ms": "25.729",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 963155
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance-v2\\candidates\\focus-0.25.in",
+    "tmp\\promo-runs\\bf48c7e51f1f-zero-56487ccc03be",
+    "dynamic",
+    "0",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

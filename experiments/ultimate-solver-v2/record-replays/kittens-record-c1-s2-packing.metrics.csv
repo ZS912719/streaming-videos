@@ -1,0 +1,2 @@
+dataset,mode,algorithm_ms,accepted,candidate_evaluations,passes,candidate_limit,neighborhood,termination,internal_score,raw_objective
+kittens.in,packing,12203.268,51,29628779,5,64,both,no_positive_scanned_packing_move,1024000,1024248586532

@@ -1,0 +1,129 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "fixed",
+  "budget_ms": 30000,
+  "score": 1923237,
+  "raw_objective": 53603163445,
+  "parse_ms": 25.166,
+  "algorithm_ms": 690.621,
+  "construction_ms": 50.187,
+  "search_ms": 632.94,
+  "validation_ms": 4.684,
+  "output_ms": 1.458,
+  "entry_elapsed_ms": 743.322,
+  "engine_offset_ms": 92.0,
+  "accepted": 160,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "bounded_neighborhood_stagnation",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 104.741,
+    "local": 21.879,
+    "packing": 29.177,
+    "repack128": 73.118,
+    "repack256": 72.177,
+    "repack32": 87.837,
+    "repack64": 180.79
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 1911926,
+      "final_score": 1917921,
+      "repair_ms": 137.591,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 1911926,
+      "final_score": 1918056,
+      "repair_ms": 144.405,
+      "cycle": 8,
+      "phase": 1,
+      "finished": true
+    },
+    {
+      "name": "zero",
+      "initial_score": 1922330,
+      "final_score": 1923237,
+      "repair_ms": 133.504,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    },
+    {
+      "name": "static",
+      "initial_score": 1912156,
+      "final_score": 1914280,
+      "repair_ms": 154.218,
+      "cycle": 8,
+      "phase": 2,
+      "finished": true
+    }
+  ],
+  "instance": "hierarchical-hubs.in",
+  "label": "heldout-v2-fixed",
+  "input_sha256": "adb25567d8edebb31df3c4d2a20b75699f8669ba5b8a88344b41a5204bc0170e",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "fixed"
+    ],
+    "incumbent": null,
+    "source_sha256": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2",
+    "input_sha256": "adb25567d8edebb31df3c4d2a20b75699f8669ba5b8a88344b41a5204bc0170e",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/heldout-v2-fixed-1e5e097246c86bda/solution.txt",
+  "solution_sha256": "dc8d0c65d08dd46359a8090435ff00f533abdb9d4a112b7b338c0d12c1dd6bd3",
+  "wall_seconds": 0.958997,
+  "independent_validation_seconds": 0.026755,
+  "trace": "experiments/ultimate-solver-v2/runs/heldout-v2-fixed-1e5e097246c86bda/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "experiments\\ultimate-solver-v2\\heldout-inputs\\hierarchical-hubs.in",
+    "experiments\\ultimate-solver-v2\\runs\\heldout-v2-fixed-1e5e097246c86bda\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\heldout-v2-fixed-1e5e097246c86bda\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\heldout-v2-fixed-1e5e097246c86bda\\trace.csv",
+    "--policy",
+    "fixed",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\heldout-v2-fixed-1e5e097246c86bda\\checkpoints"
+  ],
+  "judge_sha256": "958cf31a06160148904fc221022129dadf52804ec91b7d5b9d729ae375580b7b",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "53603163445",
+      "score": "1923237",
+      "observed_ms": "750.283",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/heldout-v2-fixed-1e5e097246c86bda/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "dc8d0c65d08dd46359a8090435ff00f533abdb9d4a112b7b338c0d12c1dd6bd3"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "53603163445",
+      "score": "1923237",
+      "observed_ms": "750.283",
+      "early_termination": "true",
+      "solution": "experiments/ultimate-solver-v2/runs/heldout-v2-fixed-1e5e097246c86bda/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "dc8d0c65d08dd46359a8090435ff00f533abdb9d4a112b7b338c0d12c1dd6bd3"
+    }
+  ]
+}

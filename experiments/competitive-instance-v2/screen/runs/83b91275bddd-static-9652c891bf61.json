@@ -1,0 +1,58 @@
+{
+  "instance": "scarcity-29.in",
+  "input_path": "experiments/competitive-instance-v2/candidates/scarcity-29.in",
+  "input_sha256": "83b91275bddd2eb08ff57b0b24d3bce420784e142467cfe9b541a5090eeaeb31",
+  "configuration": "static",
+  "parameters": {
+    "constructor": "static",
+    "weight": 1,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 1019701,
+  "raw_objective": 4487071522,
+  "construction_ms": 22.496,
+  "search_ms": 0,
+  "algorithm_ms": 22.496,
+  "wall_seconds": 0.229158,
+  "solution": "experiments/competitive-instance-v2/screen/solutions/83b91275bddd-static-9652c891bf61-1019701.txt",
+  "solution_sha256": "5548dd663bba2b5d24842f147bc3bf27a8f10e9a2537ba7b346954a7da2072cb",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "1019701",
+      "raw_objective": "4487071522",
+      "algorithm_ms": "22.496",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 1019701
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance-v2\\candidates\\scarcity-29.in",
+    "tmp\\promo-runs\\83b91275bddd-static-9652c891bf61",
+    "static",
+    "1",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

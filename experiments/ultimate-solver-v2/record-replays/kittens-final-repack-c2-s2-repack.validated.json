@@ -1,0 +1,27 @@
+{
+  "run_id": "kittens-final-repack-c2-s2-repack",
+  "instance": "kittens.in",
+  "mode": "repack",
+  "raw_objective": 1025342844955,
+  "score": 1025094,
+  "algorithm_ms": 8723.498,
+  "wall_seconds": 11.972608099998979,
+  "solution": "experiments/ultimate-solver-v2/record-replays/kittens-final-repack-c2-s2-repack.txt",
+  "solution_sha256": "e7b0a19629e82ad5c683f693b781933abb0241370b58f87aff3346ee1445d1bd",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.FinalOptimizationRunner",
+    "repack",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments/ultimate-solver-v2/record-replays/kittens-final-repack-c2-s1-local.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-final-repack-c2-s2-repack.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-final-repack-c2-s2-repack.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\kittens-final-repack-c2-s2-repack.trace.csv",
+    "5",
+    "32"
+  ],
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b"
+}

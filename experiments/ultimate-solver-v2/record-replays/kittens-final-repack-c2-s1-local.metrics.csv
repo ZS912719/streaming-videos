@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,kittens-final-repack-c1-s4-local.txt,50,1,best,forward,forward,1025093,1025093,1025341013981,1025341013981,1,0,0,0,4924953,2647.170,no_improving_move

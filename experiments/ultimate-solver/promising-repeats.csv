@@ -1,0 +1,5 @@
+budget_seconds,repeat,instance,mode,score,algorithm_ms,accepted,termination,solution
+10,0,videos_worth_spreading.in,competition,611503,10032.996,1024,time_budget,experiments/ultimate-solver/runs/promising-repeat-r0-c379acca93578ac9/solution.txt
+10,1,videos_worth_spreading.in,competition,611503,10033.135,1024,time_budget,experiments/ultimate-solver/runs/promising-repeat-r1-c379acca93578ac9/solution.txt
+30,0,kittens.in,competition,1024812,31419.396,1712,time_budget,experiments/ultimate-solver/runs/promising-repeat-r0-637c3b4527373df2/solution.txt
+30,1,kittens.in,competition,1024813,31455.233,1719,time_budget,experiments/ultimate-solver/runs/promising-repeat-r1-637c3b4527373df2/solution.txt

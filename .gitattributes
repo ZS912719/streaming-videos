@@ -1,0 +1,7 @@
+# Experimental manifests record exact byte hashes, including line endings.
+experiments/** -text whitespace=cr-at-eol
+# Source fingerprints also include a canonical LF digest; keep source mergeable.
+src/main/java/** text eol=crlf
+# These two predecessors also have byte hashes in the historical integrity ledger.
+src/main/java/com/hashcode/streaming/solver/BaselineSolver.java -text whitespace=cr-at-eol
+src/main/java/com/hashcode/streaming/solver/GreedySolver.java -text whitespace=cr-at-eol

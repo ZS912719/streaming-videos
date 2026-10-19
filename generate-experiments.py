@@ -114,6 +114,72 @@ def generate(path, scenario, seed):
     }
 
 
+def generate_competitive(path, family, seed, groups=12):
+    """Clustered contention, not a planted placement: scarce and overlapping demand.
+
+    Each cluster has three caches, private and shared endpoint types, differently
+    sized videos and bridge endpoints. Families alter the balance of these effects.
+    No solution, solver feedback or hidden assignment is used during generation.
+    """
+    if family not in ("scarcity", "packing", "overlap", "mixed") or not 2 <= groups <= 100:
+        raise ValueError("Unknown family or groups outside [2,100]")
+    rng = domain_rng(seed, f"competitive-v1:{family}")
+    per_group = 24
+    caches, videos = groups*3, groups*per_group
+    capacity = 200 if family == "packing" else 240
+    sizes = [rng.randint(22, 115) for _ in range(videos)]
+    if family == "packing":
+        sizes = [rng.choice((37, 43, 57, 63, 81, 97, 109))+rng.randint(-3, 3) for _ in range(videos)]
+    endpoints, requests = [], []
+    for group in range(groups):
+        local = [3*group+i for i in range(3)]
+        # Private endpoint types generate genuinely scarce service opportunities.
+        topology = [[local[0]], [local[1]], [local[2]], local[:2], local[1:],
+                    [local[0],local[2]], local, local,
+                    [local[0],3*((group+1)%groups)+1],
+                    [local[2],3*((group+groups-1)%groups)], local, local]
+        for kind, links in enumerate(topology):
+            dc = rng.randint(1100, 2800)
+            if family == "overlap" and kind < 3:
+                links = local
+            latencies = [rng.randint(20, 180) if j == 0 else rng.randint(180, 490) for j in range(len(links))]
+            endpoint = len(endpoints)
+            endpoints.append((dc, list(zip(links, latencies))))
+            for offset in range(per_group):
+                scarce = offset < 8
+                if family == "scarcity":
+                    probability = 0.90 if (scarce and kind == offset % 3) else (0.03 if scarce else 0.42)
+                elif family == "overlap":
+                    probability = 0.62
+                elif family == "packing":
+                    probability = 0.46 if kind >= 3 else 0.18
+                else:
+                    probability = 0.80 if scarce and kind == offset % 3 else (0.06 if scarce else 0.50)
+                if rng.random() < probability:
+                    # Vary demand independently of sizes, with a few popular flexible videos.
+                    weight = 2 if not scarce and offset % 5 == 0 else 1
+                    count = min(10000, rng.randint(350, 4200)*weight)
+                    requests.append((group*per_group+offset, endpoint, count))
+            # Bridges also carry demand for neighboring clusters, breaking separability.
+            if kind in (8, 9):
+                other = (group+1)%groups if kind == 8 else (group-1)%groups
+                for offset in rng.sample(range(per_group), 8):
+                    requests.append((other*per_group+offset, endpoint, rng.randint(500, 3500)))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="ascii", newline="\n") as stream:
+        stream.write(f"{videos} {len(endpoints)} {len(requests)} {caches} {capacity}\n")
+        stream.write(" ".join(map(str, sizes))+"\n")
+        for dc, links in endpoints:
+            stream.write(f"{dc} {len(links)}\n")
+            for cache, latency in links:
+                stream.write(f"{cache} {latency}\n")
+        for video, endpoint, count in requests:
+            stream.write(f"{video} {endpoint} {count}\n")
+    return dict(generator_version="competitive-v1", family=family, seed=seed, groups=groups,
+                videos=videos, endpoints=len(endpoints), caches=caches, capacity=capacity,
+                descriptions=len(requests), sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path,
@@ -121,7 +187,19 @@ def main():
     parser.add_argument("--seeds", type=int, nargs="+", default=[17, 29, 43])
     parser.add_argument("--include-stress", action="store_true")
     parser.add_argument("--only", nargs="+", help="Generate only named scenarios")
+    parser.add_argument("--competitive-family", choices=["scarcity", "packing", "overlap", "mixed"])
+    parser.add_argument("--competitive-groups", type=int, default=12)
     args = parser.parse_args()
+    if args.competitive_family:
+        if args.output_dir.exists() and any(args.output_dir.iterdir()):
+            parser.error("Output directory is not empty; choose a new output directory")
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        manifest = [generate_competitive(args.output_dir/f"{args.competitive_family}.seed_{seed}.in",
+                                       args.competitive_family, seed, args.competitive_groups)
+                    for seed in args.seeds]
+        (args.output_dir/"configuration.json").write_text(json.dumps(manifest, indent=2)+"\n", encoding="ascii")
+        print(f"Generated {len(manifest)} competitive candidates")
+        return
     suite = scenarios(args.include_stress)
     if args.only:
         unknown = set(args.only) - {s.name for s in suite}

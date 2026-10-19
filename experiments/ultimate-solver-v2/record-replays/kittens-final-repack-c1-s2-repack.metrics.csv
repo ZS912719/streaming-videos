@@ -1,0 +1,2 @@
+dataset,mode,algorithm_ms,accepted,candidate_evaluations,passes,candidate_limit,termination,internal_score,raw_objective
+kittens.in,repack,8973.750,9,416059728,3,32,no_positive_candidate_pool_repack,1025085,1025333194241

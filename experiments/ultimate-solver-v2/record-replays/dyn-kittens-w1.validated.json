@@ -1,0 +1,27 @@
+{
+  "run_id": "dyn-kittens-w1",
+  "instance": "kittens.in",
+  "mode": "dynamic",
+  "raw_objective": 1022307412029,
+  "score": 1022060,
+  "algorithm_ms": 1766.509,
+  "wall_seconds": 5.3664888000002975,
+  "solution": "experiments/ultimate-solver-v2/record-replays/dyn-kittens-w1.txt",
+  "solution_sha256": "92a6862d1ea6f2e4ff48625d5f43f60df098515de72d428b8b6f2fd900965fe4",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.FinalOptimizationRunner",
+    "dynamic",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments/final-study-references/kittens.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\dyn-kittens-w1.txt",
+    "experiments\\ultimate-solver-v2\\record-replays\\dyn-kittens-w1.metrics.csv",
+    "experiments\\ultimate-solver-v2\\record-replays\\dyn-kittens-w1.trace.csv",
+    "1",
+    "dynamic"
+  ],
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b"
+}

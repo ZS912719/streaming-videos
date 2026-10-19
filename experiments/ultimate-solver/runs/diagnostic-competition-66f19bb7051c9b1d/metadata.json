@@ -1,0 +1,5 @@
+{
+  "mode": "competition", "budget_ms": 3000, "seed": 20170317, "score": 971994, "raw_objective": 4860765011,
+  "parse_ms": 31.808, "algorithm_ms": 461.152, "construction_ms": 46.420, "search_ms": 414.731,
+  "distinct_starts": 3, "duplicates": 0, "accepted": 106, "units": 15493, "termination": "candidate_stagnation", "incumbent": false
+}

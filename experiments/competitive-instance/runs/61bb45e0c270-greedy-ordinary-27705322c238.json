@@ -1,0 +1,81 @@
+{
+  "instance": "mixed.seed_101.in",
+  "input_sha256": "61bb45e0c2702a01333560e22bc0c68c05e2a90db5c45592c5aa265bd8d6f6e1",
+  "configuration": "greedy-ordinary",
+  "parameters": {
+    "constructor": "greedy",
+    "weight": 1,
+    "ls_passes": 50,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 912284,
+  "raw_objective": 4562579014,
+  "construction_ms": 21.79,
+  "search_ms": 21.946,
+  "algorithm_ms": 43.736,
+  "wall_seconds": 0.249917,
+  "solution": "experiments/competitive-instance/solutions/61bb45e0c270-greedy-ordinary-27705322c238-912284.txt",
+  "solution_sha256": "bf8091f1af11cfcd85c820acd183e9fd97babea233b43a4b729e92387a375a8a",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "906053",
+      "raw_objective": "4531418483",
+      "algorithm_ms": "21.790",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 906053
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "912284",
+      "raw_objective": "4562579014",
+      "algorithm_ms": "16.036",
+      "passes": "3",
+      "accepted": "22",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 912284
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "912284",
+      "raw_objective": "4562579014",
+      "algorithm_ms": "5.910",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 912284
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\mixed.seed_101.in",
+    "tmp\\promo-runs\\61bb45e0c270-greedy-ordinary-27705322c238",
+    "greedy",
+    "1",
+    "50",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

@@ -1,0 +1,129 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "adaptive",
+  "budget_ms": 30000,
+  "score": 611970,
+  "raw_objective": 305793544772,
+  "parse_ms": 94.17,
+  "algorithm_ms": 29880.948,
+  "construction_ms": 614.847,
+  "search_ms": 29223.716,
+  "validation_ms": 40.133,
+  "output_ms": 2.547,
+  "entry_elapsed_ms": 30006.261,
+  "engine_offset_ms": 167.0,
+  "accepted": 2989,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 8980.396,
+    "local": 389.693,
+    "packing": 1054.465,
+    "repack128": 3101.315,
+    "repack256": 3214.668,
+    "repack32": 3012.071,
+    "repack64": 8451.062
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 607245,
+      "final_score": 611599,
+      "repair_ms": 4953.112,
+      "cycle": 4,
+      "phase": 2,
+      "finished": false
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 607245,
+      "final_score": 611970,
+      "repair_ms": 13154.157,
+      "cycle": 9,
+      "phase": 4,
+      "finished": false
+    },
+    {
+      "name": "zero",
+      "initial_score": 608277,
+      "final_score": 610887,
+      "repair_ms": 5214.195,
+      "cycle": 4,
+      "phase": 4,
+      "finished": false
+    },
+    {
+      "name": "static",
+      "initial_score": 608315,
+      "final_score": 611017,
+      "repair_ms": 4882.206,
+      "cycle": 4,
+      "phase": 4,
+      "finished": false
+    }
+  ],
+  "instance": "videos_worth_spreading.in",
+  "label": "pilot-bounded-race-adaptive-30-r0",
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "adaptive"
+    ],
+    "incumbent": null,
+    "source_sha256": "f1caa1bba82eddfa0d47b9164c5d0859bc4b465a8e2d5b243a9d571c7fc5242f",
+    "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7/solution.txt",
+  "solution_sha256": "dbe9904240a25dde5f9a7ab1e27b6062a2720145126e60c7e98890d353a3451a",
+  "wall_seconds": 30.268901,
+  "independent_validation_seconds": 0.178637,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7\\trace.csv",
+    "--policy",
+    "adaptive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "305553154629",
+      "score": "611489",
+      "observed_ms": "10001.754",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "92788804b3c9223b7d54903ad3f9db4b4cd9e2edb3bcb37818851e99fd92544d"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "305793544772",
+      "score": "611970",
+      "observed_ms": "30000.310",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-adaptive-30-r0-f925b50032c0d8a7/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "dbe9904240a25dde5f9a7ab1e27b6062a2720145126e60c7e98890d353a3451a"
+    }
+  ]
+}

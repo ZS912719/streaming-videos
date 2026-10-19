@@ -83,6 +83,28 @@ Build the solver and the supplied official judge by passing its location:
 
 ## Run
 
+The general-purpose solver is available independently of the historical modes:
+
+```powershell
+java -Xmx2g -cp out com.hashcode.streaming.Main ultimate examples\me_at_the_zoo.in tmp\ultimate.txt --seconds 10
+java -Xmx2g -cp out com.hashcode.streaming.Main portfolio examples\kittens.in tmp\portfolio.txt --seconds 10
+java -Xmx2g -cp out com.hashcode.streaming.Main competition examples\kittens.in tmp\competition.txt --seconds 30
+```
+
+`ultimate` uses the adaptive policy: distinct dynamic/zero/static constructions,
+exact repair, progress-based scheduling and best-checkpoint retention. `portfolio`
+uses fixed round-robin allocation as a quality reference. `competition` increases
+search depth and adds seeded destroy-and-repair. All accept `--seconds` so they can
+be compared at equal nominal budgets. `--incumbent saved.txt` safely continues a
+validated placement; it is separate from a fresh solve. The old commands below
+retain their behavior. Full protocol, exact arithmetic labels and 33-row exports:
+[`experiments/ultimate-solver/ULTIMATE_SOLVER_REPORT.md`](experiments/ultimate-solver/ULTIMATE_SOLVER_REPORT.md).
+
+```powershell
+.\run-ultimate-solver.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Archive "<promotion-zip>"
+python .\test-ultimate-tools.py
+```
+
 ```powershell
 java -cp out com.hashcode.streaming.Main greedy examples\me_at_the_zoo.in tmp\zoo.out
 java -cp out com.hashcode.streaming.Main baseline examples\me_at_the_zoo.in tmp\zoo-baseline.out
@@ -173,7 +195,45 @@ documents pass limits, move selection and order experiments. The original CLI
 and the final optional two-cache exchange results are archived under
 `experiments/tuned-solutions/` and `experiments/best-solutions/`.
 
-Reproduce and judge the four final records from scratch:
+## Promotion benchmark and competitive instance
+
+The [promotion report](experiments/promo-benchmark/PROMO_BENCHMARK_REPORT.md)
+documents one frozen pipeline, the input inventory and copy-ready scores.
+Run from the repository root with Java 17+, Python 3.9+ and g++:
+
+```powershell
+.\run-promo-benchmark.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+```
+
+This finds `instances_promo.zip` in the current user's Downloads, safely extracts
+it under ignored `tmp/`, builds, resumes saved runs and checks every valid input.
+Use `-Archive "<archive-path>"` to supply another location. Invalid inputs are
+listed, not repaired. One valid input exceeds the supplied judge's 32-bit request
+total. Only that row uses the separately labelled, arithmetic-only wide-integer
+judge; the supplied source is unchanged. CSV, TSV and scores-only exports are in
+`experiments/promo-benchmark/`. `scores-only-order.csv` maps each numeric line.
+To recompute all solutions in fresh JVMs without changing archived measurements:
+
+```powershell
+.\run-promo-benchmark.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Phase replay
+```
+
+The [competitive-instance report](experiments/competitive-instance/COMPETITIVE_INSTANCE_REPORT.md)
+compares a deliberately selected structural instance against matched advanced
+repair, deeper repair and multistart controls. It does not establish superiority
+over untested student solvers. The submitted input/output and generator settings
+are in `experiments/competitive-instance/`. Reproduce the staged study or replay
+only the final primary-instance comparisons:
+
+```powershell
+.\run-competitive-study.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
+python .\replay-promotion-study.py competitive
+python .\test-promotion-tools.py
+```
+
+## Earlier Local Search reproduction
+
+Reproduce and judge the four earlier Local Search records from scratch:
 
 ```powershell
 .\reproduce-local-search-records.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>"
@@ -197,6 +257,29 @@ from 370,588 to 529,411. Both placements satisfy the capacity constraint.
 java -cp out com.hashcode.streaming.Main greedy examples/local-search.in tmp/swap-greedy.out
 java -cp out com.hashcode.streaming.Main local-search examples/local-search.in tmp/swap-local.out
 ```
+
+## Ultimate V2
+
+The general-purpose V2 solver combines three deterministic constructors with
+exact local repair, packing, bounded knapsack repacking and cache exchanges.
+Its intensive default allocates measured search time between complementary
+starts and the leading solution. It always retains its best valid placement.
+Historical solver commands remain available unchanged.
+
+```powershell
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 examples/me_at_the_zoo.in tmp/v2.txt --seconds 10
+.\tmp\judgeHashCode2017.exe examples/me_at_the_zoo.in tmp/v2.txt
+# Larger shared budget; optionally resume a validated placement:
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 input.in tmp/result.txt --preset competition
+java -Xmx4g -cp out com.hashcode.streaming.Main ultimate-v2 input.in tmp/improved.txt --seconds 180 --incumbent tmp/result.txt
+.\run-ultimate-v2.ps1 -JudgeSource "<path-to-judgeHashCode2017.cpp>" -Archive "<promotion-zip>"
+```
+
+Policies `--policy fixed|adaptive|intensive` use the same requested budget.
+Fresh and incumbent benchmarks are separate and resumable. Validation/output
+may add overhead after the cooperative search deadline. See
+[V2 results and limitations](experiments/ultimate-solver-v2/ULTIMATE_V2_REPORT.md)
+and [reproduction instructions](experiments/ultimate-solver-v2/reproduction-instructions.md).
 
 ## Generate Experimental Datasets
 

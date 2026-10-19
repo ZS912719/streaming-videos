@@ -1,0 +1,81 @@
+{
+  "instance": "mixed.seed_17.in",
+  "input_sha256": "17f3c3960c1ff0142401a346921fd120350fbfbfd51d743a5d2a9788e00a7028",
+  "configuration": "dynamic-ordinary-repeat1",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 971984,
+  "raw_objective": 4925906232,
+  "construction_ms": 23.881,
+  "search_ms": 24.674,
+  "algorithm_ms": 48.555,
+  "wall_seconds": 0.270363,
+  "solution": "experiments/competitive-instance/stress/solutions/17f3c3960c1f-dynamic-ordinary-repeat1-899ac025693a-971984.txt",
+  "solution_sha256": "a46be1205a2c6411e2337b90c7e9adf030fcb2e2caa84a1c8ef91ab21e8cd118",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "965573",
+      "raw_objective": "4893413180",
+      "algorithm_ms": "23.881",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 965573
+    },
+    {
+      "stage": "1",
+      "operation": "local",
+      "internal_score": "971984",
+      "raw_objective": "4925906232",
+      "algorithm_ms": "19.678",
+      "passes": "3",
+      "accepted": "18",
+      "termination": "no_improving_move",
+      "solution": "01-local.txt",
+      "official_score": 971984
+    },
+    {
+      "stage": "2",
+      "operation": "local",
+      "internal_score": "971984",
+      "raw_objective": "4925906232",
+      "algorithm_ms": "4.996",
+      "passes": "1",
+      "accepted": "0",
+      "termination": "no_improving_move",
+      "solution": "02-local.txt",
+      "official_score": 971984
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance\\candidates\\mixed.seed_17.in",
+    "tmp\\promo-runs\\17f3c3960c1f-dynamic-ordinary-repeat1-899ac025693a",
+    "dynamic",
+    "1",
+    "10",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "2a6d671f5a9a792052dc0c843aa6d143b0bd506892da6c1e93d2ff232fba3338"
+}

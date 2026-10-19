@@ -1,0 +1,222 @@
+{
+  "primary": "mixed.seed_17.in",
+  "family": "mixed",
+  "seed": 17,
+  "groups": 16,
+  "generator_version": "competitive-v1",
+  "validation_seeds": [
+    101,
+    131,
+    173
+  ],
+  "selection": "largest relative gap against best strengthened control among discovery shortlist",
+  "configurations": {
+    "ours-dynamic": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-advanced": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "zero-advanced": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy-ordinary": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 0,
+      "candidates": 64,
+      "exchange_rounds": 0,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy-advanced": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "dynamic-ordinary": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 0,
+      "candidates": 64,
+      "exchange_rounds": 0,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-reverse": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "zero-reverse": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    }
+  },
+  "main_configuration_frozen_on": "promotion pilot only",
+  "input_sha256": "17f3c3960c1ff0142401a346921fd120350fbfbfd51d743a5d2a9788e00a7028",
+  "solution_sha256": "32d3250d00cf17e94007352a7f83bc2fb6f50f9def1b118274c74a75b777431f",
+  "stress_configurations": {
+    "ours-dynamic": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-advanced": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "zero-advanced": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy-ordinary": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 0,
+      "candidates": 64,
+      "exchange_rounds": 0,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy-advanced": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "dynamic-ordinary": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 0,
+      "candidates": 64,
+      "exchange_rounds": 0,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-reverse": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "zero-reverse": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "dynamic-deep": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "static-deep": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "zero-deep": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "greedy-deep": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    }
+  },
+  "final_our_configuration": "ours-dynamic",
+  "stress_note": "Added after mixed-family validation showed no consistent advantage; original selection preserved"
+}

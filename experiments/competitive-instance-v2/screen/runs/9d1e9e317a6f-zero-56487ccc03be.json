@@ -1,0 +1,58 @@
+{
+  "instance": "scarcity-71.in",
+  "input_path": "experiments/competitive-instance-v2/candidates/scarcity-71.in",
+  "input_sha256": "9d1e9e317a6f57293d315debef4ececf365385a0d3a660bda4d7f81f5f315f7b",
+  "configuration": "zero",
+  "parameters": {
+    "constructor": "dynamic",
+    "weight": 0,
+    "ls_passes": 0,
+    "repack_passes": 0,
+    "candidates": 64,
+    "exchange_rounds": 0,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "status": "completed",
+  "message": "",
+  "official_score": 936900,
+  "raw_objective": 4170674431,
+  "construction_ms": 24.039,
+  "search_ms": 0,
+  "algorithm_ms": 24.039,
+  "wall_seconds": 0.213554,
+  "solution": "experiments/competitive-instance-v2/screen/solutions/9d1e9e317a6f-zero-56487ccc03be-936900.txt",
+  "solution_sha256": "2b9104308d82f9f0d3c4a433cee56bbea1a22309ba9122b5eff938f1c131fa85",
+  "stages": [
+    {
+      "stage": "0",
+      "operation": "construction",
+      "internal_score": "936900",
+      "raw_objective": "4170674431",
+      "algorithm_ms": "24.039",
+      "passes": "0",
+      "accepted": "0",
+      "termination": "completed",
+      "solution": "00-construction.txt",
+      "official_score": 936900
+    }
+  ],
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.experiments.PromotionPipelineRunner",
+    "experiments\\competitive-instance-v2\\candidates\\scarcity-71.in",
+    "tmp\\promo-runs\\9d1e9e317a6f-zero-56487ccc03be",
+    "dynamic",
+    "0",
+    "0",
+    "0",
+    "64",
+    "0",
+    "1",
+    "forward"
+  ],
+  "judge_sha256": "d13028f7df83527d1790ffce0ec3880a61bc4891c9acfe424cdc0f6e8c311035"
+}

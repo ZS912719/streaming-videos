@@ -1,0 +1,206 @@
+{
+  "candidates": [
+    {
+      "name": "focus-0.1",
+      "family": "focus",
+      "background": 0.1,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.25",
+      "family": "focus",
+      "background": 0.25,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.5",
+      "family": "focus",
+      "background": 0.5,
+      "seed": 17
+    },
+    {
+      "name": "focus-0.75",
+      "family": "focus",
+      "background": 0.75,
+      "seed": 17
+    },
+    {
+      "name": "pressure-180",
+      "family": "pressure",
+      "capacity": 180,
+      "seed": 17
+    },
+    {
+      "name": "pressure-210",
+      "family": "pressure",
+      "capacity": 210,
+      "seed": 17
+    },
+    {
+      "name": "pressure-270",
+      "family": "pressure",
+      "capacity": 270,
+      "seed": 17
+    },
+    {
+      "name": "pressure-300",
+      "family": "pressure",
+      "capacity": 300,
+      "seed": 17
+    },
+    {
+      "name": "coupling-1",
+      "family": "coupling",
+      "degree": 1,
+      "seed": 17
+    },
+    {
+      "name": "coupling-2",
+      "family": "coupling",
+      "degree": 2,
+      "seed": 17
+    },
+    {
+      "name": "coupling-3",
+      "family": "coupling",
+      "degree": 3,
+      "seed": 17
+    },
+    {
+      "name": "coupling-2-seed29",
+      "family": "coupling",
+      "degree": 2,
+      "seed": 29
+    },
+    {
+      "name": "scarcity-17",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 17
+    },
+    {
+      "name": "scarcity-29",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 29
+    },
+    {
+      "name": "scarcity-43",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 43
+    },
+    {
+      "name": "scarcity-71",
+      "family": "scarcity",
+      "base_family": "scarcity",
+      "seed": 71
+    }
+  ],
+  "full_candidate_limit": 4,
+  "counterattack_limit": 2,
+  "screening": "construction only; retain construction diversity, not just initial wins",
+  "shared": {
+    "constructor": "dynamic",
+    "weight": 1,
+    "ls_passes": 10,
+    "repack_passes": 5,
+    "candidates": 64,
+    "exchange_rounds": 5,
+    "cycles": 1,
+    "cache_order": "forward"
+  },
+  "strong": {
+    "ours": {
+      "constructor": "dynamic",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "zero": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "greedy": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 1,
+      "cache_order": "forward"
+    },
+    "static-reverse": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "zero-reverse": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 10,
+      "repack_passes": 5,
+      "candidates": 64,
+      "exchange_rounds": 5,
+      "cycles": 2,
+      "cache_order": "reverse"
+    },
+    "static-deep": {
+      "constructor": "static",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "zero-deep": {
+      "constructor": "dynamic",
+      "weight": 0,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    },
+    "greedy-deep": {
+      "constructor": "greedy",
+      "weight": 1,
+      "ls_passes": 50,
+      "repack_passes": 20,
+      "candidates": 384,
+      "exchange_rounds": 50,
+      "cycles": 3,
+      "cache_order": "forward"
+    }
+  },
+  "safety_seconds": 30
+}

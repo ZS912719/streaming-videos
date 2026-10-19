@@ -1,0 +1,127 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "intensive",
+  "budget_ms": 30000,
+  "score": 1025050,
+  "raw_objective": 1025297997331,
+  "parse_ms": 213.559,
+  "algorithm_ms": 31286.605,
+  "construction_ms": 4955.708,
+  "search_ms": 24769.186,
+  "validation_ms": 1560.058,
+  "output_ms": 2.838,
+  "entry_elapsed_ms": 31527.315,
+  "engine_offset_ms": 281.0,
+  "accepted": 3879,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 239.231,
+    "local": 3880.757,
+    "packing": 6827.717,
+    "repack32": 1778.569,
+    "repack64": 11424.018
+  },
+  "trajectories": [
+    {
+      "name": "dynamic",
+      "initial_score": 1022060,
+      "final_score": 1025050,
+      "repair_ms": 13362.205,
+      "cycle": 1,
+      "phase": 4,
+      "finished": false
+    },
+    {
+      "name": "dynamic-packing",
+      "initial_score": 1022060,
+      "final_score": 1023736,
+      "repair_ms": 7432.39,
+      "cycle": 0,
+      "phase": 1,
+      "finished": false
+    },
+    {
+      "name": "zero",
+      "initial_score": 1021680,
+      "final_score": 1022597,
+      "repair_ms": 1678.115,
+      "cycle": 0,
+      "phase": 1,
+      "finished": false
+    },
+    {
+      "name": "static",
+      "initial_score": 1021937,
+      "final_score": 1022762,
+      "repair_ms": 1677.581,
+      "cycle": 0,
+      "phase": 1,
+      "finished": false
+    }
+  ],
+  "instance": "kittens.in",
+  "label": "pilot-bounded-race-intensive-30-r0",
+  "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "intensive"
+    ],
+    "incumbent": null,
+    "source_sha256": "f1caa1bba82eddfa0d47b9164c5d0859bc4b465a8e2d5b243a9d571c7fc5242f",
+    "input_sha256": "b8dbb9f4d347c07a5060de49a69378582d157e0d9a96d70de2d6dff96a562d9b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-intensive-30-r0-327cd99f4e70c703/solution.txt",
+  "solution_sha256": "93fa01aa7b95a336025c2729bd9ca56f15a5829b50d0520fb1fcd2b9d764beab",
+  "wall_seconds": 31.82471,
+  "independent_validation_seconds": 0.747354,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-intensive-30-r0-327cd99f4e70c703/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\kittens.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-intensive-30-r0-327cd99f4e70c703\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-intensive-30-r0-327cd99f4e70c703\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-intensive-30-r0-327cd99f4e70c703\\trace.csv",
+    "--policy",
+    "intensive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-bounded-race-intensive-30-r0-327cd99f4e70c703\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "1024874354681",
+      "score": "1024626",
+      "observed_ms": "10001.774",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-intensive-30-r0-327cd99f4e70c703/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "77e2f4dbad44c8517b08d2496454f1d026ac514f4f71e352e23d0dbe2942a376"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "1025297997331",
+      "score": "1025050",
+      "observed_ms": "30000.069",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-bounded-race-intensive-30-r0-327cd99f4e70c703/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "93fa01aa7b95a336025c2729bd9ca56f15a5829b50d0520fb1fcd2b9d764beab"
+    }
+  ]
+}

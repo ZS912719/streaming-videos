@@ -1,0 +1,6 @@
+{
+"mode":"ultimate-v2","policy":"intensive","budget_ms":60000,"score":612119,"raw_objective":305868059073,
+"parse_ms":73.931,"algorithm_ms":55992.082,"construction_ms":527.864,"search_ms":55425.793,"validation_ms":37.855,"output_ms":2.178,"entry_elapsed_ms":56092.673,"engine_offset_ms":137.000,
+"accepted":3697,"distinct_starts":3,"duplicates":0,"termination":"bounded_neighborhood_stagnation","incumbent":false,
+"operation_ms":{"exchange-global":19323.260,"local":572.993,"packing":987.262,"repack128":6540.991,"repack32":2451.598,"repack512":13703.393,"repack64":9336.528}
+}

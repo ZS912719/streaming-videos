@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+videos_worth_spreading.in,shared-worth-dyn1-c1-s3-exchange.txt,50,1,best,forward,forward,611218,611241,305417787101,305428988133,4,38,19,19,448930,416.918,no_improving_move

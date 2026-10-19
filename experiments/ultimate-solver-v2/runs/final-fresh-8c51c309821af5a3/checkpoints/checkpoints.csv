@@ -1,0 +1,5 @@
+budget_seconds,raw_objective,score,observed_ms,early_termination,solution
+10,3921483199263,1342037,10057.928,false,checkpoint-10.txt
+30,3921808619469,1342149,30000.031,false,checkpoint-30.txt
+60,3921997615833,1342213,60017.367,false,checkpoint-60.txt
+180,3921997615833,1342213,156299.581,true,checkpoint-180.txt

@@ -1,0 +1,91 @@
+{
+  "mode": "ultimate-v2",
+  "policy": "intensive",
+  "budget_ms": 30000,
+  "score": 612119,
+  "raw_objective": 305868059073,
+  "parse_ms": 70.958,
+  "algorithm_ms": 29915.062,
+  "construction_ms": 425.151,
+  "search_ms": 29447.807,
+  "validation_ms": 41.636,
+  "output_ms": 2.484,
+  "entry_elapsed_ms": 30015.838,
+  "engine_offset_ms": 138.0,
+  "accepted": 3061,
+  "distinct_starts": 3,
+  "duplicates": 0,
+  "termination": "time_budget",
+  "incumbent": false,
+  "operation_ms": {
+    "exchange-global": 10623.137,
+    "local": 457.44,
+    "packing": 968.367,
+    "repack128": 3093.924,
+    "repack32": 2447.14,
+    "repack512": 3676.768,
+    "repack64": 6613.102
+  },
+  "instance": "videos_worth_spreading.in",
+  "label": "pilot-repeats-intensive-30-r0",
+  "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+  "configuration": {
+    "mode": "ultimate-v2",
+    "seconds": 30,
+    "extra": [
+      "--policy",
+      "intensive"
+    ],
+    "incumbent": null,
+    "source_sha256": "e78e10436e63baeb077f910953115129ae226917bcb70023da0cec0d1a1a98f8",
+    "input_sha256": "a131686a7f650907d50ed491a2e4593d86581c27743fef837920580e6e75da1b",
+    "runner_version": 2,
+    "heap": "4g"
+  },
+  "solution": "experiments/ultimate-solver-v2/runs/pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf/solution.txt",
+  "solution_sha256": "93e6344589aacfd7b7ab918eb2425faec6cdd44c4a9f96b444acb18fbc446374",
+  "wall_seconds": 30.237563,
+  "independent_validation_seconds": 0.167916,
+  "trace": "experiments/ultimate-solver-v2/runs/pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf/trace.csv",
+  "command": [
+    "java",
+    "-Xmx4g",
+    "-cp",
+    "out",
+    "com.hashcode.streaming.Main",
+    "ultimate-v2",
+    "tmp\\promo-inputs\\videos_worth_spreading.in",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf\\solution.txt",
+    "--seconds",
+    "30",
+    "--metadata",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf\\metadata.json",
+    "--trace",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf\\trace.csv",
+    "--policy",
+    "intensive",
+    "--checkpoints",
+    "experiments\\ultimate-solver-v2\\runs\\pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf\\checkpoints"
+  ],
+  "judge_sha256": "19563ee2a1a7e410c649627e6c45d4f026e5664e67dcdab833f24efbd5eea603",
+  "checkpoints": [
+    {
+      "budget_seconds": "10",
+      "raw_objective": "305598184274",
+      "score": "611579",
+      "observed_ms": "10000.002",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf/checkpoints/checkpoint-10.txt",
+      "solution_sha256": "f6e02e55fd692a75b89241ae750695d49b71cd7707949b34aac0dfe5e147dd5a"
+    },
+    {
+      "budget_seconds": "30",
+      "raw_objective": "305868059073",
+      "score": "612119",
+      "observed_ms": "30000.093",
+      "early_termination": "false",
+      "solution": "experiments/ultimate-solver-v2/runs/pilot-repeats-intensive-30-r0-a3e5965b9c6f87cf/checkpoints/checkpoint-30.txt",
+      "solution_sha256": "93e6344589aacfd7b7ab918eb2425faec6cdd44c4a9f96b444acb18fbc446374"
+    }
+  ]
+}

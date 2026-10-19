@@ -1,0 +1,2 @@
+dataset,mode,pairs,videos_per_cache,round_limit,first_improvement,time_limit_ms,algorithm_ms,index_ms,scan_ms,update_ms,rounds,accepted,candidate_evaluations,feasible,positive,rounded_improvements,estimated_array_bytes,termination,internal_score,raw_objective
+kittens.in,exchange,2147483647,2147483647,30,false,0,18545.202,1709.677,15129.729,11.542,30,30,1469451480,5429428,1710,4,59632000,round_limit,1024004,1024252114743

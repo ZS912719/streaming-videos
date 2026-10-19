@@ -1,0 +1,14 @@
+[
+  {
+    "family": "ring-overlap",
+    "seed": 173801,
+    "input_sha256": "c0a7dce82e3538c2bf73419e40dacef9bc1bec84ff7928c2d06449f03c7e8b2d",
+    "frozen_policy_source": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2"
+  },
+  {
+    "family": "hierarchical-hubs",
+    "seed": 772039,
+    "input_sha256": "adb25567d8edebb31df3c4d2a20b75699f8669ba5b8a88344b41a5204bc0170e",
+    "frozen_policy_source": "605dfbb16766b3a88c71a9a8509c3b5d23446132b0f581b35ca122f9eea764d2"
+  }
+]

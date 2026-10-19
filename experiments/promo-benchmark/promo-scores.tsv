@@ -1,0 +1,34 @@
+Instance	Official score	Runtime (s)	Configuration	Status
+2_2_2_1.in	951327	0.022818	dynamic-repack-exchange	completed
+4_2_4_2.in	982271	0.023386	dynamic-repack-exchange	completed
+6_2_6_2.in	998499	0.021828	dynamic-repack-exchange	completed
+8_2_8_2.in	991480	0.025145	dynamic-repack-exchange	completed
+20_2_20_2.in	995902	0.025554	dynamic-repack-exchange	completed
+3860_246_84901_66.in	1977330	4.977101	dynamic-repack-exchange	completed
+4990_246_84901_50.in	1800315	3.976131	dynamic-repack-exchange	completed
+6970_311_100000_69.in	1839095	7.431108	dynamic-repack-exchange	completed
+10000_500_100000_100.in	2020361	11.633937	dynamic-repack-exchange	completed
+big.in	271267	1.394732	dynamic-repack-exchange	completed
+custom_dejavu42.in			dynamic-repack-exchange	invalid
+custom_universallambda42.in			dynamic-repack-exchange	invalid
+custom_universallambda42_asymmetric.in	976467	14.730009	dynamic-repack-exchange	completed
+dense2.in	284493	5.456892	dynamic-repack-exchange	completed
+dense.in	69683	3.626957	dynamic-repack-exchange	completed
+INSATANC2D.in			dynamic-repack-exchange	invalid
+instance1.in	1497840	3.458198	dynamic-repack-exchange	completed
+instance2.in	1966777	2.198637	dynamic-repack-exchange	completed
+INSTANCED.in			dynamic-repack-exchange	invalid
+kittens.in	1025026	40.264357	dynamic-repack-exchange	completed
+me_at_the_zoo.in	512115	0.031048	dynamic-repack-exchange	completed
+medium_flat_dense_dejavu.in	89890	2.847852	dynamic-repack-exchange	completed_wide_judge
+medium_flat_sparse_lambda.in	23843	1.926943	dynamic-repack-exchange	completed
+medium_mixed_lambda.in	51621	1.141866	dynamic-repack-exchange	completed
+medium_skew_dense_dejavu.in			dynamic-repack-exchange	invalid
+medium_skew_sparse_lambda.in	43671	1.006566	dynamic-repack-exchange	completed
+realistic_large_clustered.in	943306	19.481024	dynamic-repack-exchange	completed
+realistic_large_random.in	929876	27.249761	dynamic-repack-exchange	completed
+regional_instance.in	2383868	0.193396	dynamic-repack-exchange	completed
+supra.in	411743	0.229858	dynamic-repack-exchange	completed
+trending_today.in	499966	3.715133	dynamic-repack-exchange	completed
+videos_worth_spreading.in	611405	7.086064	dynamic-repack-exchange	completed
+zipF_instance.in	1928623	0.446403	dynamic-repack-exchange	completed

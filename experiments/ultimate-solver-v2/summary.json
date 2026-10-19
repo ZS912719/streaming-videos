@@ -1,0 +1,71 @@
+{
+  "fresh_count": 33,
+  "archive_count": 33,
+  "fresh_vs_original": {
+    "improved": 22,
+    "tied": 11,
+    "regressed": 0,
+    "mean_relative_percent": 0.23990589633548892,
+    "median_relative_percent": 0.054792188128755206,
+    "worst_relative_percent": 0.0,
+    "point_gain": 49634,
+    "algorithm_seconds": 1728.7129069999999,
+    "wall_seconds": 1740.162912
+  },
+  "fresh_vs_v1": {
+    "improved": 22,
+    "tied": 11,
+    "regressed": 0,
+    "mean_relative_percent": 0.07403205897125553,
+    "median_relative_percent": 0.0835562947188017,
+    "worst_relative_percent": 0.0,
+    "point_gain": 20792,
+    "algorithm_seconds": 1728.7129069999999,
+    "wall_seconds": 1740.162912
+  },
+  "fresh_vs_records": {
+    "improved": 21,
+    "tied": 11,
+    "regressed": 1,
+    "mean_relative_percent": 0.05114841529072513,
+    "median_relative_percent": 0.014094740145008028,
+    "worst_relative_percent": -0.0011435554117943038,
+    "point_gain": 12584,
+    "algorithm_seconds": 1728.7129069999999,
+    "wall_seconds": 1740.162912
+  },
+  "archive_vs_records": {
+    "improved": 21,
+    "tied": 12,
+    "regressed": 0,
+    "mean_relative_percent": 0.051902636363707594,
+    "median_relative_percent": 0.014094740145008028,
+    "worst_relative_percent": 0.0,
+    "point_gain": 12834,
+    "algorithm_seconds": 1774.327143,
+    "wall_seconds": 1785.979308
+  },
+  "matched_v1_count": 33,
+  "fresh_vs_v1_matched_180": {
+    "improved": 22,
+    "tied": 11,
+    "regressed": 0,
+    "mean_relative_percent": 0.05058809371937236,
+    "median_relative_percent": 0.014094740145008028,
+    "worst_relative_percent": 0.0,
+    "point_gain": 9673,
+    "algorithm_seconds": 1728.7129069999999,
+    "wall_seconds": 1740.162912
+  },
+  "matched_v1_vs_original": {
+    "improved": 18,
+    "tied": 13,
+    "regressed": 2,
+    "mean_relative_percent": 0.1891198700241459,
+    "median_relative_percent": 0.015558449178529138,
+    "worst_relative_percent": -0.1045551749093719,
+    "point_gain": 39961,
+    "algorithm_seconds": 1330.359217,
+    "wall_seconds": 1342.642568
+  }
+}

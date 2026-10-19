@@ -1,0 +1,2 @@
+dataset,start_solution,max_passes,max_moves_per_cache,selection,cache_order,candidate_order,initial_score,internal_final_score,initial_saved_latency,final_saved_latency,passes,accepted_moves,additions,replacements,evaluated_moves,search_ms,termination
+kittens.in,kittens-record-c1-s3-exchange.txt,50,1,best,reverse,forward,1024004,1024013,1024252114743,1024261609531,6,96,32,64,29505475,5367.028,no_improving_move
